@@ -79,9 +79,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -175.0
-offset_top = -59.0
+offset_top = -65.0
 offset_right = 175.0
-offset_bottom = 161.0
+offset_bottom = 155.0
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -99,6 +99,7 @@ custom_minimum_size = Vector2(0, 48)
 layout_mode = 2
 
 [node name="PlayButton" type="TextureButton" parent="MainButtons/VBoxContainer/Play" unique_id=533779624]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(180, 48)
 layout_mode = 1
 anchors_preset = 8
@@ -133,6 +134,7 @@ custom_minimum_size = Vector2(0, 48)
 layout_mode = 2
 
 [node name="SettingsButton" type="TextureButton" parent="MainButtons/VBoxContainer/Settings" unique_id=2056722099]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(180, 48)
 layout_mode = 1
 anchors_preset = 8
@@ -167,6 +169,7 @@ custom_minimum_size = Vector2(0, 48)
 layout_mode = 2
 
 [node name="QuitButton" type="TextureButton" parent="MainButtons/VBoxContainer/Quit" unique_id=965024046]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(180, 48)
 layout_mode = 1
 anchors_preset = 8
@@ -204,10 +207,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = 243.0
-offset_top = -59.0
-offset_right = 593.0
-offset_bottom = 161.0
+offset_left = 238.0
+offset_top = -65.0
+offset_right = 588.0
+offset_bottom = 155.0
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -225,6 +228,7 @@ custom_minimum_size = Vector2(0, 48)
 layout_mode = 2
 
 [node name="MusicButton" type="TextureButton" parent="SettingsButtons/VBoxContainer/Music" unique_id=218701134]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(180, 48)
 layout_mode = 1
 anchors_preset = 8
@@ -259,6 +263,7 @@ custom_minimum_size = Vector2(0, 48)
 layout_mode = 2
 
 [node name="SFXButton" type="TextureButton" parent="SettingsButtons/VBoxContainer/SFX" unique_id=1691508474]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(180, 48)
 layout_mode = 1
 anchors_preset = 8
@@ -293,6 +298,7 @@ custom_minimum_size = Vector2(0, 48)
 layout_mode = 2
 
 [node name="WindowButton" type="TextureButton" parent="SettingsButtons/VBoxContainer/Window" unique_id=1953831068]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(180, 48)
 layout_mode = 1
 anchors_preset = 8
@@ -327,6 +333,7 @@ custom_minimum_size = Vector2(0, 48)
 layout_mode = 2
 
 [node name="BackButton" type="TextureButton" parent="SettingsButtons/VBoxContainer/Back" unique_id=1491209997]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(180, 48)
 layout_mode = 1
 anchors_preset = 8
