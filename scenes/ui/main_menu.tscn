@@ -4,10 +4,36 @@
 [ext_resource type="Texture2D" uid="uid://bjnh3sonwurje" path="res://assets/sprites/background_tiled.png" id="2_fe2o3"]
 [ext_resource type="Shader" uid="uid://c47o1a0f13bfo" path="res://shaders/ui/background.gdshader" id="2_m1kxf"]
 [ext_resource type="LabelSettings" uid="uid://vxh5qk55fkll" path="res://extra/font_48.tres" id="4_m1kxf"]
+[ext_resource type="Texture2D" uid="uid://dy8e3xkc5qdbp" path="res://assets/sprites/interface/Tilemap/tilemap_packed.png" id="5_x2yvf"]
+[ext_resource type="LabelSettings" uid="uid://4rm1gvou0f2t" path="res://extra/font_16.tres" id="6_uhagc"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_1g8jr"]
 shader = ExtResource("2_m1kxf")
 shader_parameter/speed = 0.5
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uhagc"]
+atlas = ExtResource("5_x2yvf")
+region = Rect2(112, 48, 48, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8g5eo"]
+atlas = ExtResource("5_x2yvf")
+region = Rect2(112, 48, 48, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7suek"]
+atlas = ExtResource("5_x2yvf")
+region = Rect2(112, 48, 48, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_btxxm"]
+atlas = ExtResource("5_x2yvf")
+region = Rect2(176, 48, 48, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wb0q5"]
+atlas = ExtResource("5_x2yvf")
+region = Rect2(176, 48, 48, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q85j6"]
+atlas = ExtResource("5_x2yvf")
+region = Rect2(176, 48, 48, 16)
 
 [node name="MainMenu" type="Control" unique_id=1242548632]
 layout_mode = 3
@@ -43,3 +69,289 @@ text = "TOPDOWN
 GAME"
 label_settings = ExtResource("4_m1kxf")
 horizontal_alignment = 1
+
+[node name="MainButtons" type="Control" parent="." unique_id=1503909581]
+custom_minimum_size = Vector2(350, 220)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -175.0
+offset_top = -59.0
+offset_right = 175.0
+offset_bottom = 161.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MainButtons" unique_id=1439207052]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="Play" type="Control" parent="MainButtons/VBoxContainer" unique_id=1689606340]
+custom_minimum_size = Vector2(0, 48)
+layout_mode = 2
+
+[node name="PlayButton" type="TextureButton" parent="MainButtons/VBoxContainer/Play" unique_id=533779624]
+custom_minimum_size = Vector2(180, 48)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -90.0
+offset_top = -24.0
+offset_right = 90.0
+offset_bottom = 24.0
+grow_horizontal = 2
+grow_vertical = 2
+texture_normal = SubResource("AtlasTexture_uhagc")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="MainButtons/VBoxContainer/Play/PlayButton" unique_id=120800983]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "PLAY"
+label_settings = ExtResource("6_uhagc")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Settings" type="Control" parent="MainButtons/VBoxContainer" unique_id=1854629689]
+custom_minimum_size = Vector2(0, 48)
+layout_mode = 2
+
+[node name="SettingsButton" type="TextureButton" parent="MainButtons/VBoxContainer/Settings" unique_id=2056722099]
+custom_minimum_size = Vector2(180, 48)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -90.0
+offset_top = -24.0
+offset_right = 90.0
+offset_bottom = 24.0
+grow_horizontal = 2
+grow_vertical = 2
+texture_normal = SubResource("AtlasTexture_8g5eo")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="MainButtons/VBoxContainer/Settings/SettingsButton" unique_id=429295739]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "SETTINGS"
+label_settings = ExtResource("6_uhagc")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Quit" type="Control" parent="MainButtons/VBoxContainer" unique_id=2136569765]
+custom_minimum_size = Vector2(0, 48)
+layout_mode = 2
+
+[node name="QuitButton" type="TextureButton" parent="MainButtons/VBoxContainer/Quit" unique_id=965024046]
+custom_minimum_size = Vector2(180, 48)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -90.0
+offset_top = -24.0
+offset_right = 90.0
+offset_bottom = 24.0
+grow_horizontal = 2
+grow_vertical = 2
+texture_normal = SubResource("AtlasTexture_7suek")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="MainButtons/VBoxContainer/Quit/QuitButton" unique_id=335364743]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "QUIT"
+label_settings = ExtResource("6_uhagc")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="SettingsButtons" type="Control" parent="." unique_id=1358408525]
+custom_minimum_size = Vector2(350, 220)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 243.0
+offset_top = -59.0
+offset_right = 593.0
+offset_bottom = 161.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="SettingsButtons" unique_id=1484802292]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="Music" type="Control" parent="SettingsButtons/VBoxContainer" unique_id=1565720360]
+custom_minimum_size = Vector2(0, 48)
+layout_mode = 2
+
+[node name="MusicButton" type="TextureButton" parent="SettingsButtons/VBoxContainer/Music" unique_id=218701134]
+custom_minimum_size = Vector2(180, 48)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -90.0
+offset_top = -24.0
+offset_right = 90.0
+offset_bottom = 24.0
+grow_horizontal = 2
+grow_vertical = 2
+texture_normal = SubResource("AtlasTexture_btxxm")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="SettingsButtons/VBoxContainer/Music/MusicButton" unique_id=1904965062]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "MUSIC"
+label_settings = ExtResource("6_uhagc")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="SFX" type="Control" parent="SettingsButtons/VBoxContainer" unique_id=1607477790]
+custom_minimum_size = Vector2(0, 48)
+layout_mode = 2
+
+[node name="SFXButton" type="TextureButton" parent="SettingsButtons/VBoxContainer/SFX" unique_id=1691508474]
+custom_minimum_size = Vector2(180, 48)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -90.0
+offset_top = -24.0
+offset_right = 90.0
+offset_bottom = 24.0
+grow_horizontal = 2
+grow_vertical = 2
+texture_normal = SubResource("AtlasTexture_wb0q5")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="SettingsButtons/VBoxContainer/SFX/SFXButton" unique_id=839780064]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "SFX"
+label_settings = ExtResource("6_uhagc")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Window" type="Control" parent="SettingsButtons/VBoxContainer" unique_id=1996859373]
+custom_minimum_size = Vector2(0, 48)
+layout_mode = 2
+
+[node name="WindowButton" type="TextureButton" parent="SettingsButtons/VBoxContainer/Window" unique_id=1953831068]
+custom_minimum_size = Vector2(180, 48)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -90.0
+offset_top = -24.0
+offset_right = 90.0
+offset_bottom = 24.0
+grow_horizontal = 2
+grow_vertical = 2
+texture_normal = SubResource("AtlasTexture_q85j6")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="SettingsButtons/VBoxContainer/Window/WindowButton" unique_id=1470717387]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "WINDOW"
+label_settings = ExtResource("6_uhagc")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Back" type="Control" parent="SettingsButtons/VBoxContainer" unique_id=957559061]
+custom_minimum_size = Vector2(0, 48)
+layout_mode = 2
+
+[node name="BackButton" type="TextureButton" parent="SettingsButtons/VBoxContainer/Back" unique_id=1491209997]
+custom_minimum_size = Vector2(180, 48)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -90.0
+offset_top = -24.0
+offset_right = 90.0
+offset_bottom = 24.0
+grow_horizontal = 2
+grow_vertical = 2
+texture_normal = SubResource("AtlasTexture_btxxm")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="SettingsButtons/VBoxContainer/Back/BackButton" unique_id=916824228]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "BACK"
+label_settings = ExtResource("6_uhagc")
+horizontal_alignment = 1
+vertical_alignment = 1
