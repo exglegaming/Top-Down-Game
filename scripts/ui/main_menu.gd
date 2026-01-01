@@ -18,6 +18,12 @@ extends Control
 
 
 func _ready() -> void:
+    Global.load_data()
+
+    update_audio_bus("Music", music_label, Global.settings.music)
+    update_audio_bus("SFX", sfx_label, Global.settings.sfx)
+    update_fullscreen(Global.settings.fullscreen)
+
     play_button.pressed.connect(_on_play_button_pressed)
     settings_button.pressed.connect(_on_settings_button_pressed)
     quit_button.pressed.connect(_on_quit_button_pressed)
@@ -25,10 +31,6 @@ func _ready() -> void:
     sfx_button.pressed.connect(_on_sfx_button_pressed)
     window_button.pressed.connect(_on_window_button_pressed)
     back_button.pressed.connect(_on_back_button_pressed)
-
-    update_audio_bus("Music", music_label, Global.settings.music)
-    update_audio_bus("SFX", sfx_label, Global.settings.sfx)
-    update_fullscreen(Global.settings.fullscreen)
 
 
 func update_audio_bus(bus_name: String, label: Label, is_on: bool) -> void:
@@ -57,21 +59,25 @@ func _on_settings_button_pressed() -> void:
 
 func _on_quit_button_pressed() -> void:
     ui_sound.play()
+    Global.save_data()
     get_tree().quit()
 
 
 func _on_music_button_pressed() -> void:
     ui_sound.play()
+    Global.settings.music = !Global.settings.music
     update_audio_bus("Music", music_label, Global.settings.music)
 
 
 func _on_sfx_button_pressed() -> void:
     ui_sound.play()
+    Global.settings.sfx = !Global.settings.sfx
     update_audio_bus("SFX", sfx_label, Global.settings.sfx)
 
 
 func _on_window_button_pressed() -> void:
     ui_sound.play()
+    Global.settings.fullscreen = !Global.settings.fullscreen
     update_fullscreen(Global.settings.fullscreen)
 
 
@@ -81,3 +87,8 @@ func _on_back_button_pressed() -> void:
     tween.tween_property(settings_buttons, "global_position:x", 558, 0.3)
     tween.tween_interval(0.1)
     tween.tween_property(main_buttons, "global_position:y", 115, 0.2)
+
+
+func _notification(what: int) -> void:
+    if what == NOTIFICATION_WM_CLOSE_REQUEST:
+        Global.save_data()
