@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://bdmo5icd2xpue"]
 
 [ext_resource type="Script" uid="uid://dx73hjjbn3ejh" path="res://scripts/ui/main_menu.gd" id="1_sl1te"]
+[ext_resource type="AudioStream" uid="uid://dtxhputnlac6" path="res://assets/sounds/select-a.ogg" id="2_btxxm"]
 [ext_resource type="Texture2D" uid="uid://bjnh3sonwurje" path="res://assets/sprites/background_tiled.png" id="2_fe2o3"]
 [ext_resource type="Shader" uid="uid://c47o1a0f13bfo" path="res://shaders/ui/background.gdshader" id="2_m1kxf"]
 [ext_resource type="LabelSettings" uid="uid://vxh5qk55fkll" path="res://extra/font_48.tres" id="4_m1kxf"]
@@ -43,6 +44,10 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_sl1te")
+
+[node name="UISound" type="AudioStreamPlayer" parent="." unique_id=1916632535]
+stream = ExtResource("2_btxxm")
+bus = &"SFX"
 
 [node name="Background" type="TextureRect" parent="." unique_id=536414488]
 material = SubResource("ShaderMaterial_1g8jr")
@@ -246,14 +251,15 @@ texture_normal = SubResource("AtlasTexture_btxxm")
 ignore_texture_size = true
 stretch_mode = 5
 
-[node name="Label" type="Label" parent="SettingsButtons/VBoxContainer/Music/MusicButton" unique_id=1904965062]
+[node name="MusicLabel" type="Label" parent="SettingsButtons/VBoxContainer/Music/MusicButton" unique_id=1904965062]
+unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-text = "MUSIC"
+text = "MUSIC: ON"
 label_settings = ExtResource("6_uhagc")
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -281,14 +287,15 @@ texture_normal = SubResource("AtlasTexture_wb0q5")
 ignore_texture_size = true
 stretch_mode = 5
 
-[node name="Label" type="Label" parent="SettingsButtons/VBoxContainer/SFX/SFXButton" unique_id=839780064]
+[node name="SFXLabel" type="Label" parent="SettingsButtons/VBoxContainer/SFX/SFXButton" unique_id=839780064]
+unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-text = "SFX"
+text = "SFX: ON"
 label_settings = ExtResource("6_uhagc")
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -316,7 +323,8 @@ texture_normal = SubResource("AtlasTexture_q85j6")
 ignore_texture_size = true
 stretch_mode = 5
 
-[node name="Label" type="Label" parent="SettingsButtons/VBoxContainer/Window/WindowButton" unique_id=1470717387]
+[node name="WindowLabel" type="Label" parent="SettingsButtons/VBoxContainer/Window/WindowButton" unique_id=1470717387]
+unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
