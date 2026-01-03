@@ -50,6 +50,6 @@ sprite_frames = SubResource("SpriteFrames_264km")
 animation = &"idle"
 autoplay = "idle"
 
-[node name="CollisionShape2D" parent="." index="1" unique_id=928463983]
+[node name="CollisionShape2D" parent="." index="2" unique_id=928463983]
 position = Vector2(0, -8)
 shape = SubResource("CapsuleShape2D_e5541")
