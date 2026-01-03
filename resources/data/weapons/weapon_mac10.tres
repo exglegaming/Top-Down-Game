@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="WeaponData" format=3 uid="uid://ppdx8xb8rkvo"]
+
+[ext_resource type="Texture2D" uid="uid://cgch73n7h4u3r" path="res://assets/sprites/weapons/Tiles/tile_0006.png" id="1_t56py"]
+[ext_resource type="Script" uid="uid://jcs7ybg118g7" path="res://scripts/resources/data/weapons/weapon_data.gd" id="2_eunpp"]
+
+[resource]
+script = ExtResource("2_eunpp")
+weapon_name = "Mac 10"
+icon = ExtResource("1_t56py")
+damage = 1.0
+cooldown = 0.15
+mana_cost = 0.7
+spread = 7.0
+bullet_speed = 300.0
+decscription = "Small SMG, very fast fire rate, low damage per bullet."
+metadata/_custom_type_script = "uid://jcs7ybg118g7"

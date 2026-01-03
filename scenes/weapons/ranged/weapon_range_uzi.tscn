@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://c64bomahf66fn"]
+
+[ext_resource type="PackedScene" uid="uid://cmwmlnryhnk3c" path="res://scenes/weapons/ranged/weapon_range_base.tscn" id="1_yp1vt"]
+[ext_resource type="Resource" uid="uid://bv6rd1pjco1te" path="res://resources/data/weapons/weapon_uzi.tres" id="2_bvpbi"]
+[ext_resource type="Texture2D" uid="uid://dhmowywd5bkl7" path="res://assets/sprites/weapons/Tiles/tile_0002.png" id="3_21st1"]
+
+[node name="WeaponRangeUzi" unique_id=1469574805 instance=ExtResource("1_yp1vt")]
+data = ExtResource("2_bvpbi")
+
+[node name="Sprite2D" parent="Pivot" parent_id_path=PackedInt32Array(586668593) index="0" unique_id=695149134]
+position = Vector2(12, 0)
+texture = ExtResource("3_21st1")
+
+[node name="Marker2D" parent="Pivot" parent_id_path=PackedInt32Array(586668593) index="1" unique_id=300523565]
+position = Vector2(20.666668, -1.3333334)

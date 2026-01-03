@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="WeaponData" format=3 uid="uid://bv6rd1pjco1te"]
+
+[ext_resource type="Texture2D" uid="uid://dhmowywd5bkl7" path="res://assets/sprites/weapons/Tiles/tile_0002.png" id="1_v8a7x"]
+[ext_resource type="Script" uid="uid://jcs7ybg118g7" path="res://scripts/resources/data/weapons/weapon_data.gd" id="2_6jhnf"]
+
+[resource]
+script = ExtResource("2_6jhnf")
+weapon_name = "Uzi"
+icon = ExtResource("1_v8a7x")
+damage = 0.8
+cooldown = 0.12
+mana_cost = 0.5
+spread = 10.0
+bullet_speed = 320.0
+decscription = "Micro SMG, extremely fast fire rate, low accuracy."
+metadata/_custom_type_script = "uid://jcs7ybg118g7"

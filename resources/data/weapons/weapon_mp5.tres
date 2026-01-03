@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="WeaponData" format=3 uid="uid://cg2fnsryhyq32"]
+
+[ext_resource type="Texture2D" uid="uid://d0unfm6gf7rj5" path="res://assets/sprites/weapons/Tiles/tile_0004.png" id="1_bb6sq"]
+[ext_resource type="Script" uid="uid://jcs7ybg118g7" path="res://scripts/resources/data/weapons/weapon_data.gd" id="2_2jbv4"]
+
+[resource]
+script = ExtResource("2_2jbv4")
+weapon_name = "MP5"
+icon = ExtResource("1_bb6sq")
+damage = 1.2
+cooldown = 0.22
+mana_cost = 0.8
+spread = 5.0
+bullet_speed = 280.0
+decscription = "Balanced SMG, accurate, good for short range fights."
+metadata/_custom_type_script = "uid://jcs7ybg118g7"

@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="WeaponData" format=3 uid="uid://dln0i4lssgw23"]
+
+[ext_resource type="Texture2D" uid="uid://bpa7uv0kkmria" path="res://assets/sprites/weapons/Tiles/tile_0005.png" id="1_kt0dw"]
+[ext_resource type="Script" uid="uid://jcs7ybg118g7" path="res://scripts/resources/data/weapons/weapon_data.gd" id="2_61d6x"]
+
+[resource]
+script = ExtResource("2_61d6x")
+weapon_name = "AK47"
+icon = ExtResource("1_kt0dw")
+damage = 1.0
+cooldown = 0.4
+mana_cost = 1.0
+spread = 7.0
+bullet_speed = 250.0
+decscription = "Powerful assault rifle, good damage, medium recoil."
+metadata/_custom_type_script = "uid://jcs7ybg118g7"

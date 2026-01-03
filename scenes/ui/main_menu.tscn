@@ -8,6 +8,10 @@
 [ext_resource type="Texture2D" uid="uid://dy8e3xkc5qdbp" path="res://assets/sprites/interface/Tilemap/tilemap_packed.png" id="5_x2yvf"]
 [ext_resource type="LabelSettings" uid="uid://4rm1gvou0f2t" path="res://extra/font_16.tres" id="6_uhagc"]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_otr3d"]
+atlas = ExtResource("5_x2yvf")
+region = Rect2(80, 65, 15, 14)
+
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_1g8jr"]
 shader = ExtResource("2_m1kxf")
 shader_parameter/speed = 0.5
@@ -44,6 +48,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_sl1te")
+menu_cursor = SubResource("AtlasTexture_otr3d")
 
 [node name="UISound" type="AudioStreamPlayer" parent="." unique_id=1916632535]
 stream = ExtResource("2_btxxm")

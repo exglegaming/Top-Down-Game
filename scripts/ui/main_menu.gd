@@ -2,6 +2,9 @@ class_name MainMenu
 extends Control
 
 
+@export_category("References")
+@export var menu_cursor: Texture2D
+
 @onready var main_buttons: Control = $MainButtons
 @onready var settings_buttons: Control = $SettingsButtons
 @onready var play_button: TextureButton = %PlayButton
@@ -19,6 +22,7 @@ extends Control
 
 func _ready() -> void:
     Global.load_data()
+    Cursor.sprite_2d.texture = menu_cursor
 
     update_audio_bus("Music", music_label, Global.settings.music)
     update_audio_bus("SFX", sfx_label, Global.settings.sfx)
@@ -46,7 +50,8 @@ func update_fullscreen(is_on: bool) -> void:
 
 func _on_play_button_pressed() -> void:
     ui_sound.play()
-    Transition.transition_to("uid://cinbkpaw7sfcs")
+    Transition.transition_to("uid://dheb1iulvcciu")
+    # Transition.transition_to("uid://cinbkpaw7sfcs")
 
 
 func _on_settings_button_pressed() -> void:
