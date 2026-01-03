@@ -2,9 +2,12 @@
 
 [ext_resource type="Script" uid="uid://5bk4sbvfqtcb" path="res://scripts/player/player.gd" id="1_xb0ah"]
 [ext_resource type="Texture2D" uid="uid://dawvmsgg5mc6o" path="res://assets/sprites/Shadow.png" id="2_5np8l"]
+[ext_resource type="PackedScene" uid="uid://cm774d4hp3584" path="res://scenes/components/health_component.tscn" id="2_76ihk"]
 
 [node name="PlayerBase" type="CharacterBody2D" unique_id=2096422990]
 script = ExtResource("1_xb0ah")
+
+[node name="HealthComponent" parent="." unique_id=1538038270 instance=ExtResource("2_76ihk")]
 
 [node name="Visuals" type="Node2D" parent="." unique_id=339338660]
 
