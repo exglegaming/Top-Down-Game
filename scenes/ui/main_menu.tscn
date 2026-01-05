@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://bdmo5icd2xpue"]
 
-[ext_resource type="Script" uid="uid://dx73hjjbn3ejh" path="res://scripts/ui/main_menu.gd" id="1_sl1te"]
+[ext_resource type="Script" uid="uid://b78j1yl7htdob" path="res://scripts/ui/MainMenu.cs" id="1_btxxm"]
 [ext_resource type="AudioStream" uid="uid://dtxhputnlac6" path="res://assets/sounds/select-a.ogg" id="2_btxxm"]
 [ext_resource type="Texture2D" uid="uid://bjnh3sonwurje" path="res://assets/sprites/background_tiled.png" id="2_fe2o3"]
 [ext_resource type="Shader" uid="uid://c47o1a0f13bfo" path="res://shaders/ui/background.gdshader" id="2_m1kxf"]
@@ -47,8 +47,8 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_sl1te")
-menu_cursor = SubResource("AtlasTexture_otr3d")
+script = ExtResource("1_btxxm")
+menuCursor = SubResource("AtlasTexture_otr3d")
 
 [node name="UISound" type="AudioStreamPlayer" parent="." unique_id=1916632535]
 stream = ExtResource("2_btxxm")
