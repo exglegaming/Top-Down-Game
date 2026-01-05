@@ -1,10 +1,10 @@
 [gd_scene format=3 uid="uid://cmwmlnryhnk3c"]
 
 [ext_resource type="AudioStream" uid="uid://kxjapaxp4le4" path="res://assets/sounds/shoot-c.ogg" id="1_2e8jv"]
-[ext_resource type="Script" uid="uid://yujwbmmqgqwi" path="res://scripts/weapons/ranged/weapon_range.gd" id="1_jyu1r"]
+[ext_resource type="Script" uid="uid://1byvhmks16ab" path="res://scripts/weapons/ranged/WeaponRange.cs" id="1_3vtvo"]
 
 [node name="WeaponeRangeBase" type="Node2D" unique_id=1469574805]
-script = ExtResource("1_jyu1r")
+script = ExtResource("1_3vtvo")
 
 [node name="ShootSound" type="AudioStreamPlayer" parent="." unique_id=1004121863]
 stream = ExtResource("1_2e8jv")

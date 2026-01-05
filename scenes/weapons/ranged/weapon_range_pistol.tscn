@@ -1,11 +1,13 @@
 [gd_scene format=3 uid="uid://b5pray2nwvym5"]
 
 [ext_resource type="PackedScene" uid="uid://cmwmlnryhnk3c" path="res://scenes/weapons/ranged/weapon_range_base.tscn" id="1_d0h24"]
-[ext_resource type="Resource" uid="uid://ddl6xyivpuihn" path="res://resources/data/weapons/weapon_pistol.tres" id="2_15viq"]
+[ext_resource type="Script" uid="uid://1byvhmks16ab" path="res://scripts/weapons/ranged/WeaponRange.cs" id="2_15viq"]
 [ext_resource type="Texture2D" uid="uid://cqvwy8c5l0aod" path="res://assets/sprites/weapons/Tiles/tile_0001.png" id="2_wk8dd"]
+[ext_resource type="Resource" uid="uid://ddl6xyivpuihn" path="res://resources/data/weapons/weapon_pistol.tres" id="3_o00gy"]
 
 [node name="WeaponRangePistol" unique_id=1469574805 instance=ExtResource("1_d0h24")]
-data = ExtResource("2_15viq")
+script = ExtResource("2_15viq")
+Data = ExtResource("3_o00gy")
 
 [node name="Sprite2D" parent="Pivot" parent_id_path=PackedInt32Array(586668593) index="0" unique_id=695149134]
 position = Vector2(12, 0)
