@@ -48,7 +48,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_btxxm")
-menuCursor = SubResource("AtlasTexture_otr3d")
+_menuCursor = SubResource("AtlasTexture_otr3d")
 
 [node name="UISound" type="AudioStreamPlayer" parent="." unique_id=1916632535]
 stream = ExtResource("2_btxxm")

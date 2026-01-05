@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://pllxe32kkppd"]
 
-[ext_resource type="Script" uid="uid://1ti74e7ap1k4" path="res://scripts/autoloads/transition.gd" id="1_b13ab"]
+[ext_resource type="Script" uid="uid://c74e8dnycyyss" path="res://scripts/autoloads/Transition.cs" id="1_lv8kt"]
 [ext_resource type="Shader" uid="uid://bj1sfaam8ka5f" path="res://shaders/autoloads/transition.gdshader" id="2_lv8kt"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_b13ab"]
@@ -9,7 +9,7 @@ shader_parameter/progress = 0.0
 shader_parameter/diamondPixelSize = 10.0
 
 [node name="Transition" type="Node" unique_id=933516526]
-script = ExtResource("1_b13ab")
+script = ExtResource("1_lv8kt")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1923906391]
 

@@ -11,4 +11,4 @@ extends Resource
 @export var spread: float
 @export var bullet_speed: float
 @export var bullet_scene: PackedScene
-@export_multiline var decscription: String
+@export_multiline var description: String

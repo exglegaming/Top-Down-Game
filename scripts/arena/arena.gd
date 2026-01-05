@@ -10,9 +10,9 @@ extends Node2D
 
 
 func _ready() -> void:
-    Cursor.sprite_2d.texture = arena_cursor
-    EventBus.on_player_health_updated.connect(_on_player_health_updated)
+	Cursor.sprite_2d.texture = arena_cursor
+	EventBus.on_player_health_updated.connect(_on_player_health_updated)
 
 
 func _on_player_health_updated(current_health: float, max_health: float) -> void:
-    health_bar.value = current_health / max_health
+	health_bar.value = current_health / max_health

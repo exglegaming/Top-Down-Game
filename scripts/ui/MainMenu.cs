@@ -1,12 +1,12 @@
 using Godot;
-using TopDownGame.Scritps.Autoloads;
+using TopDownGame.scripts.autoloads;
 
-namespace TopDownGame.Scritps.UI;
+namespace TopDownGame.scripts.ui;
 
 public partial class MainMenu : Control
 {
     [ExportCategory("References")]
-    [Export] private Texture2D menuCursor;
+    [Export] private Texture2D _menuCursor;
 
     private Control _mainButtons;
     private Control _settingsButtons;
@@ -24,6 +24,9 @@ public partial class MainMenu : Control
 
     public override void _Ready()
     {
+        Global.Instance.LoadData();
+        Cursor.Instance.Sprite2D.Texture = _menuCursor;
+        
         _mainButtons = GetNode<Control>("MainButtons");
         _settingsButtons = GetNode<Control>("SettingsButtons");
         _playButton = GetNode<TextureButton>("%PlayButton");
@@ -37,9 +40,10 @@ public partial class MainMenu : Control
         _musicLabel = GetNode<Label>("%MusicLabel");
         _sfxLabel = GetNode<Label>("%SFXLabel");
         _windowLabel = GetNode<Label>("%WindowLabel");
-
-        // Global.LoadData();
-        Cursor.Instance._sprite2D.Texture = menuCursor;
+        
+        UpdateAudioBus("Music", _musicLabel, (bool)Global.Instance.Settings["music"]);
+        UpdateAudioBus("SFX", _sfxLabel, (bool)Global.Instance.Settings["sfx"]);
+        UpdateFullscreen((bool)Global.Instance.Settings["fullscreen"]);
         
         _playButton.Pressed += OnPlayButtonPressed;
         _settingsButton.Pressed += OnSettingsButtonPressed;
@@ -66,7 +70,7 @@ public partial class MainMenu : Control
     private void OnPlayButtonPressed()
     {
         _uiSound.Play();
-        // Transistion.TransitionTo("uid://dheb1iulvcciu");
+        Transition.Instance.TransitionTo("uid://dheb1iulvcciu");
     }
 
     private void OnSettingsButtonPressed()
@@ -75,49 +79,51 @@ public partial class MainMenu : Control
         var tween = CreateTween();
         tween.TweenProperty(_mainButtons, "global_position:y", 350, 0.2);
         tween.TweenInterval(0.1);
-        tween.TweenProperty(_settingsButton, "global_position:x", 145, 0.3);
+        tween.TweenProperty(_settingsButtons, "global_position:x", 145, 0.3);
     }
 
     private void OnQuitButtonPressed()
     {
         _uiSound.Play();
-        // Global.SaveData();
+        Global.Instance.SaveData();
         GetTree().Quit();
     }
 
     private void OnMusicButtonPressed()
     {
         _uiSound.Play();
-        // Global.settings.music = !Global.settings.music
-        // UpdateAudioBus("Music", _musicLabel, Global.settings.music);
+        var currentMusic = (bool)Global.Instance.Settings["music"];
+        Global.Instance.Settings["music"] = !currentMusic;
+        UpdateAudioBus("Music", _musicLabel, (bool)Global.Instance.Settings["music"]);
     }
 
     private void OnSfxButtonPressed()
     {
         _uiSound.Play();
-        // Global.settings.sfx = !Global.settings.sfx
-        // UpdateAudioBus("SFX", _sfxLabel, Global.settings.sfx);
+        var currentSfx = (bool)Global.Instance.Settings["sfx"];
+        Global.Instance.Settings["sfx"] = !currentSfx;
+        UpdateAudioBus("SFX", _sfxLabel, (bool)Global.Instance.Settings["sfx"]);
     }
 
      private void OnWindowButtonPressed()
     {
         _uiSound.Play();
-        // Global.settings.fullscreen = !Global.settings.fullscreen
-        // UpdateFullscreen(Global.settings.fullscreen);
+        var currentFullscreen = (bool)Global.Instance.Settings["fullscreen"];
+        Global.Instance.Settings["fullscreen"] = !currentFullscreen;
+        UpdateFullscreen((bool)Global.Instance.Settings["fullscreen"]);
     }
 
     private void OnBackButtonPressed()
     {
         _uiSound.Play();
         var tween = CreateTween();
-        tween.TweenProperty(_settingsButton, "global_position:x", 558, 0.3);
+        tween.TweenProperty(_settingsButtons, "global_position:x", 558, 0.3);
         tween.TweenInterval(0.1);
         tween.TweenProperty(_mainButtons, "global_position:y", 115, 0.2);
     }
 
-    // public override void _Notification(int what)
-    // {
-    //     if (what == NotificationWMCloseRequest) Global.SaveData();
-    // }
-
+    public override void _Notification(int what)
+    {
+        if (what == NotificationWMCloseRequest) Global.Instance.SaveData();
+    }
 }
