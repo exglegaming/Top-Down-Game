@@ -42,7 +42,7 @@ animations = [{
 radius = 8.062258
 
 [node name="PlayerDog" unique_id=2096422990 instance=ExtResource("1_d2dvc")]
-data = ExtResource("2_3l3e8")
+Data = ExtResource("2_3l3e8")
 
 [node name="Visuals" parent="." index="1" unique_id=339338660]
 scale = Vector2(1.25, 1.25)

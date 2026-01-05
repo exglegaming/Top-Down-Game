@@ -13,6 +13,6 @@ public partial class WeaponData : Resource
     [Export] public float ManaCost { get; private set; }
     [Export] public float Spread { get; private set; }
     [Export] public float BulletSpeed { get; private set; }
-    [Export] public float PackedScene { get; private set; }
+    [Export] public PackedScene BulletScene { get; private set; }
     [Export(PropertyHint.MultilineText)] public string Description { get; private set; }
 }

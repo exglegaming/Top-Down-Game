@@ -1,7 +1,5 @@
-using System;
 using Godot;
 using TopDownGame.scripts.autoloads;
-using TopDownGame.scripts.player;
 
 namespace TopDownGame.scripts.arena;
 
@@ -12,18 +10,20 @@ public partial class Arena : Node2D
 
     private TextureProgressBar _healthBar;
     private TextureProgressBar _manaBar;
+    private EventBus _eventBus;
 
     public override void _Ready()
     {
         _healthBar = GetNode<TextureProgressBar>("%HealthBar");
         _manaBar = GetNode<TextureProgressBar>("%ManaBar");
+        _eventBus = GetNode<EventBus>("/root/EventBus");
 
         Cursor.Instance.Sprite2D.Texture = _arenaCursor;
-        EventBus.Instance.Connect(EventBus.SignalName.PlayerHealthUpdated, Callable.From<Player>(OnHealthComponentOnUnitDamaged));
+        _eventBus.PlayerHealthUpdated += OnPlayerHealthUpdated;
     }
 
-    private void OnHealthComponentOnUnitDamaged(Player player)
+    private void OnPlayerHealthUpdated(float currentHealth, float maxHealth)
     {
-        _healthBar.Value = player.HealthComponent.CurrentHealth / player.Data.MaxHP;
+        _healthBar.Value = currentHealth / maxHealth;
     }
 }

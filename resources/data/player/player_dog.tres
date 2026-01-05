@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="PlayerData" format=3 uid="uid://dsnqnkju76afc"]
+
+[ext_resource type="Script" uid="uid://bxbhnfhti7ewr" path="res://scripts/resources/data/player/PlayerData.cs" id="1_5pysn"]
+[ext_resource type="Texture2D" uid="uid://ccab6or5n1nai" path="res://assets/sprites/players/tile_0000.png" id="1_t6xk2"]
+
+[resource]
+script = ExtResource("1_5pysn")
+Icon = ExtResource("1_t6xk2")
+ID = "Dog"
+MaxHP = 5.0
+MoveSpeed = 200.0
+Magic = 1.0
+metadata/_custom_type_script = "uid://bxbhnfhti7ewr"

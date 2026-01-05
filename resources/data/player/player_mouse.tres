@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="PlayerData" format=3 uid="uid://sl8uroh4frii"]
+
+[ext_resource type="Script" uid="uid://bxbhnfhti7ewr" path="res://scripts/resources/data/player/PlayerData.cs" id="1_qtjkh"]
+[ext_resource type="Texture2D" uid="uid://b3ao4n36yvjd0" path="res://assets/sprites/players/tile_0008.png" id="1_reydp"]
+
+[resource]
+script = ExtResource("1_qtjkh")
+Icon = ExtResource("1_reydp")
+ID = "Mouse"
+MaxHP = 10.0
+MoveSpeed = 210.0
+Magic = 1.0
+metadata/_custom_type_script = "uid://bxbhnfhti7ewr"

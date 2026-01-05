@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="WeaponData" format=3 uid="uid://civrme7gh3qwx"]
+
+[ext_resource type="Script" uid="uid://1p2w7etl8dxc" path="res://scripts/resources/data/weapons/WeaponData.cs" id="1_4l64y"]
+[ext_resource type="Texture2D" uid="uid://bbv84wvnnbldm" path="res://assets/sprites/weapons/Tiles/tile_0007.png" id="1_vgtpw"]
+
+[resource]
+script = ExtResource("1_4l64y")
+WeaponName = "Shotgun"
+Icon = ExtResource("1_vgtpw")
+Damage = 1.5
+Cooldown = 0.7
+ManaCost = 2.0
+Spread = 10.0
+BulletSpeed = 260.0
+Description = "High damage close range, spreads many pellets."
+metadata/_custom_type_script = "uid://1p2w7etl8dxc"

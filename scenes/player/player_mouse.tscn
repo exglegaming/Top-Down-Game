@@ -41,7 +41,7 @@ animations = [{
 radius = 8.0
 
 [node name="PlayerMouse" unique_id=2096422990 instance=ExtResource("1_wbddg")]
-data = ExtResource("2_c3q5f")
+Data = ExtResource("2_c3q5f")
 
 [node name="AnimatedSprite2D" parent="Visuals" parent_id_path=PackedInt32Array(339338660) index="1" unique_id=970183010]
 position = Vector2(0, -12)
@@ -49,6 +49,6 @@ sprite_frames = SubResource("SpriteFrames_wbddg")
 animation = &"idle"
 autoplay = "idle"
 
-[node name="CollisionShape2D" parent="." index="1" unique_id=928463983]
+[node name="CollisionShape2D" parent="." index="3" unique_id=928463983]
 position = Vector2(0, -8)
 shape = SubResource("CircleShape2D_p08p5")

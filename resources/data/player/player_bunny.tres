@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="PlayerData" format=3 uid="uid://chpp1mtedh2pf"]
+
+[ext_resource type="Script" uid="uid://bxbhnfhti7ewr" path="res://scripts/resources/data/player/PlayerData.cs" id="1_q63f3"]
+[ext_resource type="Texture2D" uid="uid://d3u1rr67e3yg" path="res://assets/sprites/players/tile_0012.png" id="1_yaveg"]
+
+[resource]
+script = ExtResource("1_q63f3")
+Icon = ExtResource("1_yaveg")
+ID = "Bunny"
+MaxHP = 7.0
+MoveSpeed = 250.0
+Magic = 1.0
+metadata/_custom_type_script = "uid://bxbhnfhti7ewr"

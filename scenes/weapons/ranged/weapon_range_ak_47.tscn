@@ -5,7 +5,7 @@
 [ext_resource type="Resource" uid="uid://dln0i4lssgw23" path="res://resources/data/weapons/weapon_ak47.tres" id="2_620et"]
 
 [node name="WeaponRangeAK47" unique_id=1469574805 instance=ExtResource("1_e3jug")]
-data = ExtResource("2_620et")
+Data = ExtResource("2_620et")
 
 [node name="Sprite2D" parent="Pivot" parent_id_path=PackedInt32Array(586668593) index="0" unique_id=695149134]
 position = Vector2(12, 0)

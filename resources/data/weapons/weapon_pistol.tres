@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="WeaponData" format=3 uid="uid://ddl6xyivpuihn"]
+
+[ext_resource type="Script" uid="uid://1p2w7etl8dxc" path="res://scripts/resources/data/weapons/WeaponData.cs" id="1_3te2y"]
+[ext_resource type="Texture2D" uid="uid://cqvwy8c5l0aod" path="res://assets/sprites/weapons/Tiles/tile_0001.png" id="1_br22o"]
+
+[resource]
+script = ExtResource("1_3te2y")
+WeaponName = "Pistol"
+Icon = ExtResource("1_br22o")
+Damage = 1.4
+Cooldown = 0.35
+ManaCost = 1.0
+Spread = 3.0
+BulletSpeed = 260.0
+Description = "Basic sidearm, cheap and reliable, medium accuracy."
+metadata/_custom_type_script = "uid://1p2w7etl8dxc"

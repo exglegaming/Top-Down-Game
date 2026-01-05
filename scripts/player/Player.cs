@@ -8,9 +8,9 @@ namespace TopDownGame.scripts.player;
 public partial class Player : CharacterBody2D
 {
     [ExportCategory("References")]
-    [Export] public PlayerData Data { get; private set; }
+    [Export] public PlayerData Data;
 
-    public HealthComponent HealthComponent { get; private set;}
+    private HealthComponent _healthComponent;
 
     private bool _canMove = true;
     private Vector2 _movement;
@@ -22,13 +22,13 @@ public partial class Player : CharacterBody2D
     {
         _visuals = GetNode<Node2D>("Visuals");
         _animSprite = GetNode<AnimatedSprite2D>("%AnimatedSprite2D");
-        HealthComponent = GetNode<HealthComponent>("HealthComponent");
+        _healthComponent = GetNode<HealthComponent>("HealthComponent");
 
-        HealthComponent.InitHealth(Data.MaxHP);
+        _healthComponent.InitHealth(Data.MaxHP);
 
-        HealthComponent.OnUnitDamaged += OnHealthComponentOnUnitDamaged;
-        HealthComponent.OnUnitDead += OnHealthComponentOnUnitDead;
-        HealthComponent.OnUnitHealed += OnHealthComponentOnUnitHealed;
+        _healthComponent.OnUnitDamaged += OnHealthComponentOnUnitDamaged;
+        _healthComponent.OnUnitDead += OnHealthComponentOnUnitDead;
+        _healthComponent.OnUnitHealed += OnHealthComponentOnUnitHealed;
     }
 
     public override void _PhysicsProcess(double delta)
@@ -56,7 +56,7 @@ public partial class Player : CharacterBody2D
     {
         if (@event.IsActionPressed("ui_accept"))
         {
-            HealthComponent.TakeDamage(1);
+            _healthComponent.TakeDamage(1);
         }
     }
 
@@ -68,7 +68,7 @@ public partial class Player : CharacterBody2D
 
     private void OnHealthComponentOnUnitDamaged(float amount)
     {
-        EventBus.EmitPlayerHealthUpdated(HealthComponent.CurrentHealth, Data.MaxHP);
+        EventBus.EmitPlayerHealthUpdated(_healthComponent.CurrentHealth, Data.MaxHP);
     }
 
     private void OnHealthComponentOnUnitDead()

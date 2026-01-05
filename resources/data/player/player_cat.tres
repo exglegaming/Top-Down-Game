@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="PlayerData" format=3 uid="uid://dn6kkvyovjn1"]
+
+[ext_resource type="Texture2D" uid="uid://c2onnhy8ivnwm" path="res://assets/sprites/players/tile_0004.png" id="1_mlqi0"]
+[ext_resource type="Script" uid="uid://bxbhnfhti7ewr" path="res://scripts/resources/data/player/PlayerData.cs" id="1_ntii7"]
+
+[resource]
+script = ExtResource("1_ntii7")
+Icon = ExtResource("1_mlqi0")
+ID = "Cat"
+MaxHP = 9.0
+MoveSpeed = 220.0
+Magic = 1.0
+metadata/_custom_type_script = "uid://bxbhnfhti7ewr"

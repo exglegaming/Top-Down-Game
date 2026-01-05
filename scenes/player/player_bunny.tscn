@@ -42,7 +42,7 @@ radius = 8.0
 height = 16.0
 
 [node name="PlayerBunny" unique_id=2096422990 instance=ExtResource("1_264km")]
-data = ExtResource("2_rvj87")
+Data = ExtResource("2_rvj87")
 
 [node name="AnimatedSprite2D" parent="Visuals" parent_id_path=PackedInt32Array(339338660) index="1" unique_id=970183010]
 position = Vector2(0, -12)
@@ -50,6 +50,6 @@ sprite_frames = SubResource("SpriteFrames_264km")
 animation = &"idle"
 autoplay = "idle"
 
-[node name="CollisionShape2D" parent="." index="2" unique_id=928463983]
+[node name="CollisionShape2D" parent="." index="3" unique_id=928463983]
 position = Vector2(0, -8)
 shape = SubResource("CapsuleShape2D_e5541")

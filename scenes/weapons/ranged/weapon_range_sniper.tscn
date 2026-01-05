@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://b3162fce4jytf" path="res://assets/sprites/weapons/Tiles/tile_0003.png" id="3_kcrlr"]
 
 [node name="WeaponRangeSniper" unique_id=1469574805 instance=ExtResource("1_2epuy")]
-data = ExtResource("2_bjx6s")
+Data = ExtResource("2_bjx6s")
 
 [node name="Sprite2D" parent="Pivot" parent_id_path=PackedInt32Array(586668593) index="0" unique_id=695149134]
 position = Vector2(12, 0)

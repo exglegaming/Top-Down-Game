@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="WeaponData" format=3 uid="uid://bi4ebivwdagj3"]
+
+[ext_resource type="Texture2D" uid="uid://b3162fce4jytf" path="res://assets/sprites/weapons/Tiles/tile_0003.png" id="1_rmged"]
+[ext_resource type="Script" uid="uid://1p2w7etl8dxc" path="res://scripts/resources/data/weapons/WeaponData.cs" id="1_sby73"]
+
+[resource]
+script = ExtResource("1_sby73")
+WeaponName = "Sniper"
+Icon = ExtResource("1_rmged")
+Damage = 6.0
+Cooldown = 1.2
+ManaCost = 2.5
+Spread = 1.0
+BulletSpeed = 400.0
+Description = "Very high damage shot, long range and slow fire rate."
+metadata/_custom_type_script = "uid://1p2w7etl8dxc"

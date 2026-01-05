@@ -9,7 +9,7 @@ public partial class HealthComponent : Node
     [Signal] public delegate void OnUnitHealedEventHandler(float amount);
     [Signal] public delegate void OnUnitDeadEventHandler();
 
-    public float CurrentHealth;
+    public float CurrentHealth { get; private set;}
     private float _maxHealth;
 
     public void InitHealth(float value)
