@@ -2,19 +2,14 @@
 
 [ext_resource type="Script" uid="uid://b78j1yl7htdob" path="res://scripts/ui/MainMenu.cs" id="1_btxxm"]
 [ext_resource type="AudioStream" uid="uid://dtxhputnlac6" path="res://assets/sounds/select-a.ogg" id="2_btxxm"]
-[ext_resource type="Texture2D" uid="uid://bjnh3sonwurje" path="res://assets/sprites/background_tiled.png" id="2_fe2o3"]
-[ext_resource type="Shader" uid="uid://c47o1a0f13bfo" path="res://shaders/ui/background.gdshader" id="2_m1kxf"]
 [ext_resource type="LabelSettings" uid="uid://vxh5qk55fkll" path="res://extra/font_48.tres" id="4_m1kxf"]
+[ext_resource type="PackedScene" uid="uid://dei8c280bttf8" path="res://scenes/ui/background.tscn" id="4_uhagc"]
 [ext_resource type="Texture2D" uid="uid://dy8e3xkc5qdbp" path="res://assets/sprites/interface/Tilemap/tilemap_packed.png" id="5_x2yvf"]
 [ext_resource type="LabelSettings" uid="uid://4rm1gvou0f2t" path="res://extra/font_16.tres" id="6_uhagc"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_otr3d"]
 atlas = ExtResource("5_x2yvf")
 region = Rect2(80, 65, 15, 14)
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_1g8jr"]
-shader = ExtResource("2_m1kxf")
-shader_parameter/speed = 0.5
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_uhagc"]
 atlas = ExtResource("5_x2yvf")
@@ -54,16 +49,9 @@ _menuCursor = SubResource("AtlasTexture_otr3d")
 stream = ExtResource("2_btxxm")
 bus = &"SFX"
 
-[node name="Background" type="TextureRect" parent="." unique_id=536414488]
-material = SubResource("ShaderMaterial_1g8jr")
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("2_fe2o3")
-stretch_mode = 1
+[node name="Background" parent="." unique_id=1912647006 instance=ExtResource("4_uhagc")]
+layout_mode = 0
+anchors_preset = 0
 
 [node name="Title" type="Label" parent="." unique_id=677044982]
 layout_mode = 1
