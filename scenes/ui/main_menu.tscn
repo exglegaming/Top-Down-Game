@@ -50,8 +50,7 @@ stream = ExtResource("2_btxxm")
 bus = &"SFX"
 
 [node name="Background" parent="." unique_id=1912647006 instance=ExtResource("4_uhagc")]
-layout_mode = 0
-anchors_preset = 0
+layout_mode = 1
 
 [node name="Title" type="Label" parent="." unique_id=677044982]
 layout_mode = 1

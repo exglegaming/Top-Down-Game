@@ -70,7 +70,7 @@ public partial class MainMenu : Control
     private void OnPlayButtonPressed()
     {
         _uiSound.Play();
-        Transition.Instance.TransitionTo("uid://dheb1iulvcciu");
+        Transition.Instance.TransitionTo("uid://cinbkpaw7sfcs");
     }
 
     private void OnSettingsButtonPressed()
