@@ -18,6 +18,9 @@ public partial class CharacterSelection : Control
     private HBoxContainer _weaponContainer;
     private PackedScene _playerCardScene;
     private PackedScene _weaponCardScene;
+    private TextureButton _playButton;
+    private TextureButton _backButton;
+    private AudioStreamPlayer _uiSound;
 
     public override void _Ready()
     {
@@ -25,11 +28,17 @@ public partial class CharacterSelection : Control
 
         _playerContainer = GetNode<HBoxContainer>("PlayerContainer");
         _weaponContainer = GetNode<HBoxContainer>("WeaponContainer");
+        _playButton = GetNode<TextureButton>("%PlayButton");
+        _backButton = GetNode<TextureButton>("%BackButton");
+        _uiSound = GetNode<AudioStreamPlayer>("UISound");
 
         _playerCardScene = GD.Load<PackedScene>("uid://bag7ifm3ms8g5");
         _weaponCardScene = GD.Load<PackedScene>("uid://b1hduu5435thl");
 
         LoadSelectionItems();
+
+        _playButton.Pressed += OnPlayButtonPressed;
+        _backButton.Pressed += OnBackButtonPressed;
     }
 
     private void LoadSelectionItems()
@@ -40,6 +49,7 @@ public partial class CharacterSelection : Control
         foreach (var data in _players)
         {
             var card = (PlayerCard)_playerCardScene.Instantiate();
+            card.Pressed += () => OnPlayerCardPressed(data);
             _playerContainer.AddChild(card);
             card.SetData(data);
         }
@@ -47,8 +57,33 @@ public partial class CharacterSelection : Control
         foreach (var data in _weapons)
         {
             var card = (WeaponCard)_weaponCardScene.Instantiate();
+            card.Pressed += () => OnWeaponCardPressed(data);
             _weaponContainer.AddChild(card);
             card.SetData(data);
         }
+    }
+
+    private void OnPlayButtonPressed()
+    {
+        _uiSound.Play();
+        Transition.Instance.TransitionTo("uid://dheb1iulvcciu");
+    }
+
+    private void OnBackButtonPressed()
+    {
+        _uiSound.Play();
+        Transition.Instance.TransitionTo("uid://bdmo5icd2xpue");
+    }
+
+    private void OnPlayerCardPressed(PlayerData data)
+    {
+        _uiSound.Play();
+        Global.Instance.SelectedPlayer = data;
+    }
+
+    private void OnWeaponCardPressed(WeaponData data)
+    {
+        _uiSound.Play();
+        Global.Instance.SelectedWeapon = data;
     }
 }

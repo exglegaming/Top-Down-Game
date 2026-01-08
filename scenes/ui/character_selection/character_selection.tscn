@@ -18,6 +18,7 @@
 [ext_resource type="Resource" uid="uid://civrme7gh3qwx" path="res://resources/data/weapons/weapon_shotgun.tres" id="10_r0g64"]
 [ext_resource type="Resource" uid="uid://bi4ebivwdagj3" path="res://resources/data/weapons/weapon_sniper.tres" id="11_nobp3"]
 [ext_resource type="Resource" uid="uid://bv6rd1pjco1te" path="res://resources/data/weapons/weapon_uzi.tres" id="12_k1gwy"]
+[ext_resource type="AudioStream" uid="uid://dtxhputnlac6" path="res://assets/sounds/select-a.ogg" id="14_i62gh"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_hsxsp"]
 atlas = ExtResource("5_nbxll")
@@ -42,6 +43,10 @@ script = ExtResource("1_jtguu")
 _selectionCursor = SubResource("AtlasTexture_hsxsp")
 _players = Array[Object]([ExtResource("2_8h16t"), ExtResource("3_y0023"), ExtResource("4_ino53"), ExtResource("5_2orvb")])
 _weapons = Array[Object]([ExtResource("6_hsxsp"), ExtResource("7_i62gh"), ExtResource("8_6g0l1"), ExtResource("9_cline"), ExtResource("10_r0g64"), ExtResource("11_nobp3"), ExtResource("12_k1gwy")])
+
+[node name="UISound" type="AudioStreamPlayer" parent="." unique_id=1391948755]
+stream = ExtResource("14_i62gh")
+bus = &"SFX"
 
 [node name="Background" parent="." unique_id=1912647006 instance=ExtResource("1_avnoy")]
 layout_mode = 1
@@ -139,6 +144,7 @@ grow_horizontal = 2
 grow_vertical = 0
 
 [node name="PlayButton" type="TextureButton" parent="Buttons" unique_id=574267549]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(120, 60)
 layout_mode = 0
 offset_left = 35.0
@@ -162,6 +168,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="BackButton" type="TextureButton" parent="Buttons" unique_id=1624580284]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(120, 60)
 layout_mode = 0
 offset_left = 196.0

@@ -19,7 +19,16 @@ public partial class Arena : Node2D
         _eventBus = GetNode<EventBus>("/root/EventBus");
 
         Cursor.Instance.Sprite2D.Texture = _arenaCursor;
+
+        LoadGameSelection();
+
         _eventBus.PlayerHealthUpdated += OnPlayerHealthUpdated;
+    }
+
+    private void LoadGameSelection()
+    {
+        var player = Global.Instance.GetPlayer().Instantiate();
+        AddChild(player);
     }
 
     private void OnPlayerHealthUpdated(float currentHealth, float maxHealth)
