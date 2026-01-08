@@ -6,7 +6,7 @@ namespace TopDownGame.scripts.weapons;
 public partial class Weapon : Node2D
 {
     [ExportCategory("References")]
-    [Export] public WeaponData Data { get; private set; }
+    [Export] public WeaponData Data { get; set; }
 
     protected Node2D Pivot;
 

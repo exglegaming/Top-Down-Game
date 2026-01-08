@@ -17,11 +17,11 @@ config/icon="res://icon.svg"
 
 [autoload]
 
+Global="*uid://byo26eaumbobi"
+EventBus="*uid://dc4p8bhsnhycx"
+Transition="*uid://pllxe32kkppd"
 Music="*uid://djyjeliouh7g0"
 Cursor="*uid://bbmispvwfvqlo"
-Transition="*uid://pllxe32kkppd"
-EventBus="*uid://dc4p8bhsnhycx"
-Global="*uid://byo26eaumbobi"
 
 [display]
 

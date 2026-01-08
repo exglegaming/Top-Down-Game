@@ -7,7 +7,6 @@ public partial class WeaponData : Resource
 {
     [Export] public string WeaponName { get; private set; }
     [Export] public Texture2D Icon { get; private set; }
-    [Export] public PackedScene Scene { get; private set; }
     [Export] public float Damage { get; private set; }
     [Export] public float Cooldown { get; private set; }
     [Export] public float ManaCost { get; private set; }

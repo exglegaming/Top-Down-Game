@@ -1,5 +1,6 @@
 using Godot;
 using TopDownGame.scripts.autoloads;
+using TopDownGame.scripts.player;
 
 namespace TopDownGame.scripts.arena;
 
@@ -27,8 +28,9 @@ public partial class Arena : Node2D
 
     private void LoadGameSelection()
     {
-        var player = Global.Instance.GetPlayer().Instantiate();
+        var player = Global.Instance.GetPlayer().Instantiate() as Player;
         AddChild(player);
+        player.WeaponController.EquipWeapon();
     }
 
     private void OnPlayerHealthUpdated(float currentHealth, float maxHealth)

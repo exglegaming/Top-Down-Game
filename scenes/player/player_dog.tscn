@@ -6,7 +6,6 @@
 [ext_resource type="Texture2D" uid="uid://cnttucjccgouq" path="res://assets/sprites/players/tile_0003.png" id="2_y6c13"]
 [ext_resource type="Texture2D" uid="uid://cemiyrcpjly84" path="res://assets/sprites/players/tile_0001.png" id="4_pb3tx"]
 [ext_resource type="Texture2D" uid="uid://cyey76bu4l4v5" path="res://assets/sprites/players/tile_0002.png" id="5_3l3e8"]
-[ext_resource type="PackedScene" uid="uid://b5pray2nwvym5" path="res://scenes/weapons/ranged/weapon_range_pistol.tscn" id="7_3l3e8"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_d2dvc"]
 animations = [{
@@ -44,19 +43,14 @@ radius = 8.062258
 [node name="PlayerDog" unique_id=2096422990 instance=ExtResource("1_d2dvc")]
 Data = ExtResource("2_3l3e8")
 
-[node name="Visuals" parent="." index="1" unique_id=339338660]
-scale = Vector2(1.25, 1.25)
-
-[node name="Shadow" parent="Visuals" index="0" unique_id=776381903]
+[node name="Shadow" parent="Visuals" parent_id_path=PackedInt32Array(339338660) index="0" unique_id=776381903]
 scale = Vector2(1.3, 1)
 
-[node name="AnimatedSprite2D" parent="Visuals" index="1" unique_id=970183010]
+[node name="AnimatedSprite2D" parent="Visuals" parent_id_path=PackedInt32Array(339338660) index="1" unique_id=970183010]
 position = Vector2(0, -12)
 sprite_frames = SubResource("SpriteFrames_d2dvc")
 animation = &"idle"
 autoplay = "idle"
-
-[node name="WeaponRangePistol" parent="WeaponController" parent_id_path=PackedInt32Array(711244291) index="0" unique_id=1469574805 instance=ExtResource("7_3l3e8")]
 
 [node name="CollisionShape2D" parent="." index="3" unique_id=928463983]
 position = Vector2(0, -8)

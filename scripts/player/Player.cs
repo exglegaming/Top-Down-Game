@@ -18,11 +18,14 @@ public partial class Player : CharacterBody2D
     private Node2D _visuals;
     private AnimatedSprite2D _animSprite;
 
+    public WeaponController WeaponController;
+
     public override void _Ready()
     {
         _visuals = GetNode<Node2D>("Visuals");
         _animSprite = GetNode<AnimatedSprite2D>("%AnimatedSprite2D");
         _healthComponent = GetNode<HealthComponent>("HealthComponent");
+        WeaponController = GetNode<WeaponController>("WeaponController");
 
         _healthComponent.InitHealth(Data.MaxHP);
 
