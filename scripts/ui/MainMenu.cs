@@ -18,6 +18,7 @@ public partial class MainMenu : Control
     private TextureButton _windowButton;
     private TextureButton _backButton;
     private AudioStreamPlayer _uiSound;
+    private AudioStreamPlayer _hoverSound;
     private Label _musicLabel;
     private Label _sfxLabel;
     private Label _windowLabel;
@@ -37,6 +38,7 @@ public partial class MainMenu : Control
         _windowButton = GetNode<TextureButton>("%WindowButton");
         _backButton = GetNode<TextureButton>("%BackButton");
         _uiSound = GetNode<AudioStreamPlayer>("UISound");
+        _hoverSound = GetNode<AudioStreamPlayer>("HoverSound");
         _musicLabel = GetNode<Label>("%MusicLabel");
         _sfxLabel = GetNode<Label>("%SFXLabel");
         _windowLabel = GetNode<Label>("%WindowLabel");
@@ -52,6 +54,14 @@ public partial class MainMenu : Control
         _sfxButton.Pressed += OnSfxButtonPressed;
         _windowButton.Pressed += OnWindowButtonPressed;
         _backButton.Pressed += OnBackButtonPressed;
+
+        _playButton.MouseEntered += OnButtonMouseEntered;
+        _settingsButton.MouseEntered += OnButtonMouseEntered;
+        _quitButton.MouseEntered += OnButtonMouseEntered;
+        _musicButton.MouseEntered += OnButtonMouseEntered;
+        _sfxButton.MouseEntered += OnButtonMouseEntered;
+        _windowButton.MouseEntered += OnButtonMouseEntered;
+        _backButton.MouseEntered += OnButtonMouseEntered;
     }
 
     private void UpdateAudioBus(string busName, Label label, bool isOn)
@@ -120,6 +130,11 @@ public partial class MainMenu : Control
         tween.TweenProperty(_settingsButtons, "global_position:x", 558, 0.3);
         tween.TweenInterval(0.1);
         tween.TweenProperty(_mainButtons, "global_position:y", 115, 0.2);
+    }
+
+    private void OnButtonMouseEntered()
+    {
+        _hoverSound.Play();
     }
 
     public override void _Notification(int what)

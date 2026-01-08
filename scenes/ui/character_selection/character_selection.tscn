@@ -19,6 +19,7 @@
 [ext_resource type="Resource" uid="uid://bi4ebivwdagj3" path="res://resources/data/weapons/weapon_sniper.tres" id="11_nobp3"]
 [ext_resource type="Resource" uid="uid://bv6rd1pjco1te" path="res://resources/data/weapons/weapon_uzi.tres" id="12_k1gwy"]
 [ext_resource type="AudioStream" uid="uid://dtxhputnlac6" path="res://assets/sounds/select-a.ogg" id="14_i62gh"]
+[ext_resource type="AudioStream" uid="uid://dlyw3ke5ldgn7" path="res://assets/sounds/button_hover.wav" id="15_6g0l1"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_hsxsp"]
 atlas = ExtResource("5_nbxll")
@@ -46,6 +47,10 @@ _weapons = Array[Object]([ExtResource("6_hsxsp"), ExtResource("7_i62gh"), ExtRes
 
 [node name="UISound" type="AudioStreamPlayer" parent="." unique_id=1391948755]
 stream = ExtResource("14_i62gh")
+bus = &"SFX"
+
+[node name="HoverSound" type="AudioStreamPlayer" parent="." unique_id=720603013]
+stream = ExtResource("15_6g0l1")
 bus = &"SFX"
 
 [node name="Background" parent="." unique_id=1912647006 instance=ExtResource("1_avnoy")]

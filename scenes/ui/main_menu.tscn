@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://b78j1yl7htdob" path="res://scripts/ui/MainMenu.cs" id="1_btxxm"]
 [ext_resource type="AudioStream" uid="uid://dtxhputnlac6" path="res://assets/sounds/select-a.ogg" id="2_btxxm"]
+[ext_resource type="AudioStream" uid="uid://dlyw3ke5ldgn7" path="res://assets/sounds/button_hover.wav" id="4_btxxm"]
 [ext_resource type="LabelSettings" uid="uid://vxh5qk55fkll" path="res://extra/font_48.tres" id="4_m1kxf"]
 [ext_resource type="PackedScene" uid="uid://dei8c280bttf8" path="res://scenes/ui/background.tscn" id="4_uhagc"]
 [ext_resource type="Texture2D" uid="uid://dy8e3xkc5qdbp" path="res://assets/sprites/interface/Tilemap/tilemap_packed.png" id="5_x2yvf"]
@@ -47,6 +48,10 @@ _menuCursor = SubResource("AtlasTexture_otr3d")
 
 [node name="UISound" type="AudioStreamPlayer" parent="." unique_id=1916632535]
 stream = ExtResource("2_btxxm")
+bus = &"SFX"
+
+[node name="HoverSound" type="AudioStreamPlayer" parent="." unique_id=1581624255]
+stream = ExtResource("4_btxxm")
 bus = &"SFX"
 
 [node name="Background" parent="." unique_id=1912647006 instance=ExtResource("4_uhagc")]

@@ -3,6 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://dy8e3xkc5qdbp" path="res://assets/sprites/interface/Tilemap/tilemap_packed.png" id="1_obyok"]
 [ext_resource type="Script" uid="uid://3275f0hvq3dk" path="res://scripts/ui/weapon_card/WeaponCard.cs" id="2_6a2f6"]
 [ext_resource type="Texture2D" uid="uid://cqvwy8c5l0aod" path="res://assets/sprites/weapons/Tiles/tile_0001.png" id="2_7oohd"]
+[ext_resource type="AudioStream" uid="uid://dlyw3ke5ldgn7" path="res://assets/sounds/button_hover.wav" id="4_p3jm8"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_cldy6"]
 atlas = ExtResource("1_obyok")
@@ -27,9 +28,11 @@ offset_right = 20.0
 offset_bottom = 20.0
 grow_horizontal = 2
 grow_vertical = 2
+pivot_offset_ratio = Vector2(0.5, 0.5)
 mouse_filter = 2
 texture = ExtResource("2_7oohd")
 expand_mode = 1
 stretch_mode = 5
 
 [node name="HoverSound" type="AudioStreamPlayer" parent="." unique_id=446269907]
+stream = ExtResource("4_p3jm8")

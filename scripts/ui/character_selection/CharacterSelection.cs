@@ -21,6 +21,7 @@ public partial class CharacterSelection : Control
     private TextureButton _playButton;
     private TextureButton _backButton;
     private AudioStreamPlayer _uiSound;
+    private AudioStreamPlayer _hoverSound;
 
     public override void _Ready()
     {
@@ -31,6 +32,7 @@ public partial class CharacterSelection : Control
         _playButton = GetNode<TextureButton>("%PlayButton");
         _backButton = GetNode<TextureButton>("%BackButton");
         _uiSound = GetNode<AudioStreamPlayer>("UISound");
+        _hoverSound = GetNode<AudioStreamPlayer>("HoverSound");
 
         _playerCardScene = GD.Load<PackedScene>("uid://bag7ifm3ms8g5");
         _weaponCardScene = GD.Load<PackedScene>("uid://b1hduu5435thl");
@@ -39,6 +41,8 @@ public partial class CharacterSelection : Control
 
         _playButton.Pressed += OnPlayButtonPressed;
         _backButton.Pressed += OnBackButtonPressed;
+        _playButton.MouseEntered += OnButtonMouseEntered;
+        _backButton.MouseEntered += OnButtonMouseEntered;
     }
 
     private void LoadSelectionItems()
@@ -65,6 +69,24 @@ public partial class CharacterSelection : Control
 
     private void OnPlayButtonPressed()
     {
+        if (Global.Instance.SelectedPlayer == null && Global.Instance.SelectedWeapon == null)
+        {
+            GD.PrintErr("No player and weapon selected");
+            return;
+        }
+
+        if (Global.Instance.SelectedPlayer == null)
+        {
+            GD.PrintErr("No player selected");
+            return;
+        }
+
+        if (Global.Instance.SelectedWeapon == null)
+        {
+            GD.PrintErr("No weapon selected");
+            return;
+        }
+
         _uiSound.Play();
         Transition.Instance.TransitionTo("uid://dheb1iulvcciu");
     }
@@ -85,5 +107,10 @@ public partial class CharacterSelection : Control
     {
         _uiSound.Play();
         Global.Instance.SelectedWeapon = data;
+    }
+
+    private void OnButtonMouseEntered()
+    {
+        _hoverSound.Play();
     }
 }
