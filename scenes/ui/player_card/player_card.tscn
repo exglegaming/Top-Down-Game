@@ -11,6 +11,10 @@ texture_normal = ExtResource("1_jon5c")
 stretch_mode = 5
 script = ExtResource("2_j0527")
 
+[node name="HoverSound" type="AudioStreamPlayer" parent="." unique_id=137589760]
+stream = ExtResource("4_pmcjm")
+bus = &"SFX"
+
 [node name="Icon" type="TextureRect" parent="." unique_id=2109667790]
 layout_mode = 1
 anchors_preset = 8
@@ -27,6 +31,3 @@ grow_vertical = 2
 pivot_offset_ratio = Vector2(0.5, 0.5)
 mouse_filter = 2
 texture = ExtResource("2_a7j48")
-
-[node name="HoverSound" type="AudioStreamPlayer" parent="." unique_id=137589760]
-stream = ExtResource("4_pmcjm")

@@ -7,41 +7,25 @@ public partial class MainMenu : Control
 {
     [ExportCategory("References")]
     [Export] private Texture2D _menuCursor;
-
-    private Control _mainButtons;
-    private Control _settingsButtons;
-    private TextureButton _playButton;
-    private TextureButton _settingsButton;
-    private TextureButton _quitButton;
-    private TextureButton _musicButton;
-    private TextureButton _sfxButton;
-    private TextureButton _windowButton;
-    private TextureButton _backButton;
-    private AudioStreamPlayer _uiSound;
-    private AudioStreamPlayer _hoverSound;
-    private Label _musicLabel;
-    private Label _sfxLabel;
-    private Label _windowLabel;
+    [Export] private Control _mainButtons;
+    [Export] private Control _settingsButtons;
+    [Export] private TextureButton _playButton;
+    [Export] private TextureButton _settingsButton;
+    [Export] private TextureButton _quitButton;
+    [Export] private TextureButton _musicButton;
+    [Export] private TextureButton _sfxButton;
+    [Export] private TextureButton _windowButton;
+    [Export] private TextureButton _backButton;
+    [Export] private AudioStreamPlayer _uiSound;
+    [Export] private AudioStreamPlayer _hoverSound;
+    [Export] private Label _musicLabel;
+    [Export] private Label _sfxLabel;
+    [Export] private Label _windowLabel;
 
     public override void _Ready()
     {
         Global.Instance.LoadData();
         Cursor.Instance.Sprite2D.Texture = _menuCursor;
-        
-        _mainButtons = GetNode<Control>("MainButtons");
-        _settingsButtons = GetNode<Control>("SettingsButtons");
-        _playButton = GetNode<TextureButton>("%PlayButton");
-        _settingsButton = GetNode<TextureButton>("%SettingsButton");
-        _quitButton = GetNode<TextureButton>("%QuitButton");
-        _musicButton = GetNode<TextureButton>("%MusicButton");
-        _sfxButton = GetNode<TextureButton>("%SFXButton");
-        _windowButton = GetNode<TextureButton>("%WindowButton");
-        _backButton = GetNode<TextureButton>("%BackButton");
-        _uiSound = GetNode<AudioStreamPlayer>("UISound");
-        _hoverSound = GetNode<AudioStreamPlayer>("HoverSound");
-        _musicLabel = GetNode<Label>("%MusicLabel");
-        _sfxLabel = GetNode<Label>("%SFXLabel");
-        _windowLabel = GetNode<Label>("%WindowLabel");
         
         UpdateAudioBus("Music", _musicLabel, (bool)Global.Instance.Settings["music"]);
         UpdateAudioBus("SFX", _sfxLabel, (bool)Global.Instance.Settings["sfx"]);

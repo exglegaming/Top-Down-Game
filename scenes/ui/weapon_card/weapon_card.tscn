@@ -14,6 +14,10 @@ texture_normal = SubResource("AtlasTexture_cldy6")
 stretch_mode = 5
 script = ExtResource("2_6a2f6")
 
+[node name="HoverSound" type="AudioStreamPlayer" parent="." unique_id=446269907]
+stream = ExtResource("4_p3jm8")
+bus = &"SFX"
+
 [node name="Icon" type="TextureRect" parent="." unique_id=135442186]
 custom_minimum_size = Vector2(40, 40)
 layout_mode = 1
@@ -33,6 +37,3 @@ mouse_filter = 2
 texture = ExtResource("2_7oohd")
 expand_mode = 1
 stretch_mode = 5
-
-[node name="HoverSound" type="AudioStreamPlayer" parent="." unique_id=446269907]
-stream = ExtResource("4_p3jm8")

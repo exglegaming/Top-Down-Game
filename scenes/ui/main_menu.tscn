@@ -36,7 +36,7 @@ region = Rect2(176, 48, 48, 16)
 atlas = ExtResource("5_x2yvf")
 region = Rect2(176, 48, 48, 16)
 
-[node name="MainMenu" type="Control" unique_id=1242548632]
+[node name="MainMenu" type="Control" unique_id=1242548632 node_paths=PackedStringArray("_mainButtons", "_settingsButtons", "_playButton", "_settingsButton", "_quitButton", "_musicButton", "_sfxButton", "_windowButton", "_backButton", "_uiSound", "_hoverSound", "_musicLabel", "_sfxLabel", "_windowLabel")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -45,6 +45,20 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_btxxm")
 _menuCursor = SubResource("AtlasTexture_otr3d")
+_mainButtons = NodePath("MainButtons")
+_settingsButtons = NodePath("SettingsButtons")
+_playButton = NodePath("MainButtons/VBoxContainer/Play/PlayButton")
+_settingsButton = NodePath("MainButtons/VBoxContainer/Settings/SettingsButton")
+_quitButton = NodePath("MainButtons/VBoxContainer/Quit/QuitButton")
+_musicButton = NodePath("SettingsButtons/VBoxContainer/Music/MusicButton")
+_sfxButton = NodePath("SettingsButtons/VBoxContainer/SFX/SFXButton")
+_windowButton = NodePath("SettingsButtons/VBoxContainer/Window/WindowButton")
+_backButton = NodePath("SettingsButtons/VBoxContainer/Back/BackButton")
+_uiSound = NodePath("UISound")
+_hoverSound = NodePath("HoverSound")
+_musicLabel = NodePath("SettingsButtons/VBoxContainer/Music/MusicButton/MusicLabel")
+_sfxLabel = NodePath("SettingsButtons/VBoxContainer/SFX/SFXButton/SFXLabel")
+_windowLabel = NodePath("SettingsButtons/VBoxContainer/Window/WindowButton/WindowLabel")
 
 [node name="UISound" type="AudioStreamPlayer" parent="." unique_id=1916632535]
 stream = ExtResource("2_btxxm")

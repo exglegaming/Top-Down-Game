@@ -71,19 +71,19 @@ public partial class CharacterSelection : Control
     {
         if (Global.Instance.SelectedPlayer == null && Global.Instance.SelectedWeapon == null)
         {
-            GD.PrintErr("No player and weapon selected");
+            GD.Print("No player and weapon selected");
             return;
         }
 
         if (Global.Instance.SelectedPlayer == null)
         {
-            GD.PrintErr("No player selected");
+            GD.Print("No player selected");
             return;
         }
 
         if (Global.Instance.SelectedWeapon == null)
         {
-            GD.PrintErr("No weapon selected");
+            GD.Print("No weapon selected");
             return;
         }
 
