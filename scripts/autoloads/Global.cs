@@ -65,13 +65,6 @@ public partial class Global : Node
     {
         return AllWeapons[SelectedWeapon.WeaponName];
     }
-
-    public void Oscilator(TextureRect icon)
-    {
-        var dampedOscilator = GetNode<GodotObject>("/root/DampedOscillator");
-        var rng = new RandomNumberGenerator();
-        dampedOscilator.Call("animate", icon, "scale", rng.RandfRange(400, 450), rng.RandfRange(5, 10), rng.RandfRange(10, 15), 0.5);
-    }
     
     public void SaveData()
     {

@@ -4,6 +4,7 @@
 [ext_resource type="Script" uid="uid://3275f0hvq3dk" path="res://scripts/ui/weapon_card/WeaponCard.cs" id="2_6a2f6"]
 [ext_resource type="Texture2D" uid="uid://cqvwy8c5l0aod" path="res://assets/sprites/weapons/Tiles/tile_0001.png" id="2_7oohd"]
 [ext_resource type="AudioStream" uid="uid://dlyw3ke5ldgn7" path="res://assets/sounds/button_hover.wav" id="4_p3jm8"]
+[ext_resource type="PackedScene" uid="uid://clgbfd7hk37cg" path="res://scenes/ui/description_panel/description_panel.tscn" id="5_gxsh7"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_cldy6"]
 atlas = ExtResource("1_obyok")
@@ -12,10 +13,14 @@ region = Rect2(192, 0, 48, 48)
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_p3jm8"]
 load_path = "res://.godot/imported/Selector.png-46cb2df0ef6fdf27b39cbeefa169bbaf.ctex"
 
-[node name="WeaponCard" type="TextureButton" unique_id=390116855]
+[node name="WeaponCard" type="TextureButton" unique_id=390116855 node_paths=PackedStringArray("_icon", "_descriptionPanel", "_hoverSound", "Selector")]
 texture_normal = SubResource("AtlasTexture_cldy6")
 stretch_mode = 5
 script = ExtResource("2_6a2f6")
+_icon = NodePath("Icon")
+_descriptionPanel = NodePath("DescriptionPanel")
+_hoverSound = NodePath("HoverSound")
+Selector = NodePath("Selector")
 
 [node name="HoverSound" type="AudioStreamPlayer" parent="." unique_id=446269907]
 stream = ExtResource("4_p3jm8")
@@ -59,3 +64,11 @@ grow_vertical = 2
 texture = SubResource("CompressedTexture2D_p3jm8")
 expand_mode = 1
 stretch_mode = 5
+
+[node name="DescriptionPanel" parent="." unique_id=1090253391 instance=ExtResource("5_gxsh7")]
+visible = false
+layout_mode = 1
+offset_left = -70.0
+offset_top = -93.0
+offset_right = 82.0
+offset_bottom = -41.0
