@@ -56,6 +56,11 @@ public partial class Global : Node
         Instance = this;
     }
 
+    public override void _Ready()
+    {
+        Instance.LoadData();
+    }
+
     public PackedScene GetPlayer()
     {
         return AllPlayers[SelectedPlayer.ID];

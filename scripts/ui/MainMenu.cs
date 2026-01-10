@@ -24,7 +24,6 @@ public partial class MainMenu : Control
 
     public override void _Ready()
     {
-        Global.Instance.LoadData();
         Cursor.Instance.Sprite2D.Texture = _menuCursor;
         
         UpdateAudioBus("Music", _musicLabel, (bool)Global.Instance.Settings["music"]);
