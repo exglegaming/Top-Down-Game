@@ -1,3 +1,4 @@
+using System.Linq;
 using Godot;
 using TopDownGame.scripts.autoloads;
 using TopDownGame.scripts.resources.data.player;
@@ -13,26 +14,19 @@ public partial class CharacterSelection : Control
     [Export] private Texture2D _selectionCursor;
     [Export] private PlayerData[] _players;
     [Export] private WeaponData[] _weapons;
+    [Export] private HBoxContainer _playerContainer;
+    [Export] private HBoxContainer _weaponContainer;
+    [Export] private TextureButton _playButton;
+    [Export] private TextureButton _backButton;
+    [Export] private AudioStreamPlayer _uiSound;
+    [Export] private AudioStreamPlayer _hoverSound;
 
-    private HBoxContainer _playerContainer;
-    private HBoxContainer _weaponContainer;
     private PackedScene _playerCardScene;
     private PackedScene _weaponCardScene;
-    private TextureButton _playButton;
-    private TextureButton _backButton;
-    private AudioStreamPlayer _uiSound;
-    private AudioStreamPlayer _hoverSound;
 
     public override void _Ready()
     {
         Cursor.Instance.Sprite2D.Texture = _selectionCursor;
-
-        _playerContainer = GetNode<HBoxContainer>("PlayerContainer");
-        _weaponContainer = GetNode<HBoxContainer>("WeaponContainer");
-        _playButton = GetNode<TextureButton>("%PlayButton");
-        _backButton = GetNode<TextureButton>("%BackButton");
-        _uiSound = GetNode<AudioStreamPlayer>("UISound");
-        _hoverSound = GetNode<AudioStreamPlayer>("HoverSound");
 
         _playerCardScene = GD.Load<PackedScene>("uid://bag7ifm3ms8g5");
         _weaponCardScene = GD.Load<PackedScene>("uid://b1hduu5435thl");
@@ -53,7 +47,7 @@ public partial class CharacterSelection : Control
         foreach (var data in _players)
         {
             var card = (PlayerCard)_playerCardScene.Instantiate();
-            card.Pressed += () => OnPlayerCardPressed(data);
+            card.Pressed += () => OnPlayerCardPressed(data, card);
             _playerContainer.AddChild(card);
             card.SetData(data);
         }
@@ -61,7 +55,7 @@ public partial class CharacterSelection : Control
         foreach (var data in _weapons)
         {
             var card = (WeaponCard)_weaponCardScene.Instantiate();
-            card.Pressed += () => OnWeaponCardPressed(data);
+            card.Pressed += () => OnWeaponCardPressed(data, card);
             _weaponContainer.AddChild(card);
             card.SetData(data);
         }
@@ -97,16 +91,20 @@ public partial class CharacterSelection : Control
         Transition.Instance.TransitionTo("uid://bdmo5icd2xpue");
     }
 
-    private void OnPlayerCardPressed(PlayerData data)
+    private void OnPlayerCardPressed(PlayerData data, PlayerCard selectedCard)
     {
         _uiSound.Play();
         Global.Instance.SelectedPlayer = data;
+        foreach (var card in _playerContainer.GetChildren().Cast<PlayerCard>()) card.Selector.Hide();
+        selectedCard.Selector.Show();
     }
 
-    private void OnWeaponCardPressed(WeaponData data)
+    private void OnWeaponCardPressed(WeaponData data, WeaponCard selectedCard)
     {
         _uiSound.Play();
         Global.Instance.SelectedWeapon = data;
+        foreach (var card in _weaponContainer.GetChildren().Cast<WeaponCard>()) card.Selector.Hide();
+        selectedCard.Selector.Show();
     }
 
     private void OnButtonMouseEntered()

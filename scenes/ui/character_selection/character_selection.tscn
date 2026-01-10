@@ -33,7 +33,7 @@ region = Rect2(112, 48, 48, 16)
 atlas = ExtResource("5_nbxll")
 region = Rect2(176, 48, 48, 16)
 
-[node name="CharacterSelection" type="Control" unique_id=1550873840]
+[node name="CharacterSelection" type="Control" unique_id=1550873840 node_paths=PackedStringArray("_playerContainer", "_weaponContainer", "_playButton", "_backButton", "_uiSound", "_hoverSound")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -44,6 +44,12 @@ script = ExtResource("1_jtguu")
 _selectionCursor = SubResource("AtlasTexture_hsxsp")
 _players = Array[Object]([ExtResource("2_8h16t"), ExtResource("3_y0023"), ExtResource("4_ino53"), ExtResource("5_2orvb")])
 _weapons = Array[Object]([ExtResource("6_hsxsp"), ExtResource("7_i62gh"), ExtResource("8_6g0l1"), ExtResource("9_cline"), ExtResource("10_r0g64"), ExtResource("11_nobp3"), ExtResource("12_k1gwy")])
+_playerContainer = NodePath("PlayerContainer")
+_weaponContainer = NodePath("WeaponContainer")
+_playButton = NodePath("Buttons/PlayButton")
+_backButton = NodePath("Buttons/BackButton")
+_uiSound = NodePath("UISound")
+_hoverSound = NodePath("HoverSound")
 
 [node name="UISound" type="AudioStreamPlayer" parent="." unique_id=1391948755]
 stream = ExtResource("14_i62gh")

@@ -10,10 +10,13 @@ public partial class PlayerCard : TextureButton
     private TextureRect _icon;
     private AudioStreamPlayer _hoverSound;
 
+    public TextureRect Selector;
+
     public override void _Ready()
     {
         _icon = GetNode<TextureRect>("Icon");
         _hoverSound = GetNode<AudioStreamPlayer>("HoverSound");
+        Selector = GetNode<TextureRect>("Selector");
 
         MouseEntered += OnMouseEntered;
     }

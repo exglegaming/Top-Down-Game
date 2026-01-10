@@ -9,6 +9,9 @@
 atlas = ExtResource("1_obyok")
 region = Rect2(192, 0, 48, 48)
 
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_p3jm8"]
+load_path = "res://.godot/imported/Selector.png-46cb2df0ef6fdf27b39cbeefa169bbaf.ctex"
+
 [node name="WeaponCard" type="TextureButton" unique_id=390116855]
 texture_normal = SubResource("AtlasTexture_cldy6")
 stretch_mode = 5
@@ -35,5 +38,24 @@ grow_vertical = 2
 pivot_offset_ratio = Vector2(0.5, 0.5)
 mouse_filter = 2
 texture = ExtResource("2_7oohd")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Selector" type="TextureRect" parent="." unique_id=1635414646]
+visible = false
+custom_minimum_size = Vector2(57, 57)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -28.5
+offset_top = -28.5
+offset_right = 28.5
+offset_bottom = 28.5
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("CompressedTexture2D_p3jm8")
 expand_mode = 1
 stretch_mode = 5
