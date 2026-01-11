@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://1p2w7etl8dxc" path="res://scripts/resources/data/weapons/WeaponData.cs" id="1_3te2y"]
 [ext_resource type="Texture2D" uid="uid://cqvwy8c5l0aod" path="res://assets/sprites/weapons/Tiles/tile_0001.png" id="1_br22o"]
+[ext_resource type="PackedScene" uid="uid://dvmbo66ao6yjf" path="res://scenes/bullets/bullet_pistol.tscn" id="1_w6k4y"]
 
 [resource]
 script = ExtResource("1_3te2y")
@@ -10,7 +11,8 @@ Icon = ExtResource("1_br22o")
 Damage = 1.4
 Cooldown = 0.35
 ManaCost = 1.0
-Spread = 3.0
-BulletSpeed = 260.0
+Spread = 5.0
+BulletSpeed = 250.0
+BulletScene = ExtResource("1_w6k4y")
 Description = "Basic sidearm, cheap and reliable, medium accuracy."
 metadata/_custom_type_script = "uid://1p2w7etl8dxc"

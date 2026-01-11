@@ -16,4 +16,5 @@ scale = Vector2(1.5, 1.5)
 [node name="Sprite2D" type="Sprite2D" parent="Pivot" unique_id=695149134]
 unique_name_in_owner = true
 
-[node name="Marker2D" type="Marker2D" parent="Pivot" unique_id=300523565]
+[node name="FirePosition" type="Marker2D" parent="Pivot" unique_id=300523565]
+unique_name_in_owner = true

@@ -26,9 +26,9 @@ public partial class MainMenu : Control
     {
         Cursor.Instance.Sprite2D.Texture = _menuCursor;
         
-        UpdateAudioBus("Music", _musicLabel, (bool)Global.Instance.Settings["music"]);
-        UpdateAudioBus("SFX", _sfxLabel, (bool)Global.Instance.Settings["sfx"]);
-        UpdateFullscreen((bool)Global.Instance.Settings["fullscreen"]);
+        UpdateAudioBus("Music", _musicLabel, Global.Instance.Settings["music"]);
+        UpdateAudioBus("SFX", _sfxLabel, Global.Instance.Settings["sfx"]);
+        UpdateFullscreen(Global.Instance.Settings["fullscreen"]);
         
         _playButton.Pressed += OnPlayButtonPressed;
         _settingsButton.Pressed += OnSettingsButtonPressed;
@@ -85,25 +85,25 @@ public partial class MainMenu : Control
     private void OnMusicButtonPressed()
     {
         _uiSound.Play();
-        var currentMusic = (bool)Global.Instance.Settings["music"];
+        var currentMusic = Global.Instance.Settings["music"];
         Global.Instance.Settings["music"] = !currentMusic;
-        UpdateAudioBus("Music", _musicLabel, (bool)Global.Instance.Settings["music"]);
+        UpdateAudioBus("Music", _musicLabel, Global.Instance.Settings["music"]);
     }
 
     private void OnSfxButtonPressed()
     {
         _uiSound.Play();
-        var currentSfx = (bool)Global.Instance.Settings["sfx"];
+        var currentSfx = Global.Instance.Settings["sfx"];
         Global.Instance.Settings["sfx"] = !currentSfx;
-        UpdateAudioBus("SFX", _sfxLabel, (bool)Global.Instance.Settings["sfx"]);
+        UpdateAudioBus("SFX", _sfxLabel, Global.Instance.Settings["sfx"]);
     }
 
      private void OnWindowButtonPressed()
     {
         _uiSound.Play();
-        var currentFullscreen = (bool)Global.Instance.Settings["fullscreen"];
+        var currentFullscreen = Global.Instance.Settings["fullscreen"];
         Global.Instance.Settings["fullscreen"] = !currentFullscreen;
-        UpdateFullscreen((bool)Global.Instance.Settings["fullscreen"]);
+        UpdateFullscreen(Global.Instance.Settings["fullscreen"]);
     }
 
     private void OnBackButtonPressed()

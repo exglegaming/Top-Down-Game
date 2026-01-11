@@ -1,0 +1,30 @@
+using Godot;
+using TopDownGame.scripts.resources.data.weapons;
+
+namespace TopDownGame.scripts.bullets;
+
+public partial class BulletPistol : Area2D
+{
+    private WeaponData _data;
+
+    public override void _Ready()
+    {
+        BodyEntered += OnBodyEntered;
+    }
+
+    public override void _Process(double delta)
+    {
+        if (_data == null) return;
+        MoveLocalX(_data.BulletSpeed * (float)delta);
+    }
+
+    public void Setup(WeaponData data)
+    {
+        _data = data;
+    }
+
+    private void OnBodyEntered(Node2D body)
+    {
+        QueueFree();
+    }
+}
