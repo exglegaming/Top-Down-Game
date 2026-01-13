@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://cdf8e1ug5o42i"]
+
+[ext_resource type="PackedScene" uid="uid://0o45tdqijyqc" path="res://scenes/weapons/melee/weapon_melee_sword.tscn" id="1_uil3c"]
+[ext_resource type="Texture2D" uid="uid://hm683tll4af4" path="res://assets/sprites/weapons/Tiles/tile_0009.png" id="2_j5ta4"]
+[ext_resource type="Resource" uid="uid://dwm6m2eidh00o" path="res://resources/data/weapons/weapon_axe.tres" id="2_uqasw"]
+
+[node name="WeaponMeleeAxe" unique_id=92444810 instance=ExtResource("1_uil3c")]
+Data = ExtResource("2_uqasw")
+
+[node name="Sprite2D" parent="Pivot" parent_id_path=PackedInt32Array(854642002) index="0" unique_id=812225013]
+texture = ExtResource("2_j5ta4")

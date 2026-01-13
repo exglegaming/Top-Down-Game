@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="WeaponData" format=3 uid="uid://cvxqg62pnitu3"]
+
+[ext_resource type="Texture2D" uid="uid://ddl1y3k5qm3mu" path="res://assets/sprites/weapons/Tiles/tile_0008.png" id="1_uuo7m"]
+[ext_resource type="Script" uid="uid://1p2w7etl8dxc" path="res://scripts/resources/data/weapons/WeaponData.cs" id="3_w5hod"]
+
+[resource]
+script = ExtResource("3_w5hod")
+WeaponName = "Sword"
+Icon = ExtResource("1_uuo7m")
+Damage = 0.6
+Cooldown = 0.15
+ManaCost = 0.1
+metadata/_custom_type_script = "uid://1p2w7etl8dxc"

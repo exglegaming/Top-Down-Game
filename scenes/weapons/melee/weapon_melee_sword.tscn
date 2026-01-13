@@ -2,6 +2,8 @@
 
 [ext_resource type="Script" uid="uid://bkyf4y3dcqdnq" path="res://scripts/weapons/melee/WeaponMelee.cs" id="1_ch317"]
 [ext_resource type="Texture2D" uid="uid://ddl1y3k5qm3mu" path="res://assets/sprites/weapons/Tiles/tile_0008.png" id="1_m57bg"]
+[ext_resource type="Resource" uid="uid://cvxqg62pnitu3" path="res://resources/data/weapons/weapon_sword.tres" id="2_mfu3f"]
+[ext_resource type="AudioStream" uid="uid://bpphir6sj7acr" path="res://assets/sounds/slash.ogg" id="3_xu3y1"]
 
 [sub_resource type="Animation" id="Animation_mfu3f"]
 length = 0.001
@@ -97,10 +99,19 @@ _data = {
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ch317"]
 size = Vector2(20, 30)
 
-[node name="WeaponMeleeSword" type="Node2D" unique_id=92444810]
+[node name="WeaponMeleeSword" type="Node2D" unique_id=92444810 node_paths=PackedStringArray("_sprite2D", "_slashParticle", "_animationPlayer", "_slashSound", "_cooldown", "Pivot")]
 script = ExtResource("1_ch317")
+_sprite2D = NodePath("Pivot/Sprite2D")
+_slashParticle = NodePath("Pivot/SlashParticle")
+_animationPlayer = NodePath("AnimationPlayer")
+_slashSound = NodePath("SlashSound")
+_cooldown = NodePath("Cooldown")
+Data = ExtResource("2_mfu3f")
+Pivot = NodePath("Pivot")
 
 [node name="SlashSound" type="AudioStreamPlayer" parent="." unique_id=288292026]
+stream = ExtResource("3_xu3y1")
+bus = &"SFX"
 
 [node name="Cooldown" type="Timer" parent="." unique_id=1630651443]
 
@@ -110,6 +121,7 @@ libraries/ = SubResource("AnimationLibrary_mfu3f")
 [node name="Pivot" type="Node2D" parent="." unique_id=854642002]
 
 [node name="Sprite2D" type="Sprite2D" parent="Pivot" unique_id=812225013]
+unique_name_in_owner = true
 texture = ExtResource("1_m57bg")
 
 [node name="Hitbox" type="Area2D" parent="Pivot" unique_id=227435805]
@@ -121,3 +133,4 @@ position = Vector2(10, 0)
 shape = SubResource("RectangleShape2D_ch317")
 
 [node name="SlashParticle" type="GPUParticles2D" parent="Pivot" unique_id=1603393118]
+unique_name_in_owner = true
