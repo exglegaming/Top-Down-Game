@@ -1,6 +1,7 @@
 [gd_resource type="Resource" script_class="WeaponData" format=3 uid="uid://dln0i4lssgw23"]
 
 [ext_resource type="Script" uid="uid://1p2w7etl8dxc" path="res://scripts/resources/data/weapons/WeaponData.cs" id="1_5l3mi"]
+[ext_resource type="PackedScene" uid="uid://f8nuwe03s080" path="res://scenes/bullets/bullet_ak_47.tscn" id="1_61d6x"]
 [ext_resource type="Texture2D" uid="uid://bpa7uv0kkmria" path="res://assets/sprites/weapons/Tiles/tile_0005.png" id="1_kt0dw"]
 
 [resource]
@@ -12,5 +13,6 @@ Cooldown = 0.4
 ManaCost = 1.0
 Spread = 7.0
 BulletSpeed = 250.0
+BulletScene = ExtResource("1_61d6x")
 Description = "Powerful assault rifle, good damage, medium recoil."
 metadata/_custom_type_script = "uid://1p2w7etl8dxc"

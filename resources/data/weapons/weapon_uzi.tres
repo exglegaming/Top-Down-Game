@@ -1,5 +1,6 @@
 [gd_resource type="Resource" script_class="WeaponData" format=3 uid="uid://bv6rd1pjco1te"]
 
+[ext_resource type="PackedScene" uid="uid://boo3gqqnuohvj" path="res://scenes/bullets/bullet_uzi.tscn" id="1_6jhnf"]
 [ext_resource type="Script" uid="uid://1p2w7etl8dxc" path="res://scripts/resources/data/weapons/WeaponData.cs" id="1_k6bke"]
 [ext_resource type="Texture2D" uid="uid://dhmowywd5bkl7" path="res://assets/sprites/weapons/Tiles/tile_0002.png" id="1_v8a7x"]
 
@@ -12,5 +13,6 @@ Cooldown = 0.12
 ManaCost = 0.5
 Spread = 10.0
 BulletSpeed = 320.0
+BulletScene = ExtResource("1_6jhnf")
 Description = "Micro SMG, extremely fast fire rate, low accuracy."
 metadata/_custom_type_script = "uid://1p2w7etl8dxc"
