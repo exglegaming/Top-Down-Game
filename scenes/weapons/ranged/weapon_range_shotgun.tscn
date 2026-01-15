@@ -4,12 +4,15 @@
 [ext_resource type="Resource" uid="uid://civrme7gh3qwx" path="res://resources/data/weapons/weapon_shotgun.tres" id="2_afnlr"]
 [ext_resource type="Texture2D" uid="uid://bbv84wvnnbldm" path="res://assets/sprites/weapons/Tiles/tile_0007.png" id="2_ka74o"]
 
-[node name="WeaponRangeShotgun" unique_id=1469574805 instance=ExtResource("1_cg8mc")]
+[node name="WeaponRangeShotgun" unique_id=1469574805 node_paths=PackedStringArray("_sprite2D", "_firePosition", "Pivot") instance=ExtResource("1_cg8mc")]
+_sprite2D = NodePath("Pivot/Sprite2D")
+_firePosition = NodePath("Pivot/FirePosition")
 Data = ExtResource("2_afnlr")
+Pivot = NodePath("Pivot")
 
 [node name="Sprite2D" parent="Pivot" parent_id_path=PackedInt32Array(586668593) index="0" unique_id=695149134]
 position = Vector2(12, 0)
 texture = ExtResource("2_ka74o")
 
-[node name="Marker2D" parent="Pivot" parent_id_path=PackedInt32Array(586668593) index="1" unique_id=300523565]
+[node name="FirePosition" parent="Pivot" parent_id_path=PackedInt32Array(586668593) index="1" unique_id=300523565]
 position = Vector2(22.666668, -0.6666667)
