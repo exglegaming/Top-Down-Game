@@ -16,7 +16,7 @@ public partial class WeaponMelee : Weapon
     [Export] private AudioStreamPlayer _slashSound;
     [Export] private Timer _cooldown;
 
-    private bool _canUse;
+    private bool _canUse = true;
 
     public override void _Ready()
     {

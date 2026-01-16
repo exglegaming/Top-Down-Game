@@ -18,6 +18,8 @@ public partial class Global : Node
     private static readonly string Shotgun = "uid://cakp2tlpbqsq8";
     private static readonly string Sniper = "uid://cll86688cg3ve";
     private static readonly string Uzi = "uid://c64bomahf66fn";
+    private static readonly string Sword = "uid://0o45tdqijyqc";
+    private static readonly string Axe = "uid://cdf8e1ug5o42i";
 
     public static Global Instance { get; set; }
 
@@ -48,7 +50,9 @@ public partial class Global : Node
         { "Pistol", GD.Load<PackedScene>(Pistol) },
         { "Shotgun", GD.Load<PackedScene>(Shotgun) },
         { "Sniper", GD.Load<PackedScene>(Sniper) },
-        { "Uzi", GD.Load<PackedScene>(Uzi) }
+        { "Uzi", GD.Load<PackedScene>(Uzi) },
+        { "Sword", GD.Load<PackedScene>(Sword) },
+        { "Axe", GD.Load<PackedScene>(Axe) }
     };
 
     public override void _EnterTree()
