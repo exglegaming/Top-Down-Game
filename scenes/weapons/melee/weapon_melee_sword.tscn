@@ -117,13 +117,14 @@ scale_min = 0.7
 anim_speed_min = 1.0
 anim_speed_max = 1.0
 
-[node name="WeaponMeleeSword" type="Node2D" unique_id=92444810 node_paths=PackedStringArray("_sprite2D", "_slashParticle", "_animationPlayer", "_slashSound", "_cooldown", "Pivot")]
+[node name="WeaponMeleeSword" type="Node2D" unique_id=92444810 node_paths=PackedStringArray("_sprite2D", "_slashParticle", "_animationPlayer", "_slashSound", "_cooldown", "_hitbox", "Pivot")]
 script = ExtResource("1_ch317")
 _sprite2D = NodePath("Pivot/Sprite2D")
 _slashParticle = NodePath("Pivot/SlashParticle")
 _animationPlayer = NodePath("AnimationPlayer")
 _slashSound = NodePath("SlashSound")
 _cooldown = NodePath("Cooldown")
+_hitbox = NodePath("Pivot/Hitbox")
 Data = ExtResource("2_mfu3f")
 Pivot = NodePath("Pivot")
 
@@ -159,7 +160,7 @@ position = Vector2(15, 0)
 emitting = false
 amount = 1
 texture = ExtResource("5_ui6lq")
-lifetime = 0.09999999999999999
+lifetime = 0.1
 one_shot = true
 local_coords = true
 process_material = SubResource("ParticleProcessMaterial_x5a04")

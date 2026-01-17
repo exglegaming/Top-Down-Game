@@ -20,6 +20,7 @@ public partial class Global : Node
     private static readonly string Uzi = "uid://c64bomahf66fn";
     private static readonly string Sword = "uid://0o45tdqijyqc";
     private static readonly string Axe = "uid://cdf8e1ug5o42i";
+    public static readonly PackedScene ExplosionEffectScene = GD.Load<PackedScene>("uid://gusc66iqufsn");
 
     public static Global Instance { get; set; }
 
@@ -73,6 +74,13 @@ public partial class Global : Node
     public PackedScene GetWeapon()
     {
         return AllWeapons[SelectedWeapon.WeaponName];
+    }
+
+    public void CreateExplosion(Vector2 position)
+    {
+        var explosion = (Node2D)ExplosionEffectScene.Instantiate();
+        explosion.GlobalPosition = position;
+        GetTree().Root.AddChild(explosion);
     }
     
     public void SaveData()

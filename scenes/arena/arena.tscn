@@ -8,10 +8,14 @@
 [ext_resource type="Texture2D" uid="uid://bvr7in7eey6cb" path="res://assets/sprites/interface/bar_over.png" id="4_jx0ua"]
 [ext_resource type="Texture2D" uid="uid://cf2ypr83psjfm" path="res://assets/sprites/interface/bar_health.png" id="5_u52cf"]
 [ext_resource type="Texture2D" uid="uid://djtqrhxpxpjeg" path="res://assets/sprites/interface/bar_mana.png" id="6_jx0ua"]
+[ext_resource type="Texture2D" uid="uid://clv0dnuyxhqg8" path="res://assets/sprites/interface/Button_Blue.png" id="9_6w4xk"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_n62jo"]
 atlas = ExtResource("1_1qjuf")
 region = Rect2(48, 0, 48, 48)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6w4xk"]
+size = Vector2(48, 48)
 
 [node name="Arena" type="Node2D" unique_id=1524652960]
 script = ExtResource("1_ii07k")
@@ -85,3 +89,36 @@ stretch_margin_right = 3
 texture_under = ExtResource("3_asdgj")
 texture_over = ExtResource("4_jx0ua")
 texture_progress = ExtResource("6_jx0ua")
+
+[node name="EnemyBody" type="StaticBody2D" parent="." unique_id=781392596]
+position = Vector2(209, 100)
+collision_layer = 4
+collision_mask = 0
+
+[node name="Sprite2D" type="Sprite2D" parent="EnemyBody" unique_id=877068767]
+texture = ExtResource("9_6w4xk")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EnemyBody" unique_id=324185592]
+shape = SubResource("RectangleShape2D_6w4xk")
+
+[node name="EnemyBody2" type="StaticBody2D" parent="." unique_id=1739021661]
+position = Vector2(331, 47)
+collision_layer = 4
+collision_mask = 0
+
+[node name="Sprite2D" type="Sprite2D" parent="EnemyBody2" unique_id=1126865006]
+texture = ExtResource("9_6w4xk")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EnemyBody2" unique_id=1199270550]
+shape = SubResource("RectangleShape2D_6w4xk")
+
+[node name="EnemyBody3" type="StaticBody2D" parent="." unique_id=1729819515]
+position = Vector2(317, 146)
+collision_layer = 4
+collision_mask = 0
+
+[node name="Sprite2D" type="Sprite2D" parent="EnemyBody3" unique_id=1455390335]
+texture = ExtResource("9_6w4xk")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EnemyBody3" unique_id=268471902]
+shape = SubResource("RectangleShape2D_6w4xk")

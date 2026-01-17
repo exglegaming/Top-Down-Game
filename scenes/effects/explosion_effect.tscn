@@ -1,0 +1,59 @@
+[gd_scene format=3 uid="uid://gusc66iqufsn"]
+
+[ext_resource type="AudioStream" uid="uid://347s7xuvdfnx" path="res://assets/sounds/explosion-a.ogg" id="1_5ssc0"]
+[ext_resource type="Texture2D" uid="uid://c720xd6qqr0a7" path="res://assets/sprites/weapons/explosion.png" id="1_52shv"]
+[ext_resource type="Script" uid="uid://cef3o1towjesa" path="res://scripts/effects/ExplosionEffect.cs" id="1_ss4gf"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k6p1u"]
+atlas = ExtResource("1_52shv")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f0pw8"]
+atlas = ExtResource("1_52shv")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j0pkj"]
+atlas = ExtResource("1_52shv")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_shsxu"]
+atlas = ExtResource("1_52shv")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bbm8i"]
+atlas = ExtResource("1_52shv")
+region = Rect2(256, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ss4gf"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k6p1u")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f0pw8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j0pkj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_shsxu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bbm8i")
+}],
+"loop": false,
+"name": &"default",
+"speed": 20.0
+}]
+
+[node name="ExplosionEffect" type="AnimatedSprite2D" unique_id=815720049]
+scale = Vector2(0.6, 0.6)
+sprite_frames = SubResource("SpriteFrames_ss4gf")
+autoplay = "default"
+script = ExtResource("1_ss4gf")
+
+[node name="Sound" type="AudioStreamPlayer" parent="." unique_id=189357490]
+stream = ExtResource("1_5ssc0")
+volume_db = -10.0
+bus = &"SFX"

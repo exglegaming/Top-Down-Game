@@ -1,5 +1,5 @@
+using System.Collections.Generic;
 using Godot;
-using TopDownGame.scripts.weapons;
 
 namespace TopDownGame.scripts.weapons.melee;
 
@@ -15,14 +15,18 @@ public partial class WeaponMelee : Weapon
     [Export] private AnimationPlayer _animationPlayer;
     [Export] private AudioStreamPlayer _slashSound;
     [Export] private Timer _cooldown;
+    [Export] private Area2D _hitbox;
 
     private bool _canUse = true;
+    private List<Node2D> _entities = new();
 
     public override void _Ready()
     {
         _cooldown.WaitTime = Data.Cooldown;
 
         _cooldown.Timeout += OnCooldownTimeout;
+        _hitbox.BodyEntered += OnHitboxBodyEntered;
+        _hitbox.BodyExited += OnHitboxBodyExited;
     }
 
     public override void UseWeapon()
@@ -33,6 +37,7 @@ public partial class WeaponMelee : Weapon
         _cooldown.Start();
         _slashSound.Play();
         _animationPlayer.Play(Slash);
+        foreach (var entity in _entities) GD.Print(entity.Name);
 
         _slashParticle.GlobalRotation = Pivot.GlobalRotation;
         _slashParticle.Emitting = true;
@@ -47,5 +52,18 @@ public partial class WeaponMelee : Weapon
     {
         _canUse = true;
         _animationPlayer.Play(Idle);
+    }
+
+    private void OnHitboxBodyEntered(Node2D body)
+    {
+        if (IsInstanceValid(body) && !_entities.Contains(body))
+        {
+            _entities.Add(body);
+        }
+    }
+
+    private void OnHitboxBodyExited(Node2D body)
+    {
+            _entities.Remove(body);
     }
 }
