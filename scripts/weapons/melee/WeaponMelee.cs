@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Godot;
+using TopDownGame.scripts.autoloads;
 
 namespace TopDownGame.scripts.weapons.melee;
 
@@ -37,7 +38,11 @@ public partial class WeaponMelee : Weapon
         _cooldown.Start();
         _slashSound.Play();
         _animationPlayer.Play(Slash);
-        foreach (var entity in _entities) GD.Print(entity.Name);
+        
+        foreach (Node2D enemy in _entities) 
+        {
+            Global.Instance.CreateDamageText(Data.Damage, enemy.GlobalPosition);
+        }
 
         _slashParticle.GlobalRotation = Pivot.GlobalRotation;
         _slashParticle.Emitting = true;

@@ -1,5 +1,7 @@
+using System;
 using Godot;
 using Godot.Collections;
+using TopDownGame.scripts.extra;
 using TopDownGame.scripts.resources.data.player;
 using TopDownGame.scripts.resources.data.weapons;
 
@@ -21,6 +23,7 @@ public partial class Global : Node
     private static readonly string Sword = "uid://0o45tdqijyqc";
     private static readonly string Axe = "uid://cdf8e1ug5o42i";
     public static readonly PackedScene ExplosionEffectScene = GD.Load<PackedScene>("uid://gusc66iqufsn");
+    public static readonly PackedScene DamageTextScene = GD.Load<PackedScene>("uid://bbodibp7vmq8c");
 
     public static Global Instance { get; set; }
 
@@ -81,6 +84,15 @@ public partial class Global : Node
         var explosion = (Node2D)ExplosionEffectScene.Instantiate();
         explosion.GlobalPosition = position;
         GetTree().Root.AddChild(explosion);
+    }
+
+    public void CreateDamageText(float value, Vector2 position)
+    {
+        var damage = (DamageText)DamageTextScene.Instantiate();
+        GetParent().AddChild(damage);
+        var randomPosition = (float)GD.RandRange(0, Math.Tau);
+        damage.GlobalPosition = position + Vector2.Right.Rotated(randomPosition) * 20;
+        damage.Setup(value);
     }
     
     public void SaveData()

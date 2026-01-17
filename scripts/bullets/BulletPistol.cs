@@ -27,6 +27,7 @@ public partial class BulletPistol : Area2D
     private void OnBodyEntered(Node2D body)
     {
         Global.Instance.CreateExplosion(GlobalPosition);
+        Global.Instance.CreateDamageText(_data.Damage, body.GlobalPosition);
         QueueFree();
     }
 }
