@@ -9,7 +9,7 @@ public partial class Weapon : Node2D
     [Export] public WeaponData Data { get; set; }
     [Export] public Node2D Pivot;
 
-    public virtual void UseWeapon()
+    protected virtual void UseWeapon()
     {
         
     }

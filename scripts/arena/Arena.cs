@@ -30,7 +30,7 @@ public partial class Arena : Node2D
     {
         var player = Global.Instance.GetPlayer().Instantiate() as Player;
         AddChild(player);
-        player.WeaponController.EquipWeapon();
+        player?.WeaponController.EquipWeapon();
     }
 
     private void OnPlayerHealthUpdated(float currentHealth, float maxHealth)

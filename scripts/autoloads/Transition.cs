@@ -18,15 +18,17 @@ public partial class Transition : Node
         _effect = GetNode<ColorRect>("%Effect");
     }
 
-    public async void TransitionTo(string scenePath)
+    public void TransitionTo(string scenePath)
     {
         var tween = CreateTween();
         tween.TweenProperty(_effect.Material, "shader_parameter/progress", 1.0, 1.0);
 
-        await ToSignal(tween, Tween.SignalName.Finished);
-        GetTree().ChangeSceneToFile(scenePath);
+        tween.Finished += () =>
+        {
+            GetTree().ChangeSceneToFile(scenePath);
 
-        tween = CreateTween();
-        tween.TweenProperty(_effect.Material, "shader_parameter/progress", 0.0, 1.0);
+            tween = CreateTween();
+            tween.TweenProperty(_effect.Material, "shader_parameter/progress", 0.0, 1.0);
+        };
     }
 }

@@ -32,12 +32,12 @@ public partial class WeaponCard : TextureButton
     private void OnMouseEntered()
     {
         _hoverSound.Play();
-        var dampedOscilator = GetNode<GodotObject>("/root/DampedOscillator");
-        dampedOscilator.Call("animate", _icon, "scale", (float)GD.RandRange(400, 450), (float)GD.RandRange(5, 10), (float)GD.RandRange(10, 15), 0.5);
+        var dampedOscillator = GetNode<GodotObject>("/root/DampedOscillator");
+        dampedOscillator.Call("animate", _icon, "scale", (float)GD.RandRange(400, 450), (float)GD.RandRange(5, 10), (float)GD.RandRange(10, 15), 0.5);
 
         _descriptionPanel.Show();
-        dampedOscilator.Call("animate", _descriptionPanel, "scale", (float)GD.RandRange(400, 450), (float)GD.RandRange(5, 10), (float)GD.RandRange(10, 15), 0.5);
-        dampedOscilator.Call("animate", _descriptionPanel, "rotation_degrees", 300, 7.5, 15, 0.5 * GD.RandRange(-20, 20));
+        dampedOscillator.Call("animate", _descriptionPanel, "scale", (float)GD.RandRange(400, 450), (float)GD.RandRange(5, 10), (float)GD.RandRange(10, 15), 0.5);
+        dampedOscillator.Call("animate", _descriptionPanel, "rotation_degrees", 300, 7.5, 15, 0.5 * GD.RandRange(-20, 20));
     }
 
     private void OnMouseExited()

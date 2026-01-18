@@ -9,36 +9,25 @@ namespace TopDownGame.scripts.autoloads;
 
 public partial class Global : Node
 {
-    private static readonly string Bunny = "uid://brqlu552oijhw";
-    private static readonly string Dog = "uid://c5oxdpdqidm62";
-    private static readonly string Mouse = "uid://dmur05tmvsy37";
-    private static readonly string Cat = "uid://btnvga7vtsw4b";
-    private static readonly string AK47 = "uid://hjuhq6jbth5j";
-    private static readonly string Mac10 = "uid://btlepcaimi46b";
-    private static readonly string MP5 = "uid://bcsqadn3w18im";
-    private static readonly string Pistol = "uid://b5pray2nwvym5";
-    private static readonly string Shotgun = "uid://cakp2tlpbqsq8";
-    private static readonly string Sniper = "uid://cll86688cg3ve";
-    private static readonly string Uzi = "uid://c64bomahf66fn";
-    private static readonly string Sword = "uid://0o45tdqijyqc";
-    private static readonly string Axe = "uid://cdf8e1ug5o42i";
-    public static readonly PackedScene ExplosionEffectScene = GD.Load<PackedScene>("uid://gusc66iqufsn");
-    public static readonly PackedScene DamageTextScene = GD.Load<PackedScene>("uid://bbodibp7vmq8c");
-
-    public static Global Instance { get; set; }
+    private const string Bunny = "uid://brqlu552oijhw";
+    private const string Dog = "uid://c5oxdpdqidm62";
+    private const string Mouse = "uid://dmur05tmvsy37";
+    private const string Cat = "uid://btnvga7vtsw4b";
+    private const string Ak47 = "uid://hjuhq6jbth5j";
+    private const string Mac10 = "uid://btlepcaimi46b";
+    private const string Mp5 = "uid://bcsqadn3w18im";
+    private const string Pistol = "uid://b5pray2nwvym5";
+    private const string Shotgun = "uid://cakp2tlpbqsq8";
+    private const string Sniper = "uid://cll86688cg3ve";
+    private const string Uzi = "uid://c64bomahf66fn";
+    private const string Sword = "uid://0o45tdqijyqc";
+    private const string Axe = "uid://cdf8e1ug5o42i";
+    private static readonly PackedScene ExplosionEffectScene = GD.Load<PackedScene>("uid://gusc66iqufsn");
+    private static readonly PackedScene DamageTextScene = GD.Load<PackedScene>("uid://bbodibp7vmq8c");
 
     private string _savePath = "user://save.json";
 
-    public PlayerData SelectedPlayer;
-    public WeaponData SelectedWeapon;
-    public Dictionary<string, bool> Settings { get; set; } = new Dictionary<string, bool>
-    {
-        { "music", true },
-        { "sfx", true },
-        { "fullscreen", false }
-    };
-
-    public Dictionary<string, PackedScene> AllPlayers { get; set; } = new Dictionary<string, PackedScene>
+    private Dictionary<string, PackedScene> AllPlayers { get; set; } = new Dictionary<string, PackedScene>
     {
         { "Bunny", GD.Load<PackedScene>(Bunny) },
         { "Dog", GD.Load<PackedScene>(Dog) },
@@ -46,17 +35,28 @@ public partial class Global : Node
         { "Cat", GD.Load<PackedScene>(Cat) }
     };
 
-    public Dictionary<string, PackedScene> AllWeapons { get; set; } = new Dictionary<string, PackedScene>
+    private Dictionary<string, PackedScene> AllWeapons { get; set; } = new Dictionary<string, PackedScene>
     {
-        { "AK47", GD.Load<PackedScene>(AK47) },
+        { "AK47", GD.Load<PackedScene>(Ak47) },
         { "Mac 10", GD.Load<PackedScene>(Mac10) },
-        { "MP5", GD.Load<PackedScene>(MP5) },
+        { "MP5", GD.Load<PackedScene>(Mp5) },
         { "Pistol", GD.Load<PackedScene>(Pistol) },
         { "Shotgun", GD.Load<PackedScene>(Shotgun) },
         { "Sniper", GD.Load<PackedScene>(Sniper) },
         { "Uzi", GD.Load<PackedScene>(Uzi) },
         { "Sword", GD.Load<PackedScene>(Sword) },
         { "Axe", GD.Load<PackedScene>(Axe) }
+    };
+    
+    public static Global Instance { get; private set; }
+    
+    public PlayerData SelectedPlayer;
+    public WeaponData SelectedWeapon;
+    public Dictionary<string, bool> Settings { get; set; } = new Dictionary<string, bool>
+    {
+        { "music", true },
+        { "sfx", true },
+        { "fullscreen", false }
     };
 
     public override void _EnterTree()
@@ -71,7 +71,7 @@ public partial class Global : Node
 
     public PackedScene GetPlayer()
     {
-        return AllPlayers[SelectedPlayer.ID];
+        return AllPlayers[SelectedPlayer.Id];
     }
     
     public PackedScene GetWeapon()
@@ -104,7 +104,7 @@ public partial class Global : Node
         file.StoreString(jsonString);
     }
 
-    public void LoadData()
+    private void LoadData()
     {
         if (!FileAccess.FileExists(_savePath))
             return;

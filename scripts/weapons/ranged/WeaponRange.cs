@@ -27,7 +27,7 @@ public partial class WeaponRange : Weapon
         }
     }
 
-    public override void UseWeapon()
+    protected override void UseWeapon()
     {
         var bullet = (BulletPistol)Data.BulletScene.Instantiate();
         bullet.Setup(Data);

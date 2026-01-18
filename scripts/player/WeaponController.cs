@@ -18,6 +18,7 @@ public partial class WeaponController : Node2D
     public void EquipWeapon()
     {
         var weapon = Global.Instance.GetWeapon().Instantiate() as Weapon;
+        if (weapon == null) return;
         weapon.GlobalPosition = new Vector2(0, -8);
         _currentWeapon = weapon;
         _currentWeapon.Data = Global.Instance.SelectedWeapon;

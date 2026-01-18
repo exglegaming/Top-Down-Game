@@ -27,7 +27,7 @@ public partial class Player : CharacterBody2D
         _healthComponent = GetNode<HealthComponent>("HealthComponent");
         WeaponController = GetNode<WeaponController>("WeaponController");
 
-        _healthComponent.InitHealth(Data.MaxHP);
+        _healthComponent.InitHealth(Data.MaxHp);
 
         _healthComponent.OnUnitDamaged += OnHealthComponentOnUnitDamaged;
         _healthComponent.OnUnitDead += OnHealthComponentOnUnitDead;
@@ -71,7 +71,7 @@ public partial class Player : CharacterBody2D
 
     private void OnHealthComponentOnUnitDamaged(float amount)
     {
-        EventBus.EmitPlayerHealthUpdated(_healthComponent.CurrentHealth, Data.MaxHP);
+        EventBus.EmitPlayerHealthUpdated(_healthComponent.CurrentHealth, Data.MaxHp);
     }
 
     private void OnHealthComponentOnUnitDead()

@@ -35,7 +35,7 @@ public partial class HealthComponent : Node
         EmitSignal(SignalName.OnUnitDead);
     }
 
-    public void heal(float value)
+    public void Heal(float value)
     {
         if (CurrentHealth >= _maxHealth) return;
 
