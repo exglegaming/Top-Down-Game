@@ -6,8 +6,7 @@
 [resource]
 script = ExtResource("1_5pysn")
 Icon = ExtResource("1_t6xk2")
-ID = "Dog"
-MaxHP = 5.0
+Id = "Dog"
 MoveSpeed = 200.0
 Magic = 1.0
 metadata/_custom_type_script = "uid://bxbhnfhti7ewr"
