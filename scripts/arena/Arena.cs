@@ -29,7 +29,8 @@ public partial class Arena : Node2D
 
         GenerateLevelLayout();
         SelectSpecialRooms();
-        LoadGameSelection();
+        CreateRooms();
+        // LoadGameSelection();
 
         _eventBus.PlayerHealthUpdated += OnPlayerHealthUpdated;
     }
@@ -68,6 +69,35 @@ public partial class Arena : Node2D
         foreach (var key in _grid.Keys)
         {
             GD.Print(key);
+        }
+    }
+
+    private async void CreateRooms()
+    {
+        GD.Print("Creating rooms...");
+        foreach (var roomCoord in _grid.Keys)
+        {
+            var roomInstance = (LevelRoom)_levelData.RoomScene.Instantiate();
+            roomInstance.Position = roomCoord * _levelData.RoomSize;
+            AddChild(roomInstance);
+            
+            _grid[roomCoord] = roomInstance;
+            ConnectRooms(roomCoord, roomInstance);
+            
+            await ToSignal(GetTree().CreateTimer(0.5f), SceneTreeTimer.SignalName.Timeout);
+        }
+    }
+
+    private void ConnectRooms(Vector2I roomCoord, LevelRoom roomInstance)
+    {
+        var directions = new[] { Vector2I.Up, Vector2I.Down, Vector2I.Right, Vector2I.Left };
+        foreach (var direction in directions)
+        {
+            var neighborCoord = roomCoord + direction;
+            if (_grid.ContainsKey(neighborCoord))
+            {
+                roomInstance.OpenWall(direction);
+            }
         }
     }
 
