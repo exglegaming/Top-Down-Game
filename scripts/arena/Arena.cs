@@ -29,7 +29,6 @@ public partial class Arena : Node2D
 
         GenerateLevelLayout();
         SelectSpecialRooms();
-
         LoadGameSelection();
 
         _eventBus.PlayerHealthUpdated += OnPlayerHealthUpdated;
@@ -74,7 +73,26 @@ public partial class Arena : Node2D
 
     private void SelectSpecialRooms()
     {
-        
+        _startRoomCoord = Vector2I.Zero;
+        _endRoomCoord = FindFarthestRoom();
+        GD.Print($"Start room coordinate: {_startRoomCoord}");
+        GD.Print($"End room coordinate: {_endRoomCoord}");
+    }
+
+    private Vector2I FindFarthestRoom()
+    {
+        var farthestRoomCoord = _startRoomCoord;
+        var maxDistance = 0.0;
+        foreach (var roomCoord in _grid.Keys)
+        {
+            var distance = _startRoomCoord.DistanceTo(roomCoord);
+            if (distance > maxDistance)
+            {
+                maxDistance = distance;
+                farthestRoomCoord = roomCoord;
+            }
+        }
+        return farthestRoomCoord;
     }
 
     private void LoadGameSelection()
