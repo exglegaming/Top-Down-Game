@@ -30,6 +30,7 @@ public partial class Arena : Node2D
         GenerateLevelLayout();
         SelectSpecialRooms();
         CreateRooms();
+        CreateCorridors();
         // LoadGameSelection();
 
         _eventBus.PlayerHealthUpdated += OnPlayerHealthUpdated;
@@ -55,6 +56,7 @@ public partial class Arena : Node2D
             var randomDirection = directions[GD.RandRange(0, directions.Length - 1)];
             var nextCoord = currentCoord + randomDirection;
 
+            // If nextCoord exists, find a new one
             var attempts = 0;
             while (_grid.ContainsKey(nextCoord) && attempts < 10)
             {
@@ -63,6 +65,7 @@ public partial class Arena : Node2D
                 attempts++;
             }
 
+            // If nextCoord is valid, add to grid
             _grid.TryAdd(nextCoord, null);
         }
         
@@ -72,7 +75,7 @@ public partial class Arena : Node2D
         }
     }
 
-    private async void CreateRooms()
+    private void CreateRooms()
     {
         GD.Print("Creating rooms...");
         foreach (var roomCoord in _grid.Keys)
@@ -81,10 +84,42 @@ public partial class Arena : Node2D
             roomInstance.Position = roomCoord * _levelData.RoomSize;
             AddChild(roomInstance);
             
+            // Link each coord with a room instance
             _grid[roomCoord] = roomInstance;
-            ConnectRooms(roomCoord, roomInstance);
             
-            await ToSignal(GetTree().CreateTimer(0.5f), SceneTreeTimer.SignalName.Timeout);
+            // Connect rooms using directions
+            ConnectRooms(roomCoord, roomInstance);
+        }
+    }
+
+    private void CreateCorridors()
+    {
+        GD.Print("Creating corridors...");
+        foreach (var roomCoord in _grid.Keys)
+        {
+            var roomInstance = _grid[roomCoord];
+            
+            // Create right connection
+            var rightNeighborCoord = roomCoord + Vector2I.Right;
+            if (_grid.TryGetValue(rightNeighborCoord, out var value))
+            {
+                var corridor = (Node2D)_levelData.HCorridor.Instantiate();
+                var roomPosition = roomInstance.Position;
+                var neighborPosition = value.Position;
+                corridor.Position = (roomPosition + neighborPosition) / 2;
+                AddChild(corridor);
+            }
+            
+            // Create down connection
+            var downNeighborCoord = roomCoord + Vector2I.Down;
+            if (_grid.TryGetValue(downNeighborCoord, out var value1))
+            {
+                var corridor = (Node2D)_levelData.VCorridor.Instantiate();
+                var roomPosition = roomInstance.Position;
+                var neighborPosition = value1.Position;
+                corridor.Position = (roomPosition + neighborPosition) / 2;
+                AddChild(corridor);
+            }
         }
     }
 
