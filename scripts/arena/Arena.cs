@@ -20,12 +20,18 @@ public partial class Arena : Node2D
     private EventBus _eventBus;
     private Vector2I _startRoomCoord;
     private Vector2I _endRoomCoord;
+    private Vector2I _gridCellSize;
 
     public override void _Ready()
     {
         _eventBus = GetNode<EventBus>("/root/EventBus");
 
         Cursor.Instance.Sprite2D.Texture = _arenaCursor;
+
+        _gridCellSize = new Vector2I(
+            _levelData.RoomSize.X + _levelData.CorridorSize.X,
+            _levelData.RoomSize.Y + _levelData.CorridorSize.Y
+            );
 
         GenerateLevelLayout();
         SelectSpecialRooms();
@@ -81,7 +87,7 @@ public partial class Arena : Node2D
         foreach (var roomCoord in _grid.Keys)
         {
             var roomInstance = (LevelRoom)_levelData.RoomScene.Instantiate();
-            roomInstance.Position = roomCoord * _levelData.RoomSize;
+            roomInstance.Position = roomCoord * _gridCellSize;
             AddChild(roomInstance);
             
             // Link each coord with a room instance
@@ -104,9 +110,7 @@ public partial class Arena : Node2D
             if (_grid.TryGetValue(rightNeighborCoord, out var value))
             {
                 var corridor = (Node2D)_levelData.HCorridor.Instantiate();
-                var roomPosition = roomInstance.Position;
-                var neighborPosition = value.Position;
-                corridor.Position = (roomPosition + neighborPosition) / 2;
+                corridor.Position = roomInstance.Position + new Vector2((float)(_gridCellSize.X / 2.0), 0);
                 AddChild(corridor);
             }
             
@@ -115,9 +119,7 @@ public partial class Arena : Node2D
             if (_grid.TryGetValue(downNeighborCoord, out var value1))
             {
                 var corridor = (Node2D)_levelData.VCorridor.Instantiate();
-                var roomPosition = roomInstance.Position;
-                var neighborPosition = value1.Position;
-                corridor.Position = (roomPosition + neighborPosition) / 2;
+                corridor.Position = roomInstance.Position + new Vector2(0, (float)(_gridCellSize.Y / 2.0));
                 AddChild(corridor);
             }
         }
