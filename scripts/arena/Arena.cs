@@ -37,7 +37,7 @@ public partial class Arena : Node2D
         SelectSpecialRooms();
         CreateRooms();
         CreateCorridors();
-        // LoadGameSelection();
+        LoadGameSelection();
 
         _eventBus.PlayerHealthUpdated += OnPlayerHealthUpdated;
     }
@@ -164,9 +164,12 @@ public partial class Arena : Node2D
 
     private void LoadGameSelection()
     {
-        var player = Global.Instance.GetPlayer().Instantiate() as Player;
+        var player = (Player)Global.Instance.GetPlayer().Instantiate();
+        var firstRoom = _grid[Vector2I.Zero];
+        var spawnPosition = firstRoom.PlayerSpawnPosition;
         AddChild(player);
-        player?.WeaponController.EquipWeapon();
+        player.GlobalPosition = spawnPosition.GlobalPosition;
+        player.WeaponController.EquipWeapon();
     }
 
     private void OnPlayerHealthUpdated(float currentHealth, float maxHealth)

@@ -10,6 +10,7 @@ public partial class LevelRoom : Node2D
     [Export] public TileMapLayer WallRight { get; private set; }
     [Export] public TileMapLayer WallDown { get; private set; }
     [Export] public TileMapLayer WallLeft { get; private set; }
+    [Export] public Marker2D PlayerSpawnPosition { get; private set; }
     
     private Dictionary<Vector2I, TileMapLayer> _roomWalls;
 
