@@ -21,6 +21,8 @@ public partial class Arena : Node2D
     private Vector2I _startRoomCoord;
     private Vector2I _endRoomCoord;
     private Vector2I _gridCellSize;
+    private LevelRoom _currentRoom;
+    private Player _player;
 
     public override void _Ready()
     {
@@ -38,8 +40,21 @@ public partial class Arena : Node2D
         CreateRooms();
         CreateCorridors();
         LoadGameSelection();
+        
+        var firstRoom = _grid[Vector2I.Zero];
+        firstRoom.IsCleared = true;
 
         _eventBus.PlayerHealthUpdated += OnPlayerHealthUpdated;
+        _eventBus.PlayerRoomEntered += OnPlayerRoomEntered;
+    }
+    
+    public override void _Input(InputEvent @event)
+    {
+        if (@event.IsActionPressed("ui_cancel"))
+        {
+            _currentRoom.UnlockRoom();
+            _currentRoom.IsCleared = true;
+        }
     }
 
     private void GenerateLevelLayout()
@@ -164,16 +179,25 @@ public partial class Arena : Node2D
 
     private void LoadGameSelection()
     {
-        var player = (Player)Global.Instance.GetPlayer().Instantiate();
+        _player = (Player)Global.Instance.GetPlayer().Instantiate();
         var firstRoom = _grid[Vector2I.Zero];
         var spawnPosition = firstRoom.PlayerSpawnPosition;
-        AddChild(player);
-        player.GlobalPosition = spawnPosition.GlobalPosition;
-        player.WeaponController.EquipWeapon();
+        AddChild(_player);
+        _player.GlobalPosition = spawnPosition.GlobalPosition;
+        _player.WeaponController.EquipWeapon();
     }
 
     private void OnPlayerHealthUpdated(float currentHealth, float maxHealth)
     {
         _healthBar.Value = currentHealth / maxHealth;
+    }
+
+    private void OnPlayerRoomEntered(LevelRoom room)
+    {
+        _currentRoom = room;
+        if (!room.IsCleared)
+        {
+            room.LockRoom();
+        }
     }
 }

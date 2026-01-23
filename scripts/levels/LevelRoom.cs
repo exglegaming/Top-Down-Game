@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Godot;
+using TopDownGame.scripts.autoloads;
 
 namespace TopDownGame.scripts.levels;
 
@@ -16,12 +17,14 @@ public partial class LevelRoom : Node2D
     [Export] public TileMapLayer DoorLeft { get; private set; }
     [Export] public Marker2D PlayerSpawnPosition { get; private set; }
     [Export] public TileMapLayer TileData { get; private set; }
+    [Export] public Area2D PlayerDetector { get; private set; }
     
     private readonly List<Vector2I> _tiles = [];
     private Dictionary<Vector2I, TileMapLayer> _roomWalls;
     private Dictionary<Vector2I, TileMapLayer> _clearDoorNodes;
-    private bool _isCleared;
 
+    public bool IsCleared;
+    
     public override void _Ready()
     {
         _roomWalls = new Dictionary<Vector2I, TileMapLayer>
@@ -40,20 +43,10 @@ public partial class LevelRoom : Node2D
             [Vector2I.Left] = DoorLeft
         };
         
-        // CloseAllWalls();
+        CloseAllWalls();
         RegisterTiles();
-    }
 
-    public override void _Input(InputEvent @event)
-    {
-        if (@event.IsActionPressed("ui_accept"))
-        {
-            LockRoom();
-        }
-        if (@event.IsActionPressed("ui_cancel"))
-        {
-            UnlockRoon();
-        }
+        PlayerDetector.BodyEntered += OnPlayerDetectorBodyEntered;
     }
 
     public void RegisterTiles()
@@ -64,7 +57,7 @@ public partial class LevelRoom : Node2D
         }
     }
 
-    public void UnlockRoon()
+    public void UnlockRoom()
     {
         foreach (var direction in _clearDoorNodes.Keys)
         {
@@ -80,7 +73,7 @@ public partial class LevelRoom : Node2D
         }
     }
     
-    private void LockRoom()
+    public void LockRoom()
     {
         foreach (var direction in _clearDoorNodes.Keys)
         {
@@ -100,5 +93,10 @@ public partial class LevelRoom : Node2D
         {
             _roomWalls[key].Enabled = true;
         }
+    }
+
+    private void OnPlayerDetectorBodyEntered(Node2D body)
+    {
+        EventBus.EmitPlayerRoomEntered(this);
     }
 }
