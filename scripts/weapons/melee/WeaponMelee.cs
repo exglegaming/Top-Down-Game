@@ -19,7 +19,7 @@ public partial class WeaponMelee : Weapon
     [Export] private Area2D _hitbox;
 
     private bool _canUse = true;
-    private List<Node2D> _entities = new();
+    private List<Node2D> _entities = [];
 
     public override void _Ready()
     {

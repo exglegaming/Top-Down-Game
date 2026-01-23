@@ -10,9 +10,17 @@ public partial class LevelRoom : Node2D
     [Export] public TileMapLayer WallRight { get; private set; }
     [Export] public TileMapLayer WallDown { get; private set; }
     [Export] public TileMapLayer WallLeft { get; private set; }
+    [Export] public TileMapLayer DoorUp { get; private set; }
+    [Export] public TileMapLayer DoorRight { get; private set; }
+    [Export] public TileMapLayer DoorDown { get; private set; }
+    [Export] public TileMapLayer DoorLeft { get; private set; }
     [Export] public Marker2D PlayerSpawnPosition { get; private set; }
+    [Export] public TileMapLayer TileData { get; private set; }
     
+    private readonly List<Vector2I> _tiles = [];
     private Dictionary<Vector2I, TileMapLayer> _roomWalls;
+    private Dictionary<Vector2I, TileMapLayer> _clearDoorNodes;
+    private bool _isCleared;
 
     public override void _Ready()
     {
@@ -24,7 +32,44 @@ public partial class LevelRoom : Node2D
             [Vector2I.Left] = WallLeft
         };
         
-        CloseAllWalls();
+        _clearDoorNodes = new Dictionary<Vector2I, TileMapLayer>
+        {
+            [Vector2I.Up] = DoorUp,
+            [Vector2I.Right] = DoorRight,
+            [Vector2I.Down] = DoorDown,
+            [Vector2I.Left] = DoorLeft
+        };
+        
+        // CloseAllWalls();
+        RegisterTiles();
+    }
+
+    public override void _Input(InputEvent @event)
+    {
+        if (@event.IsActionPressed("ui_accept"))
+        {
+            LockRoom();
+        }
+        if (@event.IsActionPressed("ui_cancel"))
+        {
+            UnlockRoon();
+        }
+    }
+
+    public void RegisterTiles()
+    {
+        foreach (var tile in TileData.GetUsedCells())
+        {
+            _tiles.Add(tile);
+        }
+    }
+
+    public void UnlockRoon()
+    {
+        foreach (var direction in _clearDoorNodes.Keys)
+        {
+            _clearDoorNodes[direction].Enabled = false;
+        }
     }
 
     public void OpenWall(Vector2I direction)
@@ -32,6 +77,20 @@ public partial class LevelRoom : Node2D
         if (_roomWalls.TryGetValue(direction, out var value))
         {
             value.Enabled = false;
+        }
+    }
+    
+    private void LockRoom()
+    {
+        foreach (var direction in _clearDoorNodes.Keys)
+        {
+            var wallDoor = _roomWalls[direction];
+            var clearDoor = _clearDoorNodes[direction];
+
+            if (IsInstanceValid(wallDoor) && !wallDoor.Enabled)
+            {
+                clearDoor.Enabled = true;
+            }
         }
     }
 
