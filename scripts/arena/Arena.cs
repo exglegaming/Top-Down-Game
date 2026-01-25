@@ -15,6 +15,7 @@ public partial class Arena : Node2D
     [Export] private TextureProgressBar _healthBar;
     [Export] private TextureProgressBar _manaBar;
     [Export] private LevelData _levelData;
+    [Export] private MapController _mapController;
     
     private readonly Dictionary<Vector2I, LevelRoom> _grid = new();
     private EventBus _eventBus;
@@ -187,6 +188,18 @@ public partial class Arena : Node2D
         _player.WeaponController.EquipWeapon();
     }
 
+    private Vector2I FindCoordFromRoom(LevelRoom room)
+    {
+        foreach (var coord in _grid.Keys)
+        {
+            if (_grid[coord] == room)
+            {
+                return coord;
+            }
+        }
+        return Vector2I.MaxValue;
+    }
+
     private void OnPlayerHealthUpdated(float currentHealth, float maxHealth)
     {
         _healthBar.Value = currentHealth / maxHealth;
@@ -194,10 +207,18 @@ public partial class Arena : Node2D
 
     private void OnPlayerRoomEntered(LevelRoom room)
     {
-        _currentRoom = room;
-        if (!room.IsCleared)
+        if (room != _currentRoom)
         {
-            room.LockRoom();
+            _currentRoom = room;
+            
+            var absoluteCoord = FindCoordFromRoom(room);
+            var relativeCoord = absoluteCoord - _startRoomCoord;
+            _mapController.UpdateOnRoomEnter(relativeCoord);
+            
+            if (!room.IsCleared)
+            {
+                room.LockRoom();
+            }
         }
     }
 }

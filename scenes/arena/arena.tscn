@@ -9,17 +9,19 @@
 [ext_resource type="Texture2D" uid="uid://bvr7in7eey6cb" path="res://assets/sprites/interface/bar_over.png" id="4_jx0ua"]
 [ext_resource type="Texture2D" uid="uid://cf2ypr83psjfm" path="res://assets/sprites/interface/bar_health.png" id="5_u52cf"]
 [ext_resource type="Texture2D" uid="uid://djtqrhxpxpjeg" path="res://assets/sprites/interface/bar_mana.png" id="6_jx0ua"]
+[ext_resource type="Script" uid="uid://cy6p4f7vr86f4" path="res://scripts/arena/MapController.cs" id="10_2ml6w"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_n62jo"]
 atlas = ExtResource("1_1qjuf")
 region = Rect2(48, 0, 48, 48)
 
-[node name="Arena" type="Node2D" unique_id=1524652960 node_paths=PackedStringArray("_healthBar", "_manaBar")]
+[node name="Arena" type="Node2D" unique_id=1524652960 node_paths=PackedStringArray("_healthBar", "_manaBar", "_mapController")]
 script = ExtResource("1_ii07k")
 _arenaCursor = ExtResource("2_6w4xk")
 _healthBar = NodePath("UI/PlayerUI/HealthBar")
 _manaBar = NodePath("UI/PlayerUI/ManaBar")
 _levelData = ExtResource("3_6w4xk")
+_mapController = NodePath("UI/MapController")
 
 [node name="UI" type="CanvasLayer" parent="." unique_id=1260297135]
 
@@ -89,3 +91,16 @@ stretch_margin_right = 3
 texture_under = ExtResource("3_asdgj")
 texture_over = ExtResource("4_jx0ua")
 texture_progress = ExtResource("6_jx0ua")
+
+[node name="MapController" type="Control" parent="UI" unique_id=340886578]
+custom_minimum_size = Vector2(120, 120)
+layout_mode = 3
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 20.0
+offset_top = -140.0
+offset_right = 140.0
+offset_bottom = -20.0
+grow_vertical = 0
+script = ExtResource("10_2ml6w")

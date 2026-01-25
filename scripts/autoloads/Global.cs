@@ -27,7 +27,7 @@ public partial class Global : Node
 
     private string _savePath = "user://save.json";
 
-    private Dictionary<string, PackedScene> AllPlayers { get; set; } = new Dictionary<string, PackedScene>
+    private Dictionary<string, PackedScene> AllPlayers { get; set; } = new()
     {
         { "Bunny", GD.Load<PackedScene>(Bunny) },
         { "Dog", GD.Load<PackedScene>(Dog) },
@@ -35,7 +35,7 @@ public partial class Global : Node
         { "Cat", GD.Load<PackedScene>(Cat) }
     };
 
-    private Dictionary<string, PackedScene> AllWeapons { get; set; } = new Dictionary<string, PackedScene>
+    private Dictionary<string, PackedScene> AllWeapons { get; set; } = new()
     {
         { "AK47", GD.Load<PackedScene>(Ak47) },
         { "Mac 10", GD.Load<PackedScene>(Mac10) },
@@ -52,7 +52,7 @@ public partial class Global : Node
     
     public PlayerData SelectedPlayer;
     public WeaponData SelectedWeapon;
-    public Dictionary<string, bool> Settings { get; set; } = new Dictionary<string, bool>
+    public Dictionary<string, bool> Settings { get; set; } = new()
     {
         { "music", true },
         { "sfx", true },
