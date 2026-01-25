@@ -1,5 +1,6 @@
 using Godot;
 using TopDownGame.scripts.autoloads;
+using TopDownGame.scripts.enemy;
 using TopDownGame.scripts.resources.data.weapons;
 
 namespace TopDownGame.scripts.bullets;
@@ -27,7 +28,12 @@ public partial class BulletPistol : Area2D
     private void OnBodyEntered(Node2D body)
     {
         Global.Instance.CreateExplosion(GlobalPosition);
-        Global.Instance.CreateDamageText(_data.Damage, body.GlobalPosition);
+        
+        if (body is Enemy enemy)
+        {
+            Global.Instance.CreateDamageText(_data.Damage, body.GlobalPosition);
+            enemy.HealthComponent.TakeDamage(_data.Damage);
+        }
         QueueFree();
     }
 }

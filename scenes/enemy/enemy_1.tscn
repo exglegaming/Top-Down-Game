@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://d2gowyxbvkf5g" path="res://assets/sprites/enemies/Sprites/tile_0001.png" id="4_co5vk"]
 [ext_resource type="Texture2D" uid="uid://c4stgcaqqu7as" path="res://assets/sprites/enemies/Sprites/tile_0003.png" id="4_s6epj"]
 [ext_resource type="Texture2D" uid="uid://bmi1eu80faffk" path="res://assets/sprites/enemies/Sprites/tile_0002.png" id="5_5ax25"]
+[ext_resource type="PackedScene" uid="uid://cm774d4hp3584" path="res://scenes/components/health_component.tscn" id="8_5ax25"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_trh57"]
 resource_local_to_scene = true
@@ -47,13 +48,24 @@ radius = 2.0
 resource_local_to_scene = true
 radius = 7.0
 
-[node name="Enemy1" type="CharacterBody2D" unique_id=1776012209 node_paths=PackedStringArray("_animSprite", "_playerDetector", "_hurtSound")]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_s6epj"]
+bg_color = Color(0.22450125, 1.8349849e-07, 8.4228816e-08, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5ax25"]
+bg_color = Color(1, 0, 0, 1)
+
+[node name="Enemy1" type="CharacterBody2D" unique_id=1776012209 node_paths=PackedStringArray("_animSprite", "_playerDetector", "_hurtSound", "_healthBar", "HealthComponent")]
+scale = Vector2(1.5, 1.5)
 collision_layer = 4
 motion_mode = 1
 script = ExtResource("1_trh57")
 _animSprite = NodePath("AnimSprite")
 _playerDetector = NodePath("PlayerDetector")
 _hurtSound = NodePath("HurtSound")
+_healthBar = NodePath("HealthBar")
+HealthComponent = NodePath("HealthComponent")
+
+[node name="HealthComponent" parent="." unique_id=1538038270 instance=ExtResource("8_5ax25")]
 
 [node name="HurtSound" type="AudioStreamPlayer" parent="." unique_id=1435775216]
 stream = ExtResource("1_d8iib")
@@ -81,3 +93,15 @@ collision_mask = 2
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDetector" unique_id=1146900966]
 position = Vector2(0, -6)
 shape = SubResource("CircleShape2D_5ax25")
+
+[node name="HealthBar" type="ProgressBar" parent="." unique_id=112190529]
+custom_minimum_size = Vector2(20, 2)
+offset_left = -10.0
+offset_top = -21.0
+offset_right = 10.0
+offset_bottom = -17.0
+theme_override_styles/background = SubResource("StyleBoxFlat_s6epj")
+theme_override_styles/fill = SubResource("StyleBoxFlat_5ax25")
+max_value = 1.0
+value = 0.5
+show_percentage = false

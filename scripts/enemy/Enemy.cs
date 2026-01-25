@@ -1,5 +1,8 @@
+using System;
 using Godot;
 using TopDownGame.scripts.autoloads;
+using TopDownGame.scripts.components;
+using TopDownGame.scripts.resources.data.weapons;
 
 namespace TopDownGame.scripts.enemy;
 
@@ -9,12 +12,30 @@ public partial class Enemy : CharacterBody2D
     [Export] private AnimatedSprite2D _animSprite;
     [Export] private Area2D _playerDetector;
     [Export] private AudioStreamPlayer _hurtSound;
+    [Export] private ProgressBar _healthBar;
+    [Export] public HealthComponent HealthComponent { get; private set; }
+    [Export] private Texture2D _deadTexture;
     
+    [ExportCategory("EnemyData")]
+    [Export] private float _maxHealth = 5.0f;
+    [Export] private float _collisionDamage = 2.0f;
+    [ExportGroup("EnemyChase")]
+    [Export] private float _chaseSpeed = 40.0f;
+    [ExportGroup("EnemyWeapon")]
+    [Export] private float _moveSpeed = 40.0f;
+    [Export] private WeaponData _weapon;
+     
     private bool _canMove = true;
+    private bool _isKilled = false;
 
     public override void _Ready()
     {
+        _healthBar.Value = 1f;
+        HealthComponent.InitHealth(_maxHealth);
+        
         _playerDetector.BodyEntered += OnPlayerDetectorBodyEntered;
+        HealthComponent.OnUnitDamaged += OnHealthComponentOnUnitDamaged;
+        HealthComponent.OnUnitDead += OnHealthComponentOnUnitDead;
     }
 
     public override void _PhysicsProcess(double delta)
@@ -23,7 +44,7 @@ public partial class Enemy : CharacterBody2D
         if (!_canMove) return;
         
         var direction = GlobalPosition.DirectionTo(Global.Instance.PlayerRef.GlobalPosition);
-        Velocity = direction * 50;
+        Velocity = direction * _chaseSpeed;
         MoveAndSlide();
         RotateEnemy();
     }
@@ -40,12 +61,29 @@ public partial class Enemy : CharacterBody2D
         }
     }
 
-    private async void OnPlayerDetectorBodyEntered(Node2D body)
+    private void EnemyDead()
     {
         _canMove = false;
-        _animSprite.Play("die");
-        await ToSignal(_animSprite, AnimatedSprite2D.SignalName.AnimationFinished);
+        Global.Instance.CreateDeadParticle(_deadTexture, GlobalPosition);
         EventBus.EmitEnemyDied();
         QueueFree();
+    }
+
+    private void OnPlayerDetectorBodyEntered(Node2D body)
+    {
+        EnemyDead();
+    }
+
+    private async void OnHealthComponentOnUnitDamaged(float amount)
+    {
+        _healthBar.Value = HealthComponent.CurrentHealth / _maxHealth;
+        _animSprite.Material = Global.HitMaterial;
+        await ToSignal(GetTree().CreateTimer(0.15f), SceneTreeTimer.SignalName.Timeout);
+        _animSprite.Material = null;
+    }
+
+    private void OnHealthComponentOnUnitDead()
+    {
+        EnemyDead();
     }
 }

@@ -11,6 +11,8 @@ namespace TopDownGame.scripts.autoloads;
 public partial class Global : Node
 {
     public static readonly PackedScene SpawnMarkerScene = GD.Load<PackedScene>("uid://bx7ulfs4833r");
+    private static readonly Shader HitShader = GD.Load<Shader>("uid://bvtcpygj3gpx4");
+    public static readonly ShaderMaterial HitMaterial = new() { Shader = HitShader };
     
     private const string Bunny = "uid://brqlu552oijhw";
     private const string Dog = "uid://c5oxdpdqidm62";
@@ -100,10 +102,11 @@ public partial class Global : Node
         damage.Setup(value);
     }
 
-    public void CreateDeadParticle(Texture2D texture)
+    public void CreateDeadParticle(Texture2D texture, Vector2 position)
     {
         var particle = (GpuParticles2D)DeadParticleScene.Instantiate();
         GetTree().Root.AddChild(particle);
+        particle.GlobalPosition = position;
         particle.Texture = texture;
     }
     
