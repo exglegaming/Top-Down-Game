@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://bmi1eu80faffk" path="res://assets/sprites/enemies/Sprites/tile_0002.png" id="5_5ax25"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_trh57"]
+resource_local_to_scene = true
 animations = [{
 "frames": [{
 "duration": 1.0,
@@ -43,11 +44,16 @@ resource_local_to_scene = true
 radius = 2.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_5ax25"]
+resource_local_to_scene = true
 radius = 7.0
 
-[node name="Enemy1" type="CharacterBody2D" unique_id=1776012209]
+[node name="Enemy1" type="CharacterBody2D" unique_id=1776012209 node_paths=PackedStringArray("_animSprite", "_playerDetector", "_hurtSound")]
 collision_layer = 4
+motion_mode = 1
 script = ExtResource("1_trh57")
+_animSprite = NodePath("AnimSprite")
+_playerDetector = NodePath("PlayerDetector")
+_hurtSound = NodePath("HurtSound")
 
 [node name="HurtSound" type="AudioStreamPlayer" parent="." unique_id=1435775216]
 stream = ExtResource("1_d8iib")

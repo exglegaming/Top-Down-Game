@@ -187,6 +187,7 @@ public partial class Arena : Node2D
         AddChild(_player);
         _player.GlobalPosition = spawnPosition.GlobalPosition;
         _player.WeaponController.EquipWeapon();
+        Global.Instance.PlayerRef = _player;
     }
 
     private Vector2I FindCoordFromRoom(LevelRoom room)

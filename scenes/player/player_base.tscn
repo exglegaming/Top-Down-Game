@@ -8,6 +8,7 @@
 [node name="PlayerBase" type="CharacterBody2D" unique_id=2096422990]
 collision_layer = 2
 collision_mask = 5
+motion_mode = 1
 script = ExtResource("1_0t7ad")
 
 [node name="HealthComponent" parent="." unique_id=1538038270 instance=ExtResource("2_76ihk")]

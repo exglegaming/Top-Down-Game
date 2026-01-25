@@ -2,6 +2,7 @@ using System;
 using Godot;
 using Godot.Collections;
 using TopDownGame.scripts.extra;
+using TopDownGame.scripts.player;
 using TopDownGame.scripts.resources.data.player;
 using TopDownGame.scripts.resources.data.weapons;
 
@@ -49,7 +50,8 @@ public partial class Global : Node
     };
     
     public static Global Instance { get; private set; }
-    
+
+    public Player PlayerRef;
     public PlayerData SelectedPlayer;
     public WeaponData SelectedWeapon;
     public Dictionary<string, bool> Settings { get; set; } = new()
