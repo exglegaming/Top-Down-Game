@@ -1,0 +1,77 @@
+[gd_scene format=3 uid="uid://bxvwm1ku7vx4e"]
+
+[ext_resource type="AudioStream" uid="uid://dmai3vjk5si8m" path="res://assets/sounds/enemy_hurt_1.ogg" id="1_d8iib"]
+[ext_resource type="Script" uid="uid://dhea4ov8vvcfv" path="res://scripts/enemy/Enemy.cs" id="1_trh57"]
+[ext_resource type="Texture2D" uid="uid://dawvmsgg5mc6o" path="res://assets/sprites/Shadow.png" id="3_co5vk"]
+[ext_resource type="Texture2D" uid="uid://cgvslb1dnigc8" path="res://assets/sprites/enemies/Sprites/tile_0000.png" id="3_v31qn"]
+[ext_resource type="Texture2D" uid="uid://d2gowyxbvkf5g" path="res://assets/sprites/enemies/Sprites/tile_0001.png" id="4_co5vk"]
+[ext_resource type="Texture2D" uid="uid://c4stgcaqqu7as" path="res://assets/sprites/enemies/Sprites/tile_0003.png" id="4_s6epj"]
+[ext_resource type="Texture2D" uid="uid://bmi1eu80faffk" path="res://assets/sprites/enemies/Sprites/tile_0002.png" id="5_5ax25"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_trh57"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_s6epj")
+}],
+"loop": false,
+"name": &"die",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_5ax25")
+}],
+"loop": false,
+"name": &"hurt",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_v31qn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_co5vk")
+}],
+"loop": true,
+"name": &"move",
+"speed": 10.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_s6epj"]
+resource_local_to_scene = true
+radius = 2.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_5ax25"]
+radius = 7.0
+
+[node name="Enemy1" type="CharacterBody2D" unique_id=1776012209]
+collision_layer = 4
+script = ExtResource("1_trh57")
+
+[node name="HurtSound" type="AudioStreamPlayer" parent="." unique_id=1435775216]
+stream = ExtResource("1_d8iib")
+bus = &"SFX"
+
+[node name="Shadow" type="Sprite2D" parent="." unique_id=1733542080]
+self_modulate = Color(1, 1, 1, 0.7058824)
+scale = Vector2(1.5, 1)
+texture = ExtResource("3_co5vk")
+
+[node name="AnimSprite" type="AnimatedSprite2D" parent="." unique_id=2039008915]
+position = Vector2(0, -12)
+sprite_frames = SubResource("SpriteFrames_trh57")
+animation = &"move"
+autoplay = "move"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1976291757]
+position = Vector2(0, -3)
+shape = SubResource("CircleShape2D_s6epj")
+
+[node name="PlayerDetector" type="Area2D" parent="." unique_id=1139784305]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDetector" unique_id=1146900966]
+position = Vector2(0, -6)
+shape = SubResource("CircleShape2D_5ax25")
