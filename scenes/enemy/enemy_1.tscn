@@ -48,19 +48,23 @@ radius = 2.0
 resource_local_to_scene = true
 radius = 7.0
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_h86pc"]
+radius = 30.118284
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_s6epj"]
 bg_color = Color(0.22450125, 1.8349849e-07, 8.4228816e-08, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5ax25"]
 bg_color = Color(1, 0, 0, 1)
 
-[node name="Enemy1" type="CharacterBody2D" unique_id=1776012209 node_paths=PackedStringArray("_animSprite", "_playerDetector", "_hurtSound", "_healthBar", "HealthComponent")]
+[node name="Enemy1" type="CharacterBody2D" unique_id=1776012209 node_paths=PackedStringArray("_animSprite", "_playerDetector", "_enemyDetector", "_hurtSound", "_healthBar", "HealthComponent")]
 scale = Vector2(1.5, 1.5)
 collision_layer = 4
 motion_mode = 1
 script = ExtResource("1_trh57")
 _animSprite = NodePath("AnimSprite")
 _playerDetector = NodePath("PlayerDetector")
+_enemyDetector = NodePath("EnemyDetector")
 _hurtSound = NodePath("HurtSound")
 _healthBar = NodePath("HealthBar")
 HealthComponent = NodePath("HealthComponent")
@@ -93,6 +97,15 @@ collision_mask = 2
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDetector" unique_id=1146900966]
 position = Vector2(0, -6)
 shape = SubResource("CircleShape2D_5ax25")
+
+[node name="EnemyDetector" type="Area2D" parent="." unique_id=2128244921]
+collision_layer = 0
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EnemyDetector" unique_id=925350928]
+position = Vector2(0, -6)
+shape = SubResource("CircleShape2D_h86pc")
+debug_color = Color(0.85490197, 0.14901961, 0.81960785, 0.15686275)
 
 [node name="HealthBar" type="ProgressBar" parent="." unique_id=112190529]
 custom_minimum_size = Vector2(20, 2)

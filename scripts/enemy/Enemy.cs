@@ -1,4 +1,4 @@
-using System;
+using System.Linq;
 using Godot;
 using TopDownGame.scripts.autoloads;
 using TopDownGame.scripts.components;
@@ -11,6 +11,7 @@ public partial class Enemy : CharacterBody2D
     [ExportCategory("References")]
     [Export] private AnimatedSprite2D _animSprite;
     [Export] private Area2D _playerDetector;
+    [Export] private Area2D _enemyDetector;
     [Export] private AudioStreamPlayer _hurtSound;
     [Export] private ProgressBar _healthBar;
     [Export] public HealthComponent HealthComponent { get; private set; }
@@ -20,7 +21,7 @@ public partial class Enemy : CharacterBody2D
     [Export] private float _maxHealth = 5.0f;
     [Export] private float _collisionDamage = 2.0f;
     [ExportGroup("EnemyChase")]
-    [Export] private float _chaseSpeed = 40.0f;
+    [Export] private float _chaseSpeed = 60.0f;
     [ExportGroup("EnemyWeapon")]
     [Export] private float _moveSpeed = 40.0f;
     [Export] private WeaponData _weapon;
@@ -44,6 +45,9 @@ public partial class Enemy : CharacterBody2D
         if (!_canMove) return;
         
         var direction = GlobalPosition.DirectionTo(Global.Instance.PlayerRef.GlobalPosition);
+        direction = (from Enemy enemy in _enemyDetector.GetOverlappingBodies() where enemy != this && enemy.IsInsideTree() 
+            select GlobalPosition - enemy.GlobalPosition).Aggregate(direction, (current, vector) => current + 10 * vector.Normalized() / vector.Length());
+
         Velocity = direction * _chaseSpeed;
         MoveAndSlide();
         RotateEnemy();
@@ -63,7 +67,10 @@ public partial class Enemy : CharacterBody2D
 
     private void EnemyDead()
     {
+        if (_isKilled) return;
+        
         _canMove = false;
+        _isKilled = true;
         Global.Instance.CreateDeadParticle(_deadTexture, GlobalPosition);
         EventBus.EmitEnemyDied();
         QueueFree();
