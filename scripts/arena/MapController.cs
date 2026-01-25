@@ -8,7 +8,7 @@ public partial class MapController : Control
 {
     private static readonly PackedScene MapCellScene = GD.Load<PackedScene>("uid://b081fl6ails64");
     
-    private Dictionary<Vector2I, MapCell> _minimapCells = new();
+    private readonly Dictionary<Vector2I, MapCell> _minimapCells = new();
     private Vector2I _playerCoord = Vector2I.MaxValue;
     private Vector2 _cellSize;
 

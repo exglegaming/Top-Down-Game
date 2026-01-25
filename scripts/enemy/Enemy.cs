@@ -44,7 +44,7 @@ public partial class Enemy : CharacterBody2D
     {
         _canMove = false;
         _animSprite.Play("die");
-        await ToSignal(_animSprite, "animation_finished");
+        await ToSignal(_animSprite, AnimatedSprite2D.SignalName.AnimationFinished);
         EventBus.EmitEnemyDied();
         QueueFree();
     }

@@ -26,20 +26,28 @@ public partial class EnemySpawner : Node2D
         var amount = GD.RandRange(data.MinEnemiesPerRoom, data.MaxEnemiesPerRoom);
         for (var i = 0; i < amount; i++)
         {
+            var spawnLocalPosition = room.GetFreeSpawnPosition();
+            var spawnGlobalPosition = room.ToGlobal(spawnLocalPosition);
+
+            var marker = (Node2D)Global.SpawnMarkerScene.Instantiate();
+            marker.GlobalPosition = spawnGlobalPosition;
+            GetParent().AddChild(marker);
+            var animPlayer = marker.GetNode<AnimationPlayer>("AnimationPlayer");
+            await ToSignal(animPlayer, AnimationPlayer.SignalName.AnimationFinished);
+            
             var randomScene = data.EnemyScenes.PickRandom();
             var enemy = (Enemy)randomScene.Instantiate();
             _enemies.Add(enemy);
             GetParent().AddChild(enemy);
-            var spawnLocalPosition = room.GetFreeSpawnPosition();
-            var spawnGlobalPosition = room.ToGlobal(spawnLocalPosition);
+            
             enemy.GlobalPosition = spawnGlobalPosition;
         }
-
     }
 
     private void OnEnemyDied()
     {
         _enemiesKilled++;
+        GD.Print($"Enemies killed: {_enemiesKilled}");
         if (_enemiesKilled >= _enemies.Count)
         {
             EventBus.EmitRoomCleared();

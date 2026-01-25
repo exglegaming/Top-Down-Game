@@ -10,6 +10,8 @@ namespace TopDownGame.scripts.autoloads;
 
 public partial class Global : Node
 {
+    public static readonly PackedScene SpawnMarkerScene = GD.Load<PackedScene>("uid://bx7ulfs4833r");
+    
     private const string Bunny = "uid://brqlu552oijhw";
     private const string Dog = "uid://c5oxdpdqidm62";
     private const string Mouse = "uid://dmur05tmvsy37";
@@ -25,6 +27,7 @@ public partial class Global : Node
     private const string Axe = "uid://cdf8e1ug5o42i";
     private static readonly PackedScene ExplosionEffectScene = GD.Load<PackedScene>("uid://gusc66iqufsn");
     private static readonly PackedScene DamageTextScene = GD.Load<PackedScene>("uid://bbodibp7vmq8c");
+    private static readonly PackedScene DeadParticleScene = GD.Load<PackedScene>("uid://cco8b418ugmeg");
 
     private string _savePath = "user://save.json";
 
@@ -95,6 +98,13 @@ public partial class Global : Node
         var randomPosition = (float)GD.RandRange(0, Math.Tau);
         damage.GlobalPosition = position + Vector2.Right.Rotated(randomPosition) * 20;
         damage.Setup(value);
+    }
+
+    public void CreateDeadParticle(Texture2D texture)
+    {
+        var particle = (GpuParticles2D)DeadParticleScene.Instantiate();
+        GetTree().Root.AddChild(particle);
+        particle.Texture = texture;
     }
     
     public void SaveData()
