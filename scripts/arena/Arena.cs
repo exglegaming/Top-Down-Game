@@ -105,6 +105,7 @@ public partial class Arena : Node2D
             var roomInstance = (LevelRoom)_levelData.RoomScene.Instantiate();
             roomInstance.Position = roomCoord * _gridCellSize;
             AddChild(roomInstance);
+            roomInstance.CreateProps(_levelData);
             
             // Link each coord with a room instance
             _grid[roomCoord] = roomInstance;

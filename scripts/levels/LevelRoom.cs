@@ -1,6 +1,7 @@
-using System.Collections.Generic;
 using Godot;
+using Godot.Collections;
 using TopDownGame.scripts.autoloads;
+using TopDownGame.scripts.resources.data.level;
 
 namespace TopDownGame.scripts.levels;
 
@@ -19,15 +20,15 @@ public partial class LevelRoom : Node2D
     [Export] public TileMapLayer TileData { get; private set; }
     [Export] public Area2D PlayerDetector { get; private set; }
     
-    private readonly List<Vector2I> _tiles = [];
-    private Dictionary<Vector2I, TileMapLayer> _roomWalls;
-    private Dictionary<Vector2I, TileMapLayer> _clearDoorNodes;
+    private Array<Vector2I> _tiles = [];
+    private System.Collections.Generic.Dictionary<Vector2I, TileMapLayer> _roomWalls;
+    private System.Collections.Generic.Dictionary<Vector2I, TileMapLayer> _clearDoorNodes;
 
     public bool IsCleared;
     
     public override void _Ready()
     {
-        _roomWalls = new Dictionary<Vector2I, TileMapLayer>
+        _roomWalls = new System.Collections.Generic.Dictionary<Vector2I, TileMapLayer>
         {
             [Vector2I.Up] = WallUp,
             [Vector2I.Right] = WallRight,
@@ -35,7 +36,7 @@ public partial class LevelRoom : Node2D
             [Vector2I.Left] = WallLeft
         };
         
-        _clearDoorNodes = new Dictionary<Vector2I, TileMapLayer>
+        _clearDoorNodes = new System.Collections.Generic.Dictionary<Vector2I, TileMapLayer>
         {
             [Vector2I.Up] = DoorUp,
             [Vector2I.Right] = DoorRight,
@@ -47,14 +48,6 @@ public partial class LevelRoom : Node2D
         RegisterTiles();
 
         PlayerDetector.BodyEntered += OnPlayerDetectorBodyEntered;
-    }
-
-    public void RegisterTiles()
-    {
-        foreach (var tile in TileData.GetUsedCells())
-        {
-            _tiles.Add(tile);
-        }
     }
 
     public void UnlockRoom()
@@ -84,6 +77,27 @@ public partial class LevelRoom : Node2D
             {
                 clearDoor.Enabled = true;
             }
+        }
+    }
+
+    public void CreateProps(LevelData data)
+    {
+        for (var i = 0; i < data.MaxPropsPerRoom; i++)
+        {
+            var tileCoord = _tiles.PickRandom();
+            var tilePosition = TileData.MapToLocal(tileCoord);
+            var randomProp = data.Props.PickRandom();
+            var instance = (Area2D)randomProp.Instantiate();
+            instance.Position = tilePosition;
+            AddChild(instance);
+        }
+    }
+    
+    private void RegisterTiles()
+    {
+        foreach (var tile in TileData.GetUsedCells())
+        {
+            _tiles.Add(tile);
         }
     }
 
