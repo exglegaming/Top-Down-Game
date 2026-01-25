@@ -16,6 +16,7 @@ public partial class Arena : Node2D
     [Export] private TextureProgressBar _manaBar;
     [Export] private LevelData _levelData;
     [Export] private MapController _mapController;
+    [Export] private EnemySpawner _enemySpawner;
     
     private readonly Dictionary<Vector2I, LevelRoom> _grid = new();
     private EventBus _eventBus;
@@ -47,6 +48,7 @@ public partial class Arena : Node2D
 
         _eventBus.PlayerHealthUpdated += OnPlayerHealthUpdated;
         _eventBus.PlayerRoomEntered += OnPlayerRoomEntered;
+        _eventBus.RoomCleared += OnRoomCleared;
     }
     
     public override void _Input(InputEvent @event)
@@ -220,7 +222,14 @@ public partial class Arena : Node2D
             if (!room.IsCleared)
             {
                 room.LockRoom();
+                _enemySpawner.SpawnEnemies(_levelData, room);
             }
         }
+    }
+
+    private void OnRoomCleared()
+    {
+        _currentRoom.UnlockRoom();
+        _currentRoom.IsCleared = true;
     }
 }

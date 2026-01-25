@@ -7,6 +7,8 @@ public partial class EventBus : Node
 {
     [Signal] public delegate void PlayerHealthUpdatedEventHandler(float currentHealth, float maxHealth);
     [Signal] public delegate void PlayerRoomEnteredEventHandler(LevelRoom room);
+    [Signal] public delegate void EnemyDiedEventHandler();
+    [Signal] public delegate void RoomClearedEventHandler();
 
     public static EventBus Instance { get; private set;}
 
@@ -15,13 +17,8 @@ public partial class EventBus : Node
         Instance = this;
     }
 
-    public static void EmitPlayerHealthUpdated(float currentHealth, float maxHealth)
-    {
-        Instance.EmitSignal(SignalName.PlayerHealthUpdated, currentHealth, maxHealth);
-    }
-
-    public static void EmitPlayerRoomEntered(LevelRoom room)
-    {
-        Instance.EmitSignal(SignalName.PlayerRoomEntered, room);
-    }
+    public static void EmitPlayerHealthUpdated(float currentHealth, float maxHealth) => Instance.EmitSignal(SignalName.PlayerHealthUpdated, currentHealth, maxHealth);
+    public static void EmitPlayerRoomEntered(LevelRoom room) => Instance.EmitSignal(SignalName.PlayerRoomEntered, room);
+    public static void EmitEnemyDied() => Instance.EmitSignal(SignalName.EnemyDied);
+    public static void EmitRoomCleared() => Instance.EmitSignal(SignalName.RoomCleared);
 }

@@ -10,18 +10,23 @@
 [ext_resource type="Texture2D" uid="uid://cf2ypr83psjfm" path="res://assets/sprites/interface/bar_health.png" id="5_u52cf"]
 [ext_resource type="Texture2D" uid="uid://djtqrhxpxpjeg" path="res://assets/sprites/interface/bar_mana.png" id="6_jx0ua"]
 [ext_resource type="Script" uid="uid://cy6p4f7vr86f4" path="res://scripts/arena/MapController.cs" id="10_2ml6w"]
+[ext_resource type="Script" uid="uid://2wreoklkouw2" path="res://scripts/arena/EnemySpawner.cs" id="11_xgbxb"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_n62jo"]
 atlas = ExtResource("1_1qjuf")
 region = Rect2(48, 0, 48, 48)
 
-[node name="Arena" type="Node2D" unique_id=1524652960 node_paths=PackedStringArray("_healthBar", "_manaBar", "_mapController")]
+[node name="Arena" type="Node2D" unique_id=1524652960 node_paths=PackedStringArray("_healthBar", "_manaBar", "_mapController", "_enemySpawner")]
 script = ExtResource("1_ii07k")
 _arenaCursor = ExtResource("2_6w4xk")
 _healthBar = NodePath("UI/PlayerUI/HealthBar")
 _manaBar = NodePath("UI/PlayerUI/ManaBar")
 _levelData = ExtResource("3_6w4xk")
 _mapController = NodePath("UI/MapController")
+_enemySpawner = NodePath("EnemySpawner")
+
+[node name="EnemySpawner" type="Node2D" parent="." unique_id=1445834504]
+script = ExtResource("11_xgbxb")
 
 [node name="UI" type="CanvasLayer" parent="." unique_id=1260297135]
 

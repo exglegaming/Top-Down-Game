@@ -45,6 +45,7 @@ public partial class Enemy : CharacterBody2D
         _canMove = false;
         _animSprite.Play("die");
         await ToSignal(_animSprite, "animation_finished");
+        EventBus.EmitEnemyDied();
         QueueFree();
     }
 }

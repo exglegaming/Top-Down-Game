@@ -92,6 +92,12 @@ public partial class LevelRoom : Node2D
             AddChild(instance);
         }
     }
+
+    public Vector2 GetFreeSpawnPosition()
+    {
+        var tileCoord = _tiles.PickRandom();
+        return TileData.MapToLocal(tileCoord);
+    }
     
     private void RegisterTiles()
     {
