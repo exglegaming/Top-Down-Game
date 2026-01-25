@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://cajbyx68lwfb2" path="res://scripts/levels/LevelRoom.cs" id="1_00qc3"]
 [ext_resource type="TileSet" uid="uid://d2sa0hrqc8qsw" path="res://scenes/extra/level_one_tileset.tres" id="2_vjhg3"]
+[ext_resource type="PackedScene" uid="uid://c0pavmmv1yoja" path="res://scenes/props/plant_1.tscn" id="3_p4pme"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vjhg3"]
 size = Vector2(290, 260)
@@ -82,3 +83,6 @@ collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDetector" unique_id=1144089441]
 shape = SubResource("RectangleShape2D_vjhg3")
+
+[node name="Plant1" parent="." unique_id=1601147308 instance=ExtResource("3_p4pme")]
+position = Vector2(-71, -57)

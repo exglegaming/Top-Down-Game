@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://dd0k78s2jbpie"]
+
+[ext_resource type="PackedScene" uid="uid://c0pavmmv1yoja" path="res://scenes/props/plant_1.tscn" id="1_co325"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_t7y6q"]
+load_path = "res://.godot/imported/tilemap_packed.png-3886500a2e4f8b17c8e210f07d5c8955.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jji6s"]
+atlas = SubResource("CompressedTexture2D_t7y6q")
+region = Rect2(48, 48, 16, 32)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_t7y6q"]
+size = Vector2(15, 31)
+
+[node name="Plant2" unique_id=1601147308 instance=ExtResource("1_co325")]
+
+[node name="Sprite2D" parent="." index="0" unique_id=1413689068]
+position = Vector2(0, -16)
+texture = SubResource("AtlasTexture_jji6s")
+
+[node name="CollisionShape2D" parent="." index="1" unique_id=112386762]
+position = Vector2(0.5, -15.5)
+shape = SubResource("RectangleShape2D_t7y6q")
