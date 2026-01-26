@@ -9,6 +9,7 @@ public partial class EventBus : Node
     [Signal] public delegate void PlayerRoomEnteredEventHandler(LevelRoom room);
     [Signal] public delegate void EnemyDiedEventHandler();
     [Signal] public delegate void RoomClearedEventHandler();
+    [Signal] public delegate void CoinPickedEventHandler();
 
     public static EventBus Instance { get; private set;}
 
@@ -21,4 +22,5 @@ public partial class EventBus : Node
     public static void EmitPlayerRoomEntered(LevelRoom room) => Instance.EmitSignal(SignalName.PlayerRoomEntered, room);
     public static void EmitEnemyDied() => Instance.EmitSignal(SignalName.EnemyDied);
     public static void EmitRoomCleared() => Instance.EmitSignal(SignalName.RoomCleared);
+    public static void EmitCoinPicked() => Instance.EmitSignal(SignalName.CoinPicked);
 }

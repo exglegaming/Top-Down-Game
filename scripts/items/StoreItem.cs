@@ -11,7 +11,7 @@ public partial class StoreItem : Area2D
     [Export] private Sprite2D _sprite;
     [Export] private RichTextLabel _price;
     
-    [ExportCategory("Glow Color")]
+    [ExportGroup("Glow Color")]
     [Export] private Color _commonGlow;
     [Export] private Color _rareGlow;
     [Export] private Color _epicGlow;

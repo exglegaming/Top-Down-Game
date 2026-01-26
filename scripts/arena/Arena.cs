@@ -17,6 +17,8 @@ public partial class Arena : Node2D
     [Export] private LevelData _levelData;
     [Export] private MapController _mapController;
     [Export] private EnemySpawner _enemySpawner;
+    [Export] private Label _totalCoins;
+    [Export] private AudioStreamPlayer _coinSound;
     
     public LevelRoom CurrentRoom;
     private readonly Dictionary<Vector2I, LevelRoom> _grid = new();
@@ -49,6 +51,12 @@ public partial class Arena : Node2D
         _eventBus.PlayerHealthUpdated += OnPlayerHealthUpdated;
         _eventBus.PlayerRoomEntered += OnPlayerRoomEntered;
         _eventBus.RoomCleared += OnRoomCleared;
+        _eventBus.CoinPicked += OnCoinPicked;
+    }
+
+    public override void _Process(double delta)
+    {
+        _totalCoins.Text = $"{Global.Instance.Coins}";
     }
     
     public override void _Input(InputEvent @event)
@@ -231,5 +239,10 @@ public partial class Arena : Node2D
     {
         CurrentRoom.UnlockRoom();
         CurrentRoom.IsCleared = true;
+    }
+
+    private void OnCoinPicked()
+    {
+        _coinSound.Play();
     }
 }
