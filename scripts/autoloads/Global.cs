@@ -108,6 +108,7 @@ public partial class Global : Node
         GetTree().Root.AddChild(particle);
         particle.GlobalPosition = position;
         particle.Texture = texture;
+        particle.Emitting = true;
     }
     
     public void SaveData()

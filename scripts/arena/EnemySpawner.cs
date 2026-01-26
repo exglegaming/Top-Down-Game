@@ -9,6 +9,9 @@ namespace TopDownGame.scripts.arena;
 
 public partial class EnemySpawner : Node2D
 {
+    [ExportCategory("References")]
+    [Export] private Arena _arena;
+    
     private Array<Enemy> _enemies = [];
     private int _enemiesKilled;
 
@@ -37,10 +40,10 @@ public partial class EnemySpawner : Node2D
             
             var randomScene = data.EnemyScenes.PickRandom();
             var enemy = (Enemy)randomScene.Instantiate();
-            _enemies.Add(enemy);
             GetParent().AddChild(enemy);
-            
+            enemy.ParentRoom = _arena.CurrentRoom;
             enemy.GlobalPosition = spawnGlobalPosition;
+            _enemies.Add(enemy);
         }
     }
 

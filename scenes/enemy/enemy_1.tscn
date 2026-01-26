@@ -68,6 +68,7 @@ _enemyDetector = NodePath("EnemyDetector")
 _hurtSound = NodePath("HurtSound")
 _healthBar = NodePath("HealthBar")
 HealthComponent = NodePath("HealthComponent")
+_deadTexture = ExtResource("4_s6epj")
 
 [node name="HealthComponent" parent="." unique_id=1538038270 instance=ExtResource("8_5ax25")]
 

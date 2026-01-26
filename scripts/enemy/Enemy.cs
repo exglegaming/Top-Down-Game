@@ -2,6 +2,7 @@ using System.Linq;
 using Godot;
 using TopDownGame.scripts.autoloads;
 using TopDownGame.scripts.components;
+using TopDownGame.scripts.levels;
 using TopDownGame.scripts.player;
 using TopDownGame.scripts.resources.data.weapons;
 
@@ -9,6 +10,19 @@ namespace TopDownGame.scripts.enemy;
 
 public partial class Enemy : CharacterBody2D
 {
+    private enum EnemyType
+    {
+        Chase,
+        Weapon
+    }
+    
+    private enum EnemyStates
+    {
+        FindingDestination,
+        Moving,
+        Attacking
+    }
+    
     [ExportCategory("References")]
     [Export] private AnimatedSprite2D _animSprite;
     [Export] private Area2D _playerDetector;
@@ -27,10 +41,17 @@ public partial class Enemy : CharacterBody2D
     [ExportGroup("EnemyWeapon")]
     [Export] private float _moveSpeed = 40.0f;
     [Export] private WeaponData _weapon;
+
+    [ExportCategory("States")] 
+    [Export] private EnemyType _enemyType = EnemyType.Chase;
      
+    public LevelRoom ParentRoom;
+    
     private bool _canMove = true;
     private bool _isKilled = false;
     private float _cooldown;
+    private EnemyStates _enemyState;
+    private Vector2 _moveDestination;
 
     public override void _Ready()
     {
@@ -49,21 +70,61 @@ public partial class Enemy : CharacterBody2D
     {
         if (Global.Instance.PlayerRef == null) return;
         RotateEnemy();
-        ManageWeapon((float)delta);
+        if (_enemyState == EnemyStates.Attacking) ManageWeapon((float)delta);
     }
 
     public override void _PhysicsProcess(double delta)
     {
         if (Global.Instance.PlayerRef == null) return;
         if (!_canMove) return;
-        
+
+        switch (_enemyType)
+        {
+            case EnemyType.Chase:
+                RunEnemyChase();
+                break;
+            case EnemyType.Weapon:
+                RunEnemyWeapon();
+                break;
+        }
+    }
+
+    private async void RunEnemyWeapon()
+    {
+        switch (_enemyState)
+        {
+            case EnemyStates.FindingDestination:
+                var localPosition = ParentRoom.GetFreeSpawnPosition();
+                _moveDestination = ParentRoom.ToGlobal(localPosition);
+                _enemyState = EnemyStates.Moving;
+                break;
+            case EnemyStates.Moving:
+                var direction = GlobalPosition.DirectionTo(_moveDestination);
+                Velocity = direction * _moveSpeed;
+                MoveAndSlide();
+                if (GlobalPosition.DistanceTo(_moveDestination) < 2.0)
+                {
+                    Velocity = Vector2.Zero;
+                    _enemyState = EnemyStates.Attacking;
+                }
+                break;
+            case EnemyStates.Attacking:
+                Velocity = Vector2.Zero;
+                MoveAndSlide();
+                await ToSignal(GetTree().CreateTimer(1.0f), SceneTreeTimer.SignalName.Timeout);
+                _enemyState = EnemyStates.FindingDestination;
+                break;
+        }
+    }
+
+    private void RunEnemyChase()
+    {
         var direction = GlobalPosition.DirectionTo(Global.Instance.PlayerRef.GlobalPosition);
         direction = (from Enemy enemy in _enemyDetector.GetOverlappingBodies() where enemy != this && enemy.IsInsideTree() 
             select GlobalPosition - enemy.GlobalPosition).Aggregate(direction, (current, vector) => current + 10 * vector.Normalized() / vector.Length());
 
         Velocity = direction * _chaseSpeed;
         MoveAndSlide();
-        RotateEnemy();
     }
 
     private void ManageWeapon(float delta)
@@ -106,6 +167,10 @@ public partial class Enemy : CharacterBody2D
 
     private void OnPlayerDetectorBodyEntered(Node2D body)
     {
+        if (body is Player player)
+        {
+            player.HealthComponent.TakeDamage(_collisionDamage);
+        }
         EnemyDead();
     }
 

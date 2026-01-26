@@ -18,12 +18,12 @@ public partial class Arena : Node2D
     [Export] private MapController _mapController;
     [Export] private EnemySpawner _enemySpawner;
     
+    public LevelRoom CurrentRoom;
     private readonly Dictionary<Vector2I, LevelRoom> _grid = new();
     private EventBus _eventBus;
     private Vector2I _startRoomCoord;
     private Vector2I _endRoomCoord;
     private Vector2I _gridCellSize;
-    private LevelRoom _currentRoom;
     private Player _player;
 
     public override void _Ready()
@@ -55,8 +55,8 @@ public partial class Arena : Node2D
     {
         if (@event.IsActionPressed("ui_cancel"))
         {
-            _currentRoom.UnlockRoom();
-            _currentRoom.IsCleared = true;
+            CurrentRoom.UnlockRoom();
+            CurrentRoom.IsCleared = true;
         }
     }
 
@@ -211,9 +211,9 @@ public partial class Arena : Node2D
 
     private void OnPlayerRoomEntered(LevelRoom room)
     {
-        if (room != _currentRoom)
+        if (room != CurrentRoom)
         {
-            _currentRoom = room;
+            CurrentRoom = room;
             
             var absoluteCoord = FindCoordFromRoom(room);
             var relativeCoord = absoluteCoord - _startRoomCoord;
@@ -229,7 +229,7 @@ public partial class Arena : Node2D
 
     private void OnRoomCleared()
     {
-        _currentRoom.UnlockRoom();
-        _currentRoom.IsCleared = true;
+        CurrentRoom.UnlockRoom();
+        CurrentRoom.IsCleared = true;
     }
 }

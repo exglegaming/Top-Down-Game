@@ -48,8 +48,10 @@ resource_local_to_scene = true
 radius = 7.0
 
 [node name="Enemy3" unique_id=1776012209 node_paths=PackedStringArray("_weaponController") instance=ExtResource("1_7h6cs")]
+_deadTexture = ExtResource("2_7h6cs")
 _weaponController = NodePath("WeaponController")
 _weapon = ExtResource("2_d405r")
+_enemyType = 1
 
 [node name="AnimSprite" parent="." index="3" unique_id=2039008915]
 sprite_frames = SubResource("SpriteFrames_d405r")

@@ -47,8 +47,10 @@ radius = 2.0
 size = Vector2(16, 18)
 
 [node name="Enemy4" unique_id=1776012209 node_paths=PackedStringArray("_weaponController") instance=ExtResource("1_h0bs6")]
+_deadTexture = ExtResource("2_h0bs6")
 _weaponController = NodePath("WeaponController")
 _weapon = ExtResource("2_lew6o")
+_enemyType = 1
 
 [node name="AnimSprite" parent="." index="3" unique_id=2039008915]
 sprite_frames = SubResource("SpriteFrames_lew6o")

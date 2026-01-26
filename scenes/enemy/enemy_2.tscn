@@ -6,7 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://b71ueposlj0wm" path="res://assets/sprites/enemies/Sprites/tile_0004.png" id="4_0auu1"]
 [ext_resource type="Texture2D" uid="uid://dd0lg5al3nqse" path="res://assets/sprites/enemies/Sprites/tile_0005.png" id="5_q7ulb"]
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_cluvb"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_uppne"]
 resource_local_to_scene = true
 animations = [{
 "frames": [{
@@ -37,22 +37,23 @@ animations = [{
 "speed": 10.0
 }]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_802jy"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_61t4r"]
 resource_local_to_scene = true
 radius = 2.0
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_ttnvg"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_0auu1"]
 resource_local_to_scene = true
 radius = 8.0
 
 [node name="Enemy2" unique_id=1776012209 instance=ExtResource("1_yrfon")]
+_deadTexture = ExtResource("2_uppne")
 
-[node name="AnimSprite" parent="." index="2" unique_id=2039008915]
-sprite_frames = SubResource("SpriteFrames_cluvb")
+[node name="AnimSprite" parent="." index="3" unique_id=2039008915]
+sprite_frames = SubResource("SpriteFrames_uppne")
 
-[node name="CollisionShape2D" parent="." index="3" unique_id=1976291757]
-shape = SubResource("CircleShape2D_802jy")
+[node name="CollisionShape2D" parent="." index="4" unique_id=1976291757]
+shape = SubResource("CircleShape2D_61t4r")
 
 [node name="CollisionShape2D" parent="PlayerDetector" parent_id_path=PackedInt32Array(1139784305) index="0" unique_id=1146900966]
 position = Vector2(0, -10)
-shape = SubResource("CircleShape2D_ttnvg")
+shape = SubResource("CircleShape2D_0auu1")
