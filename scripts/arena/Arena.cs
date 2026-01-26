@@ -188,7 +188,7 @@ public partial class Arena : Node2D
         var spawnPosition = firstRoom.PlayerSpawnPosition;
         AddChild(_player);
         _player.GlobalPosition = spawnPosition.GlobalPosition;
-        _player.WeaponController.EquipWeapon();
+        _player.WeaponController.EquipWeapon(Global.Instance.SelectedWeapon);
         Global.Instance.PlayerRef = _player;
     }
 

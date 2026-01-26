@@ -2,6 +2,7 @@ using System.Linq;
 using Godot;
 using TopDownGame.scripts.autoloads;
 using TopDownGame.scripts.components;
+using TopDownGame.scripts.player;
 using TopDownGame.scripts.resources.data.weapons;
 
 namespace TopDownGame.scripts.enemy;
@@ -16,6 +17,7 @@ public partial class Enemy : CharacterBody2D
     [Export] private ProgressBar _healthBar;
     [Export] public HealthComponent HealthComponent { get; private set; }
     [Export] private Texture2D _deadTexture;
+    [Export] private WeaponController _weaponController;
     
     [ExportCategory("EnemyData")]
     [Export] private float _maxHealth = 5.0f;
@@ -33,10 +35,20 @@ public partial class Enemy : CharacterBody2D
     {
         _healthBar.Value = 1f;
         HealthComponent.InitHealth(_maxHealth);
+
+        if (_weapon == null) return;
+        _weaponController.EquipWeapon(_weapon);
         
         _playerDetector.BodyEntered += OnPlayerDetectorBodyEntered;
         HealthComponent.OnUnitDamaged += OnHealthComponentOnUnitDamaged;
         HealthComponent.OnUnitDead += OnHealthComponentOnUnitDead;
+    }
+
+    public override void _Process(double delta)
+    {
+        if (Global.Instance.PlayerRef == null) return;
+        RotateEnemy();
+        ManageWeapon();
     }
 
     public override void _PhysicsProcess(double delta)
@@ -51,6 +63,14 @@ public partial class Enemy : CharacterBody2D
         Velocity = direction * _chaseSpeed;
         MoveAndSlide();
         RotateEnemy();
+    }
+
+    private void ManageWeapon()
+    {
+        if (_weapon == null) return;
+        if (_weaponController == null) return;
+        _weaponController.TargetPosition = Global.Instance.PlayerRef.GlobalPosition;
+        _weaponController.RotateWeapon();
     }
 
     private void RotateEnemy()

@@ -40,7 +40,11 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_pb3tx"]
 radius = 8.062258
 
-[node name="PlayerDog" unique_id=2096422990 instance=ExtResource("1_d2dvc")]
+[node name="PlayerDog" unique_id=2096422990 node_paths=PackedStringArray("_visuals", "_animSprite", "_healthComponent", "WeaponController") instance=ExtResource("1_d2dvc")]
+_visuals = NodePath("Visuals")
+_animSprite = NodePath("Visuals/AnimatedSprite2D")
+_healthComponent = NodePath("HealthComponent")
+WeaponController = NodePath("WeaponController")
 Data = ExtResource("2_3l3e8")
 
 [node name="Shadow" parent="Visuals" parent_id_path=PackedInt32Array(339338660) index="0" unique_id=776381903]

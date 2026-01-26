@@ -41,7 +41,7 @@ public partial class Global : Node
         { "Cat", GD.Load<PackedScene>(Cat) }
     };
 
-    private Dictionary<string, PackedScene> AllWeapons { get; set; } = new()
+    public Dictionary<string, PackedScene> AllWeapons { get; set; } = new()
     {
         { "AK47", GD.Load<PackedScene>(Ak47) },
         { "Mac 10", GD.Load<PackedScene>(Mac10) },

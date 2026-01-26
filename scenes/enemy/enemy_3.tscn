@@ -2,11 +2,13 @@
 
 [ext_resource type="PackedScene" uid="uid://bxvwm1ku7vx4e" path="res://scenes/enemy/enemy_1.tscn" id="1_7h6cs"]
 [ext_resource type="Texture2D" uid="uid://vasb2ne13fd0" path="res://assets/sprites/enemies/Sprites/tile_0011.png" id="2_7h6cs"]
+[ext_resource type="Resource" uid="uid://c7mrwnxlei2co" path="res://resources/data/weapons/enemy/enemy_pistol.tres" id="2_d405r"]
 [ext_resource type="Texture2D" uid="uid://b0f87t2su3byt" path="res://assets/sprites/enemies/Sprites/tile_0010.png" id="3_oykep"]
 [ext_resource type="Texture2D" uid="uid://cs16bhrafjd28" path="res://assets/sprites/enemies/Sprites/tile_0008.png" id="4_d405r"]
 [ext_resource type="Texture2D" uid="uid://dotdkqrc8qv7q" path="res://assets/sprites/enemies/Sprites/tile_0009.png" id="5_44gae"]
+[ext_resource type="PackedScene" uid="uid://bfoydybyraedm" path="res://scenes/weapons/weapon_controller.tscn" id="6_oykep"]
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_y5qon"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_d405r"]
 resource_local_to_scene = true
 animations = [{
 "frames": [{
@@ -37,22 +39,26 @@ animations = [{
 "speed": 10.0
 }]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_oqadk"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_44gae"]
 resource_local_to_scene = true
 radius = 2.0
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_mibo2"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_wwu2i"]
 resource_local_to_scene = true
 radius = 7.0
 
-[node name="Enemy3" unique_id=1776012209 instance=ExtResource("1_7h6cs")]
+[node name="Enemy3" unique_id=1776012209 node_paths=PackedStringArray("_weaponController") instance=ExtResource("1_7h6cs")]
+_weaponController = NodePath("WeaponController")
+_weapon = ExtResource("2_d405r")
 
-[node name="AnimSprite" parent="." index="2" unique_id=2039008915]
-sprite_frames = SubResource("SpriteFrames_y5qon")
+[node name="AnimSprite" parent="." index="3" unique_id=2039008915]
+sprite_frames = SubResource("SpriteFrames_d405r")
 
-[node name="CollisionShape2D" parent="." index="3" unique_id=1976291757]
-shape = SubResource("CircleShape2D_oqadk")
+[node name="CollisionShape2D" parent="." index="4" unique_id=1976291757]
+shape = SubResource("CircleShape2D_44gae")
 
 [node name="CollisionShape2D" parent="PlayerDetector" parent_id_path=PackedInt32Array(1139784305) index="0" unique_id=1146900966]
 position = Vector2(0, -7)
-shape = SubResource("CircleShape2D_mibo2")
+shape = SubResource("CircleShape2D_wwu2i")
+
+[node name="WeaponController" parent="." index="8" unique_id=707305590 instance=ExtResource("6_oykep")]

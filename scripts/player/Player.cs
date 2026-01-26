@@ -7,31 +7,43 @@ namespace TopDownGame.scripts.player;
 
 public partial class Player : CharacterBody2D
 {
+    private static readonly StringName Shoot = "shoot";
+    
     [ExportCategory("References")]
+    [Export] private Node2D _visuals;
+    [Export] private AnimatedSprite2D _animSprite;
+    [Export] private HealthComponent _healthComponent;
+    [Export] public WeaponController WeaponController;
     [Export] public PlayerData Data;
-
-    private HealthComponent _healthComponent;
-
+    
     private bool _canMove = true;
     private Vector2 _movement;
     private Vector2 _direction;
-    private Node2D _visuals;
-    private AnimatedSprite2D _animSprite;
-
-    public WeaponController WeaponController;
-
+    private float _cooldown;
+    
     public override void _Ready()
     {
-        _visuals = GetNode<Node2D>("Visuals");
-        _animSprite = GetNode<AnimatedSprite2D>("%AnimatedSprite2D");
-        _healthComponent = GetNode<HealthComponent>("HealthComponent");
-        WeaponController = GetNode<WeaponController>("WeaponController");
-
         _healthComponent.InitHealth(Data.MaxHp);
 
         _healthComponent.OnUnitDamaged += OnHealthComponentOnUnitDamaged;
         _healthComponent.OnUnitDead += OnHealthComponentOnUnitDead;
         _healthComponent.OnUnitHealed += OnHealthComponentOnUnitHealed;
+    }
+
+    public override void _Process(double delta)
+    {
+        WeaponController.TargetPosition = GetGlobalMousePosition();
+        WeaponController.RotateWeapon();
+        
+        _cooldown -= (float)delta;
+        if (Input.IsActionPressed(Shoot))
+        {
+            if (_cooldown <= 0)
+            {
+                WeaponController.CurrentWeapon.UseWeapon();
+                _cooldown = WeaponController.CurrentWeapon.Data.Cooldown;
+            }
+        }
     }
 
     public override void _PhysicsProcess(double delta)

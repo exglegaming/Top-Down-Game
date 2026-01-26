@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="WeaponData" format=3 uid="uid://c7mrwnxlei2co"]
+
+[ext_resource type="Script" uid="uid://1p2w7etl8dxc" path="res://scripts/resources/data/weapons/WeaponData.cs" id="1_0dq5m"]
+[ext_resource type="Texture2D" uid="uid://c8876yfxbaoxl" path="res://assets/sprites/weapons/Tiles/weapon_pistol.png" id="1_ra2mm"]
+[ext_resource type="PackedScene" uid="uid://dvmbo66ao6yjf" path="res://scenes/bullets/bullet_pistol.tscn" id="1_t6e47"]
+
+[resource]
+script = ExtResource("1_0dq5m")
+WeaponName = "Pistol"
+Icon = ExtResource("1_ra2mm")
+Damage = 1.0
+Cooldown = 0.5
+Spread = 10.0
+BulletSpeed = 250.0
+BulletScene = ExtResource("1_t6e47")
+metadata/_custom_type_script = "uid://1p2w7etl8dxc"

@@ -30,7 +30,7 @@ public partial class WeaponMelee : Weapon
         _hitbox.BodyExited += OnHitboxBodyExited;
     }
 
-    protected override void UseWeapon()
+    public override void UseWeapon()
     {
         if (!_canUse) return;
 

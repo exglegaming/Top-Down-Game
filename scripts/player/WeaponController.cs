@@ -1,34 +1,28 @@
 using Godot;
 using TopDownGame.scripts.autoloads;
+using TopDownGame.scripts.resources.data.weapons;
 using TopDownGame.scripts.weapons;
 
 namespace TopDownGame.scripts.player;
 
 public partial class WeaponController : Node2D
 {
-    private Weapon _currentWeapon;
-    private Vector2 _targetPosition;
+    public Weapon CurrentWeapon;
+    public Vector2 TargetPosition;
 
-    public override void _Process(double delta)
+    public void EquipWeapon(WeaponData data)
     {
-        _targetPosition = GetGlobalMousePosition();
-        RotateWeapon();
-    }
-
-    public void EquipWeapon()
-    {
-        var weapon = Global.Instance.GetWeapon().Instantiate() as Weapon;
+        var weaponScene = Global.Instance.AllWeapons[data.WeaponName];
+        var weapon = (Weapon)weaponScene.Instantiate();
         if (weapon == null) return;
         weapon.GlobalPosition = new Vector2(0, -8);
-        _currentWeapon = weapon;
-        _currentWeapon.Data = Global.Instance.SelectedWeapon;
+        CurrentWeapon = weapon;
+        CurrentWeapon.Data = Global.Instance.SelectedWeapon;
         AddChild(weapon);
     }
 
-    private void RotateWeapon()
+    public void RotateWeapon()
     {
-        if (_currentWeapon == null) return;
-
-        _currentWeapon.LookAt(_targetPosition);
+        CurrentWeapon?.LookAt(TargetPosition);
     }
 }

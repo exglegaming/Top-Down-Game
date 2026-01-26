@@ -5,29 +5,17 @@ namespace TopDownGame.scripts.weapons.ranged;
 
 public partial class WeaponRange : Weapon
 {
-    private static readonly StringName Shoot = "shoot";
-
     [Export] private Sprite2D _sprite2D;
     [Export] private Marker2D _firePosition;
 
     private Vector2 _direction;
-    private float _cooldown;
 
     public override void _Process(double delta)
     {
         RotateWeapon();
-        _cooldown -= (float)delta;
-        if (Input.IsActionPressed(Shoot))
-        {
-            if (_cooldown <= 0)
-            {
-                UseWeapon();
-                _cooldown = Data.Cooldown;
-            }
-        }
     }
 
-    protected override void UseWeapon()
+    public override void UseWeapon()
     {
         var bullet = (BulletPistol)Data.BulletScene.Instantiate();
         bullet.Setup(Data);
