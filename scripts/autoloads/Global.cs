@@ -30,6 +30,7 @@ public partial class Global : Node
     private static readonly PackedScene ExplosionEffectScene = GD.Load<PackedScene>("uid://gusc66iqufsn");
     private static readonly PackedScene DamageTextScene = GD.Load<PackedScene>("uid://bbodibp7vmq8c");
     private static readonly PackedScene DeadParticleScene = GD.Load<PackedScene>("uid://cco8b418ugmeg");
+    private static readonly PackedScene BloodEffectScene = GD.Load<PackedScene>("uid://cf310gv286jmd");
 
     private string _savePath = "user://save.json";
 
@@ -80,11 +81,6 @@ public partial class Global : Node
     {
         return AllPlayers[SelectedPlayer.Id];
     }
-    
-    public PackedScene GetWeapon()
-    {
-        return AllWeapons[SelectedWeapon.WeaponName];
-    }
 
     public void CreateExplosion(Vector2 position)
     {
@@ -100,6 +96,10 @@ public partial class Global : Node
         var randomPosition = (float)GD.RandRange(0, Math.Tau);
         damage.GlobalPosition = position + Vector2.Right.Rotated(randomPosition) * 20;
         damage.Setup(value);
+        
+        var blood = (Node2D)BloodEffectScene.Instantiate();
+        GetParent().AddChild(blood);
+        blood.GlobalPosition = position;
     }
 
     public void CreateDeadParticle(Texture2D texture, Vector2 position)
@@ -118,6 +118,11 @@ public partial class Global : Node
         using var file = FileAccess.Open(_savePath, FileAccess.ModeFlags.Write);
         var jsonString = Json.Stringify(save);
         file.StoreString(jsonString);
+    }
+    
+    private PackedScene GetWeapon()
+    {
+        return AllWeapons[SelectedWeapon.WeaponName];
     }
 
     private void LoadData()
