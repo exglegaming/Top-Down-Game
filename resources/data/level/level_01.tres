@@ -1,11 +1,9 @@
 [gd_resource type="Resource" script_class="LevelData" format=3 uid="uid://d32vt8t6qhliu"]
 
-[ext_resource type="PackedScene" uid="uid://bxvwm1ku7vx4e" path="res://scenes/enemy/enemy_1.tscn" id="1_5lg31"]
 [ext_resource type="PackedScene" uid="uid://bf35r06a8o2kl" path="res://scenes/levels/level_one_room.tscn" id="1_hce3r"]
 [ext_resource type="PackedScene" uid="uid://b2nkite086cyt" path="res://scenes/levels/level_one_h_corridor.tscn" id="1_i1ubn"]
 [ext_resource type="Script" uid="uid://c8ohtdctb7h1r" path="res://scripts/resources/data/level/LevelData.cs" id="1_vg60f"]
 [ext_resource type="PackedScene" uid="uid://c0pavmmv1yoja" path="res://scenes/props/plant_1.tscn" id="2_7isev"]
-[ext_resource type="PackedScene" uid="uid://dihk1nmdls6gs" path="res://scenes/enemy/enemy_2.tscn" id="2_qhmsp"]
 [ext_resource type="PackedScene" uid="uid://dd0k78s2jbpie" path="res://scenes/props/plant_2.tscn" id="3_hc28j"]
 [ext_resource type="PackedScene" uid="uid://qgx6e1p0o3sj" path="res://scenes/levels/level_one_v_corridor.tscn" id="3_rkwxv"]
 [ext_resource type="PackedScene" uid="uid://frufv8nkypla" path="res://scenes/enemy/enemy_3.tscn" id="3_tctnb"]
@@ -19,6 +17,6 @@ RoomScene = ExtResource("1_hce3r")
 HCorridor = ExtResource("1_i1ubn")
 VCorridor = ExtResource("3_rkwxv")
 Props = Array[PackedScene]([ExtResource("2_7isev"), ExtResource("3_hc28j"), ExtResource("4_amo47"), ExtResource("5_4dfd8")])
-EnemyScenes = Array[PackedScene]([ExtResource("1_5lg31"), ExtResource("2_qhmsp"), ExtResource("3_tctnb"), ExtResource("4_qbe26")])
+EnemyScenes = Array[PackedScene]([ExtResource("3_tctnb"), ExtResource("4_qbe26")])
 StoreData = null
 metadata/_custom_type_script = "uid://c8ohtdctb7h1r"

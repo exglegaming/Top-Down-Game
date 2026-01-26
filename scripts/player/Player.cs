@@ -12,7 +12,7 @@ public partial class Player : CharacterBody2D
     [ExportCategory("References")]
     [Export] private Node2D _visuals;
     [Export] private AnimatedSprite2D _animSprite;
-    [Export] private HealthComponent _healthComponent;
+    [Export] public HealthComponent HealthComponent;
     [Export] public WeaponController WeaponController;
     [Export] public PlayerData Data;
     
@@ -23,11 +23,11 @@ public partial class Player : CharacterBody2D
     
     public override void _Ready()
     {
-        _healthComponent.InitHealth(Data.MaxHp);
+        HealthComponent.InitHealth(Data.MaxHp);
 
-        _healthComponent.OnUnitDamaged += OnHealthComponentOnUnitDamaged;
-        _healthComponent.OnUnitDead += OnHealthComponentOnUnitDead;
-        _healthComponent.OnUnitHealed += OnHealthComponentOnUnitHealed;
+        HealthComponent.OnUnitDamaged += OnHealthComponentOnUnitDamaged;
+        HealthComponent.OnUnitDead += OnHealthComponentOnUnitDead;
+        HealthComponent.OnUnitHealed += OnHealthComponentOnUnitHealed;
     }
 
     public override void _Process(double delta)
@@ -71,7 +71,7 @@ public partial class Player : CharacterBody2D
     {
         if (@event.IsActionPressed("ui_accept"))
         {
-            _healthComponent.TakeDamage(1);
+            HealthComponent.TakeDamage(1);
         }
     }
 
@@ -83,7 +83,7 @@ public partial class Player : CharacterBody2D
 
     private void OnHealthComponentOnUnitDamaged(float amount)
     {
-        EventBus.EmitPlayerHealthUpdated(_healthComponent.CurrentHealth, Data.MaxHp);
+        EventBus.EmitPlayerHealthUpdated(HealthComponent.CurrentHealth, Data.MaxHp);
     }
 
     private void OnHealthComponentOnUnitDead()

@@ -40,10 +40,10 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_jqcwo"]
 radius = 8.0
 
-[node name="PlayerCat" unique_id=2096422990 node_paths=PackedStringArray("_visuals", "_animSprite", "_healthComponent", "WeaponController") instance=ExtResource("1_43oyf")]
+[node name="PlayerCat" unique_id=2096422990 node_paths=PackedStringArray("_visuals", "_animSprite", "HealthComponent", "WeaponController") instance=ExtResource("1_43oyf")]
 _visuals = NodePath("Visuals")
 _animSprite = NodePath("Visuals/AnimatedSprite2D")
-_healthComponent = NodePath("HealthComponent")
+HealthComponent = NodePath("HealthComponent")
 WeaponController = NodePath("WeaponController")
 Data = ExtResource("2_oyd5m")
 

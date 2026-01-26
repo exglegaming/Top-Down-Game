@@ -17,7 +17,7 @@ public partial class WeaponController : Node2D
         if (weapon == null) return;
         weapon.GlobalPosition = new Vector2(0, -8);
         CurrentWeapon = weapon;
-        CurrentWeapon.Data = Global.Instance.SelectedWeapon;
+        CurrentWeapon.Data = data;
         AddChild(weapon);
     }
 

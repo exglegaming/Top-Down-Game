@@ -24,6 +24,7 @@ atlas = ExtResource("1_1x0ai")
 region = Rect2(64, 208, 16, 16)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_1v47y"]
+resource_local_to_scene = true
 animations = [{
 "frames": [{
 "duration": 1.0,
@@ -47,6 +48,7 @@ animations = [{
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_awhlg"]
+resource_local_to_scene = true
 radius = 5.0
 
 [node name="BulletPistol" type="Area2D" unique_id=156346838]

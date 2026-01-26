@@ -30,6 +30,7 @@ public partial class Enemy : CharacterBody2D
      
     private bool _canMove = true;
     private bool _isKilled = false;
+    private float _cooldown;
 
     public override void _Ready()
     {
@@ -48,7 +49,7 @@ public partial class Enemy : CharacterBody2D
     {
         if (Global.Instance.PlayerRef == null) return;
         RotateEnemy();
-        ManageWeapon();
+        ManageWeapon((float)delta);
     }
 
     public override void _PhysicsProcess(double delta)
@@ -65,12 +66,19 @@ public partial class Enemy : CharacterBody2D
         RotateEnemy();
     }
 
-    private void ManageWeapon()
+    private void ManageWeapon(float delta)
     {
         if (_weapon == null) return;
         if (_weaponController == null) return;
         _weaponController.TargetPosition = Global.Instance.PlayerRef.GlobalPosition;
         _weaponController.RotateWeapon();
+        
+        _cooldown -= delta;
+        if (_cooldown <= 0.0f)
+        {
+            _weaponController.CurrentWeapon.UseWeapon();
+            _cooldown = _weaponController.CurrentWeapon.Data.Cooldown;
+        }
     }
 
     private void RotateEnemy()

@@ -7,6 +7,7 @@
 script = ExtResource("1_ntii7")
 Icon = ExtResource("1_mlqi0")
 Id = "Cat"
+MaxHp = 9.0
 MoveSpeed = 220.0
 Magic = 1.0
 metadata/_custom_type_script = "uid://bxbhnfhti7ewr"
