@@ -46,7 +46,9 @@ public partial class Enemy : CharacterBody2D
     [Export] private EnemyType _enemyType = EnemyType.Chase;
      
     public LevelRoom ParentRoom;
-    
+
+    private static readonly StringName Hurt = "hurt";
+    private static readonly StringName Move = "move";
     private bool _canMove = true;
     private bool _isKilled = false;
     private float _cooldown;
@@ -178,8 +180,10 @@ public partial class Enemy : CharacterBody2D
     {
         _healthBar.Value = HealthComponent.CurrentHealth / _maxHealth;
         _animSprite.Material = Global.HitMaterial;
+        _animSprite.Play(Hurt);
         await ToSignal(GetTree().CreateTimer(0.15f), SceneTreeTimer.SignalName.Timeout);
         _animSprite.Material = null;
+        _animSprite.Play(Move);
     }
 
     private void OnHealthComponentOnUnitDead()
