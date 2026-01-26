@@ -27,6 +27,7 @@ public partial class EnemySpawner : Node2D
         await ToSignal(GetTree().CreateTimer(0.5f), SceneTreeTimer.SignalName.Timeout);
         
         var amount = GD.RandRange(data.MinEnemiesPerRoom, data.MaxEnemiesPerRoom);
+        _enemiesKilled = amount;
         for (var i = 0; i < amount; i++)
         {
             var spawnLocalPosition = room.GetFreeSpawnPosition();
@@ -49,9 +50,8 @@ public partial class EnemySpawner : Node2D
 
     private void OnEnemyDied()
     {
-        _enemiesKilled++;
-        GD.Print($"Enemies killed: {_enemiesKilled}");
-        if (_enemiesKilled >= _enemies.Count)
+        _enemiesKilled--;
+        if (_enemiesKilled <= 0)
         {
             EventBus.EmitRoomCleared();
             _enemies.Clear();
