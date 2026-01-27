@@ -14,12 +14,13 @@
 [ext_resource type="Script" uid="uid://2wreoklkouw2" path="res://scripts/arena/EnemySpawner.cs" id="11_xgbxb"]
 [ext_resource type="Texture2D" uid="uid://cnkiu5jecgwsr" path="res://assets/sprites/coin.png" id="12_vmsrg"]
 [ext_resource type="LabelSettings" uid="uid://4rm1gvou0f2t" path="res://extra/font_16.tres" id="13_s83md"]
+[ext_resource type="LabelSettings" uid="uid://vxh5qk55fkll" path="res://extra/font_48.tres" id="15_w4nra"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_n62jo"]
 atlas = ExtResource("1_1qjuf")
 region = Rect2(48, 0, 48, 48)
 
-[node name="Arena" type="Node2D" unique_id=1524652960 node_paths=PackedStringArray("_healthBar", "_manaBar", "_mapController", "_enemySpawner", "_totalCoins", "_coinSound", "_dungeon")]
+[node name="Arena" type="Node2D" unique_id=1524652960 node_paths=PackedStringArray("_healthBar", "_manaBar", "_mapController", "_enemySpawner", "_totalCoins", "_coinSound", "_dungeon", "_levelTitle")]
 script = ExtResource("1_ii07k")
 _arenaCursor = ExtResource("2_6w4xk")
 _healthBar = NodePath("UI/PlayerUI/HealthBar")
@@ -30,6 +31,7 @@ _enemySpawner = NodePath("EnemySpawner")
 _totalCoins = NodePath("UI/Coins/TotalCoins")
 _coinSound = NodePath("CoinSound")
 _dungeon = NodePath("Dungeon")
+_levelTitle = NodePath("UI/LevelTitle")
 
 [node name="CoinSound" type="AudioStreamPlayer" parent="." unique_id=1476561981]
 stream = ExtResource("4_fv88w")
@@ -155,3 +157,16 @@ offset_bottom = 23.0
 text = "50"
 label_settings = ExtResource("13_s83md")
 vertical_alignment = 1
+
+[node name="LevelTitle" type="Label" parent="UI" unique_id=1117405511]
+self_modulate = Color(1, 1, 1, 0)
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -34.5
+offset_top = 16.0
+offset_right = 34.5
+offset_bottom = 64.0
+grow_horizontal = 2
+text = "1-1"
+label_settings = ExtResource("15_w4nra")

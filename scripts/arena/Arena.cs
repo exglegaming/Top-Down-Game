@@ -21,6 +21,7 @@ public partial class Arena : Node2D
     [Export] private Label _totalCoins;
     [Export] private AudioStreamPlayer _coinSound;
     [Export] private Node2D _dungeon;
+    [Export] private Label _levelTitle;
     
     public LevelRoom CurrentRoom;
     private readonly System.Collections.Generic.Dictionary<Vector2I, LevelRoom> _grid = new();
@@ -34,13 +35,16 @@ public partial class Arena : Node2D
     private int _currentLevelIndex = 0;
     private int _currentSubLevel = 1;
 
-    public override void _Ready()
+    public override async void _Ready()
     {
         _eventBus = GetNode<EventBus>("/root/EventBus");
         Cursor.Instance.Sprite2D.Texture = _arenaCursor;
 
         _levelData = _levels[0];
         GenerateDungeon();
+        
+        await ToSignal(GetTree().CreateTimer(0.5), SceneTreeTimer.SignalName.Timeout);
+        ShowLevelTitle();
         
         _eventBus.PlayerHealthUpdated += OnPlayerHealthUpdated;
         _eventBus.PlayerRoomEntered += OnPlayerRoomEntered;
@@ -241,6 +245,16 @@ public partial class Arena : Node2D
         }
     }
 
+    private void ShowLevelTitle()
+    {
+        _levelTitle.Text = $"{_currentLevelIndex + 1}-{_currentSubLevel}";
+        var tween = CreateTween();
+        _levelTitle.SelfModulate = new Color(1f, 1f, 1f, 0f);
+        tween.TweenProperty(_levelTitle, "self_modulate", new Color(1f, 1f, 1f, 1f), 1.0);
+        tween.TweenInterval(1.0);
+        tween.TweenProperty(_levelTitle, "self_modulate", new Color(1f, 1f, 1f, 0f), 1.0);
+    }
+
     private Vector2I FindFarthestRoom()
     {
         var farthestRoomCoord = _startRoomCoord;
@@ -347,5 +361,6 @@ public partial class Arena : Node2D
         
         var tweenOut = Transition.Instance.ShowTransitionOut();
         await ToSignal(tweenOut, Tween.SignalName.Finished);
+        ShowLevelTitle();
     }
 }
