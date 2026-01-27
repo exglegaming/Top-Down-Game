@@ -15,6 +15,8 @@ public partial class Player : CharacterBody2D
     [Export] public HealthComponent HealthComponent;
     [Export] public WeaponController WeaponController;
     [Export] public PlayerData Data;
+
+    public float CurrentMana;
     
     private bool _canMove = true;
     private Vector2 _movement;
@@ -23,6 +25,7 @@ public partial class Player : CharacterBody2D
     
     public override void _Ready()
     {
+        CurrentMana = Data.Magic;
         HealthComponent.InitHealth(Data.MaxHp);
 
         HealthComponent.OnUnitDamaged += OnHealthComponentOnUnitDamaged;
@@ -36,12 +39,13 @@ public partial class Player : CharacterBody2D
         WeaponController.RotateWeapon();
         
         _cooldown -= (float)delta;
-        if (Input.IsActionPressed(Shoot))
+        if (Input.IsActionPressed(Shoot) && CurrentMana >= WeaponController.CurrentWeapon.Data.ManaCost)
         {
             if (_cooldown <= 0)
             {
                 WeaponController.CurrentWeapon.UseWeapon();
                 _cooldown = WeaponController.CurrentWeapon.Data.Cooldown;
+                UseMana(WeaponController.CurrentWeapon.Data.ManaCost);
             }
         }
     }
@@ -71,6 +75,12 @@ public partial class Player : CharacterBody2D
     {
         if (_direction != Vector2.Zero && _direction.X >= 0.1) _visuals.Scale = new Vector2(1.25f, 1.25f);
         else if (_direction != Vector2.Zero && _direction.X <= -0.1) _visuals.Scale = new Vector2(-1.25f, 1.25f);
+    }
+
+    private void UseMana(float value)
+    {
+        if (CurrentMana < value) return;
+        CurrentMana -= value;
     }
 
     private void OnHealthComponentOnUnitDamaged(float amount)

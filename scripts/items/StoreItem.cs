@@ -54,9 +54,18 @@ public partial class StoreItem : Area2D
             case "Potion":
                 Global.Instance.PlayerRef.HealthComponent.Heal(_data.Value);
                 break;
+            case "Mana":
+                Global.Instance.PlayerRef.CurrentMana += _data.Value;
+                break;
+            case "ManaBoost":
+                Global.Instance.PlayerRef.Data.Magic += _data.Value;
+                break;
+            case "SpeedBoost":
+                Global.Instance.PlayerRef.Data.MoveSpeed += _data.Value;
+                break;
         }
-        Global.Instance.Coins -= _data.Price;
         
+        Global.Instance.Coins -= _data.Price;
         QueueFree();
     }
 

@@ -59,6 +59,10 @@ public partial class Arena : Node2D
     public override void _Process(double delta)
     {
         _totalCoins.Text = $"{Global.Instance.Coins}";
+        if (IsInstanceValid(Global.Instance.PlayerRef))
+        {
+            _manaBar.Value = Global.Instance.PlayerRef.CurrentMana / Global.Instance.PlayerRef.Data.Magic;
+        }
     }
     
     public override void _Input(InputEvent @event)
