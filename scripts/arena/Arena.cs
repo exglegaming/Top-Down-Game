@@ -1,6 +1,6 @@
 using Godot;
-using System.Collections.Generic;
 using System.Linq;
+using Godot.Collections;
 using TopDownGame.scripts.autoloads;
 using TopDownGame.scripts.extra;
 using TopDownGame.scripts.levels;
@@ -15,41 +15,33 @@ public partial class Arena : Node2D
     [Export] private Texture2D _arenaCursor;
     [Export] private TextureProgressBar _healthBar;
     [Export] private TextureProgressBar _manaBar;
-    [Export] private LevelData _levelData;
+    [Export] private Array<LevelData> _levels;
     [Export] private MapController _mapController;
     [Export] private EnemySpawner _enemySpawner;
     [Export] private Label _totalCoins;
     [Export] private AudioStreamPlayer _coinSound;
+    [Export] private Node2D _dungeon;
     
     public LevelRoom CurrentRoom;
-    private readonly Dictionary<Vector2I, LevelRoom> _grid = new();
+    private readonly System.Collections.Generic.Dictionary<Vector2I, LevelRoom> _grid = new();
     private EventBus _eventBus;
     private Vector2I _startRoomCoord;
     private Vector2I _endRoomCoord;
     private Vector2I _storeRoomCoord;
     private Vector2I _gridCellSize;
     private Player _player;
+    private LevelData  _levelData;
+    private int _currentLevelIndex = 0;
+    private int _currentSubLevel = 1;
 
     public override void _Ready()
     {
         _eventBus = GetNode<EventBus>("/root/EventBus");
-
         Cursor.Instance.Sprite2D.Texture = _arenaCursor;
 
-        _gridCellSize = new Vector2I(
-            _levelData.RoomSize.X + _levelData.CorridorSize.X,
-            _levelData.RoomSize.Y + _levelData.CorridorSize.Y
-        );
-
-        GenerateLevelLayout();
-        SelectSpecialRooms();
-        CreateRooms();
-        CreateCorridors();
-        LoadGameSelection();
+        _levelData = _levels[0];
+        GenerateDungeon();
         
-        var firstRoom = _grid[Vector2I.Zero];
-        firstRoom.IsCleared = true;
-
         _eventBus.PlayerHealthUpdated += OnPlayerHealthUpdated;
         _eventBus.PlayerRoomEntered += OnPlayerRoomEntered;
         _eventBus.RoomCleared += OnRoomCleared;
@@ -59,7 +51,11 @@ public partial class Arena : Node2D
 
     public override void _Process(double delta)
     {
-        _totalCoins.Text = $"{Global.Instance.Coins}";
+        if (IsInstanceValid(_totalCoins))
+        {
+            _totalCoins.Text = $"{Global.Instance.Coins}";
+        }
+    
         if (IsInstanceValid(Global.Instance.PlayerRef))
         {
             _manaBar.Value = Global.Instance.PlayerRef.CurrentMana / Global.Instance.PlayerRef.Data.Magic;
@@ -73,6 +69,38 @@ public partial class Arena : Node2D
             CurrentRoom.UnlockRoom();
             CurrentRoom.IsCleared = true;
         }
+    }
+
+    private async void GenerateDungeon()
+    {
+        foreach (var child in _dungeon.GetChildren())
+        {
+            child.QueueFree();
+        }
+
+        await ToSignal(GetTree(), SceneTree.SignalName.ProcessFrame);
+
+        if (_player != null)
+        {
+            _player.QueueFree();
+            Global.Instance.PlayerRef = null;
+        }
+        
+        _gridCellSize = new Vector2I(
+            _levelData.RoomSize.X + _levelData.CorridorSize.X,
+            _levelData.RoomSize.Y + _levelData.CorridorSize.Y
+        );
+
+        GenerateLevelLayout();
+        SelectSpecialRooms();
+        CreateRooms();
+        CreateCorridors();
+        LoadGameSelection();
+        
+        var firstRoom = _grid[Vector2I.Zero];
+        firstRoom.IsCleared = true;
+        
+        GD.Print("Dungeon generation complete");
     }
 
     private void GenerateLevelLayout()
@@ -121,7 +149,7 @@ public partial class Arena : Node2D
         {
             var roomInstance = (LevelRoom)_levelData.RoomScene.Instantiate();
             roomInstance.Position = roomCoord * _gridCellSize;
-            AddChild(roomInstance);
+           _dungeon.AddChild(roomInstance);
             roomInstance.CreateProps(_levelData);
             
             // Link each coord with a room instance
@@ -157,7 +185,7 @@ public partial class Arena : Node2D
             {
                 var corridor = (Node2D)_levelData.HCorridor.Instantiate();
                 corridor.Position = roomInstance.Position + new Vector2((float)(_gridCellSize.X / 2.0), 0);
-                AddChild(corridor);
+                _dungeon.AddChild(corridor);
             }
             
             // Create down connection
@@ -166,7 +194,7 @@ public partial class Arena : Node2D
             {
                 var corridor = (Node2D)_levelData.VCorridor.Instantiate();
                 corridor.Position = roomInstance.Position + new Vector2(0, (float)(_gridCellSize.Y / 2.0));
-                AddChild(corridor);
+                _dungeon.AddChild(corridor);
             }
         }
     }
@@ -285,8 +313,33 @@ public partial class Arena : Node2D
         _coinSound.Play();
     }
 
-    private void OnPortalReached()
+    private async void OnPortalReached()
     {
-        GD.Print("End Reached!");
+        var tweenIn = Transition.Instance.ShowTransitionIn();
+        await ToSignal(tweenIn, Tween.SignalName.Finished);
+
+        if (_currentSubLevel < _levelData.NumSubLevels)
+        {
+            _currentSubLevel++;
+            GenerateDungeon();
+        }
+        else
+        {
+            _currentLevelIndex++;
+            if (_currentLevelIndex < _levels.Count)
+            {
+                _currentSubLevel = 1;
+                _levelData = _levels[_currentLevelIndex];
+                GenerateDungeon();
+            }
+            else
+            {
+                GD.Print("No more levels.");
+                Transition.Instance.TransitionTo("uid://bdmo5icd2xpue");
+            }
+        }
+        
+        var tweenOut = Transition.Instance.ShowTransitionOut();
+        await ToSignal(tweenOut, Tween.SignalName.Finished);
     }
 }

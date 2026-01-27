@@ -31,4 +31,18 @@ public partial class Transition : Node
             tween.TweenProperty(_effect.Material, "shader_parameter/progress", 0.0, 1.0);
         };
     }
+
+    public Tween ShowTransitionIn()
+    {
+        var tween = CreateTween().SetTrans(Tween.TransitionType.Sine);
+        tween.TweenProperty(_effect.Material, "shader_parameter/progress", 1.0, 1.0);
+        return tween;
+    }
+    
+    public Tween ShowTransitionOut()
+    {
+        var tween = CreateTween().SetTrans(Tween.TransitionType.Sine);
+        tween.TweenProperty(_effect.Material, "shader_parameter/progress", 0.0, 1.0);
+        return tween;
+    }
 }

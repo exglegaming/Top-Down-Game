@@ -19,20 +19,23 @@
 atlas = ExtResource("1_1qjuf")
 region = Rect2(48, 0, 48, 48)
 
-[node name="Arena" type="Node2D" unique_id=1524652960 node_paths=PackedStringArray("_healthBar", "_manaBar", "_mapController", "_enemySpawner", "_totalCoins", "_coinSound")]
+[node name="Arena" type="Node2D" unique_id=1524652960 node_paths=PackedStringArray("_healthBar", "_manaBar", "_mapController", "_enemySpawner", "_totalCoins", "_coinSound", "_dungeon")]
 script = ExtResource("1_ii07k")
 _arenaCursor = ExtResource("2_6w4xk")
 _healthBar = NodePath("UI/PlayerUI/HealthBar")
 _manaBar = NodePath("UI/PlayerUI/ManaBar")
-_levelData = ExtResource("3_6w4xk")
+_levels = Array[Object]([ExtResource("3_6w4xk")])
 _mapController = NodePath("UI/MapController")
 _enemySpawner = NodePath("EnemySpawner")
 _totalCoins = NodePath("UI/Coins/TotalCoins")
 _coinSound = NodePath("CoinSound")
+_dungeon = NodePath("Dungeon")
 
 [node name="CoinSound" type="AudioStreamPlayer" parent="." unique_id=1476561981]
 stream = ExtResource("4_fv88w")
 bus = &"SFX"
+
+[node name="Dungeon" type="Node2D" parent="." unique_id=1299842414]
 
 [node name="EnemySpawner" type="Node2D" parent="." unique_id=1445834504 node_paths=PackedStringArray("_arena")]
 script = ExtResource("11_xgbxb")
