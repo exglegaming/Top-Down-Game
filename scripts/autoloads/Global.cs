@@ -15,6 +15,7 @@ public partial class Global : Node
     public static readonly ShaderMaterial HitMaterial = new() { Shader = HitShader };
     public static readonly PackedScene ChestScene = GD.Load<PackedScene>("uid://bpy8vjvvh0lf7");
     public static readonly PackedScene StoreItemScene = GD.Load<PackedScene>("uid://c4qfdnuhn8wf0");
+    public static readonly PackedScene PortalScene = GD.Load<PackedScene>("uid://bdves0al06ut7");
     
     private const string Bunny = "uid://brqlu552oijhw";
     private const string Dog = "uid://c5oxdpdqidm62";

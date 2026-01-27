@@ -54,6 +54,7 @@ public partial class Arena : Node2D
         _eventBus.PlayerRoomEntered += OnPlayerRoomEntered;
         _eventBus.RoomCleared += OnRoomCleared;
         _eventBus.CoinPicked += OnCoinPicked;
+        _eventBus.PortalReached += OnPortalReached;
     }
 
     public override void _Process(double delta)
@@ -130,6 +131,12 @@ public partial class Arena : Node2D
             {
                 roomInstance.IsCleared = true;
                 roomInstance.SetupRoomAsShop(_levelData);
+            }
+
+            if (roomCoord == _endRoomCoord)
+            {
+                roomInstance.IsCleared = true;
+                roomInstance.SetUpRoomAsPortal();
             }
             
             // Connect rooms using directions
@@ -276,5 +283,10 @@ public partial class Arena : Node2D
     private void OnCoinPicked()
     {
         _coinSound.Play();
+    }
+
+    private void OnPortalReached()
+    {
+        GD.Print("End Reached!");
     }
 }

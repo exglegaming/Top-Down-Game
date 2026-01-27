@@ -1,6 +1,7 @@
 using Godot;
 using Godot.Collections;
 using TopDownGame.scripts.autoloads;
+using TopDownGame.scripts.extra;
 using TopDownGame.scripts.items;
 using TopDownGame.scripts.resources.data.items;
 using TopDownGame.scripts.resources.data.level;
@@ -19,6 +20,7 @@ public partial class LevelRoom : Node2D
     [Export] public TileMapLayer DoorDown { get; private set; }
     [Export] public TileMapLayer DoorLeft { get; private set; }
     [Export] public Marker2D PlayerSpawnPosition { get; private set; }
+    [Export] public Marker2D PortalPosition { get; private set; }
     [Export] public TileMapLayer TileData { get; private set; }
     [Export] public Area2D PlayerDetector { get; private set; }
     [Export] public Array<Marker2D> ItemPositions { get; private set; }
@@ -94,6 +96,13 @@ public partial class LevelRoom : Node2D
             instance.Position = tilePosition;
             AddChild(instance);
         }
+    }
+
+    public void SetUpRoomAsPortal()
+    {
+        var portal = (Portal)Global.PortalScene.Instantiate();
+        AddChild(portal);
+        portal.GlobalPosition = PortalPosition.GlobalPosition;
     }
 
     public Vector2 GetFreeSpawnPosition()

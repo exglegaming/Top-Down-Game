@@ -6,7 +6,7 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vjhg3"]
 size = Vector2(290, 260)
 
-[node name="LevelOneRoom" type="Node2D" unique_id=129180586 node_paths=PackedStringArray("WallUp", "WallRight", "WallDown", "WallLeft", "DoorUp", "DoorRight", "DoorDown", "DoorLeft", "PlayerSpawnPosition", "TileData", "PlayerDetector", "ItemPositions")]
+[node name="LevelOneRoom" type="Node2D" unique_id=129180586 node_paths=PackedStringArray("WallUp", "WallRight", "WallDown", "WallLeft", "DoorUp", "DoorRight", "DoorDown", "DoorLeft", "PlayerSpawnPosition", "PortalPosition", "TileData", "PlayerDetector", "ItemPositions")]
 script = ExtResource("1_00qc3")
 WallUp = NodePath("WallLayers/WallUp")
 WallRight = NodePath("WallLayers/WallRight")
@@ -17,6 +17,7 @@ DoorRight = NodePath("Doors/DoorRight")
 DoorDown = NodePath("Doors/DoorDown")
 DoorLeft = NodePath("Doors/DoorLeft")
 PlayerSpawnPosition = NodePath("PlayerSpawnPosition")
+PortalPosition = NodePath("PortalPosition")
 TileData = NodePath("TileData")
 PlayerDetector = NodePath("PlayerDetector")
 ItemPositions = [NodePath("ItemPosition1"), NodePath("ItemPosition2"), NodePath("ItemPosition3")]
@@ -92,3 +93,5 @@ position = Vector2(0, 80)
 
 [node name="ItemPosition3" type="Marker2D" parent="." unique_id=2046789674]
 position = Vector2(70, 80)
+
+[node name="PortalPosition" type="Marker2D" parent="." unique_id=1689212670]
