@@ -1,6 +1,7 @@
 using Godot;
 using TopDownGame.scripts.autoloads;
 using TopDownGame.scripts.resources.data.items;
+using TopDownGame.scripts.ui.description_panel;
 
 namespace TopDownGame.scripts.items;
 
@@ -10,6 +11,7 @@ public partial class StoreItem : Area2D
     [Export] private Sprite2D _glow;
     [Export] private Sprite2D _sprite;
     [Export] private RichTextLabel _price;
+    [Export] private DescriptionPanel _descriptionPanel;
     
     [ExportGroup("Glow Color")]
     [Export] private Color _commonGlow;
@@ -39,6 +41,7 @@ public partial class StoreItem : Area2D
         _sprite.Texture = _data.Icon;
         _glow.SelfModulate = GetRarityColor();
         _price.Text = $"[code][img=10]assets/sprites/coin.png[/img][/code]{_data.Price}";
+        _descriptionPanel.SetText(_data.Description);
     }
 
     private void BuyItem()
@@ -71,10 +74,15 @@ public partial class StoreItem : Area2D
     private void OnBodyEntered(Node2D body)
     {
         _canBuyItem = true;
+        _descriptionPanel.Show();
+        var dampedOscillator = GetNode<GodotObject>("/root/DampedOscillator");
+        dampedOscillator.Call("animate", _descriptionPanel, "scale", (float)GD.RandRange(400, 450),  (float)GD.RandRange(5, 10), (float)GD.RandRange(10, 15), 0.5);
+        dampedOscillator.Call("animate", _descriptionPanel, "rotation_degrees", 300, 7.5, 15, (float)GD.RandRange(-20, 20) * 0.5);
     }
 
     private void OnBodyExited(Node2D body)
     {
         _canBuyItem = false;
+        _descriptionPanel.Hide();
     }
 }

@@ -42,6 +42,7 @@ metadata/_custom_type_script = "uid://hcq32f7rea0r"
 
 [resource]
 script = ExtResource("1_vg60f")
+NumRooms = 4
 RoomScene = ExtResource("1_hce3r")
 HCorridor = ExtResource("1_i1ubn")
 VCorridor = ExtResource("3_rkwxv")
