@@ -2,7 +2,6 @@
 
 [ext_resource type="Script" uid="uid://cajbyx68lwfb2" path="res://scripts/levels/LevelRoom.cs" id="1_00qc3"]
 [ext_resource type="TileSet" uid="uid://d2sa0hrqc8qsw" path="res://scenes/extra/level_one_tileset.tres" id="2_vjhg3"]
-[ext_resource type="PackedScene" uid="uid://cs1h3fiy3gjo1" path="res://scenes/items/coin.tscn" id="3_p4pme"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vjhg3"]
 size = Vector2(290, 260)
@@ -83,15 +82,3 @@ collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDetector" unique_id=1144089441]
 shape = SubResource("RectangleShape2D_vjhg3")
-
-[node name="Coin" parent="." unique_id=1123853093 instance=ExtResource("3_p4pme")]
-position = Vector2(-88, -71)
-
-[node name="Coin2" parent="." unique_id=1940920035 instance=ExtResource("3_p4pme")]
-position = Vector2(-87, 67)
-
-[node name="Coin3" parent="." unique_id=613662348 instance=ExtResource("3_p4pme")]
-position = Vector2(93, 43)
-
-[node name="Coin4" parent="." unique_id=1079709103 instance=ExtResource("3_p4pme")]
-position = Vector2(102, -89)
