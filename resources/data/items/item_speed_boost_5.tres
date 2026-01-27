@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="ItemData" format=3 uid="uid://bjgd7hjxx7ln6"]
+
+[ext_resource type="Texture2D" uid="uid://cd7rp8icve7e7" path="res://assets/sprites/items/Item_White7.png" id="1_pi6db"]
+[ext_resource type="Script" uid="uid://rrx7x0t6oj6n" path="res://scripts/resources/data/items/ItemData.cs" id="2_7umya"]
+
+[resource]
+script = ExtResource("2_7umya")
+Icon = ExtResource("1_pi6db")
+Id = "SpeedBoost"
+Name = "Speed +5"
+Value = 5.0
+Price = 3.0
+Description = "Increases max speed by 5 points."
+metadata/_custom_type_script = "uid://rrx7x0t6oj6n"

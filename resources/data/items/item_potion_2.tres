@@ -10,4 +10,5 @@ Id = "Potion"
 Name = "Potion +2"
 Value = 2.0
 Price = 3.0
+Description = "Restores 2 points of health."
 metadata/_custom_type_script = "uid://rrx7x0t6oj6n"

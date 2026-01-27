@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="ItemData" format=3 uid="uid://v2tpp31sbv5n"]
+
+[ext_resource type="Texture2D" uid="uid://ca38s4prcgtct" path="res://assets/sprites/items/Item_White3.png" id="1_qa607"]
+[ext_resource type="Script" uid="uid://rrx7x0t6oj6n" path="res://scripts/resources/data/items/ItemData.cs" id="2_heivn"]
+
+[resource]
+script = ExtResource("2_heivn")
+Icon = ExtResource("1_qa607")
+Id = "Mana"
+Name = "Mana 30"
+Value = 30.0
+Price = 12.0
+Rarity = 2
+Description = "Restores 30 points of mana."
+metadata/_custom_type_script = "uid://rrx7x0t6oj6n"

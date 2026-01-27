@@ -67,14 +67,6 @@ public partial class Player : CharacterBody2D
         MoveAndSlide();
     }
 
-    public override void _Input(InputEvent @event)
-    {
-        if (@event.IsActionPressed("ui_accept"))
-        {
-            HealthComponent.TakeDamage(1);
-        }
-    }
-
     private void RotatePlayer()
     {
         if (_direction != Vector2.Zero && _direction.X >= 0.1) _visuals.Scale = new Vector2(1.25f, 1.25f);
@@ -93,6 +85,6 @@ public partial class Player : CharacterBody2D
 
     private void OnHealthComponentOnUnitHealed(float amount)
     {
-        
+        EventBus.EmitPlayerHealthUpdated(HealthComponent.CurrentHealth, Data.MaxHp);
     }
 }

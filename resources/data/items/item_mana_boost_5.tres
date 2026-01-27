@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="ItemData" format=3 uid="uid://ck788k1cywslw"]
+
+[ext_resource type="Texture2D" uid="uid://dgyhmvw6v1grs" path="res://assets/sprites/items/Item_White2.png" id="1_umdi7"]
+[ext_resource type="Script" uid="uid://rrx7x0t6oj6n" path="res://scripts/resources/data/items/ItemData.cs" id="2_x10j6"]
+
+[resource]
+script = ExtResource("2_x10j6")
+Icon = ExtResource("1_umdi7")
+Id = "ManaBoost"
+Name = "Magic +5"
+Value = 5.0
+Price = 5.0
+Description = "Increases max mana by 5 points."
+metadata/_custom_type_script = "uid://rrx7x0t6oj6n"

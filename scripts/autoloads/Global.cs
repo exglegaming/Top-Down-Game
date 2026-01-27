@@ -62,7 +62,7 @@ public partial class Global : Node
     public Player PlayerRef;
     public PlayerData SelectedPlayer;
     public WeaponData SelectedWeapon;
-    public float Coins;
+    public float Coins = 50f;
     public Dictionary<string, bool> Settings { get; set; } = new()
     {
         { "music", true },
