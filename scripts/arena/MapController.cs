@@ -33,6 +33,18 @@ public partial class MapController : Control
         _playerCoord = newRoomCoord;
         newCell.SetPlayerActive(true);
     }
+    
+    public void Reset()
+    {
+        foreach (var mapCell in _minimapCells.Values)
+        {
+            mapCell.QueueFree();
+        }
+        
+        _minimapCells.Clear();
+        _playerCoord = Vector2I.MaxValue;
+        _cellSize = Vector2.Zero;
+    }
 
     private MapCell CreateMapCell(Vector2I coord)
     {
@@ -49,17 +61,5 @@ public partial class MapController : Control
         var relativePosition = new Vector2(coord.X * _cellSize.X, coord.Y * _cellSize.Y);
         newCell.Position = (Size / 2.0f) + relativePosition - (_cellSize / 2.0f);
         return newCell;
-    }
-
-    private void Reset()
-    {
-        foreach (var mapCell in _minimapCells.Values)
-        {
-            mapCell.QueueFree();
-        }
-        
-        _minimapCells.Clear();
-        _playerCoord = Vector2I.MaxValue;
-        _cellSize = Vector2.Zero;
     }
 }

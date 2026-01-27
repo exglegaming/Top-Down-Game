@@ -86,6 +86,12 @@ public partial class Arena : Node2D
             Global.Instance.PlayerRef = null;
         }
         
+        _mapController.Reset();
+        foreach (var child in _mapController.GetChildren())
+        {
+            child.QueueFree();
+        }
+        
         _gridCellSize = new Vector2I(
             _levelData.RoomSize.X + _levelData.CorridorSize.X,
             _levelData.RoomSize.Y + _levelData.CorridorSize.Y
@@ -304,7 +310,7 @@ public partial class Arena : Node2D
         var tilePosition = CurrentRoom.GetFreeSpawnPosition();
         var chestPosition = CurrentRoom.ToGlobal(tilePosition);
         var chestInstance = (Chest)Global.ChestScene.Instantiate();
-        CallDeferred("add_child", chestInstance);
+        _dungeon.CallDeferred("add_child", chestInstance);
         chestInstance.GlobalPosition = chestPosition;
     }
 
