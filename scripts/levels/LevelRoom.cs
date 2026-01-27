@@ -1,6 +1,8 @@
 using Godot;
 using Godot.Collections;
 using TopDownGame.scripts.autoloads;
+using TopDownGame.scripts.items;
+using TopDownGame.scripts.resources.data.items;
 using TopDownGame.scripts.resources.data.level;
 
 namespace TopDownGame.scripts.levels;
@@ -19,6 +21,7 @@ public partial class LevelRoom : Node2D
     [Export] public Marker2D PlayerSpawnPosition { get; private set; }
     [Export] public TileMapLayer TileData { get; private set; }
     [Export] public Area2D PlayerDetector { get; private set; }
+    [Export] public Array<Marker2D> ItemPositions { get; private set; }
     
     private Array<Vector2I> _tiles = [];
     private System.Collections.Generic.Dictionary<Vector2I, TileMapLayer> _roomWalls;
@@ -97,6 +100,20 @@ public partial class LevelRoom : Node2D
     {
         var tileCoord = _tiles.PickRandom();
         return TileData.MapToLocal(tileCoord);
+    }
+    
+    public void SetupRoomAsShop(LevelData data)
+    {
+        if (data.StoreData.Count == 0) return;
+
+        foreach (var itemPosition in ItemPositions)
+        {
+            var itemData = data.GetRandomStoreItem();
+            var itemInstance = (StoreItem)Global.StoreItemScene.Instantiate();
+            AddChild(itemInstance);
+            itemInstance.GlobalPosition = itemPosition.GlobalPosition;
+            itemInstance.Setup(itemData);
+        }
     }
     
     private void RegisterTiles()

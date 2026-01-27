@@ -2,6 +2,7 @@ using Godot;
 using System.Collections.Generic;
 using System.Linq;
 using TopDownGame.scripts.autoloads;
+using TopDownGame.scripts.extra;
 using TopDownGame.scripts.levels;
 using TopDownGame.scripts.player;
 using TopDownGame.scripts.resources.data.level;
@@ -25,6 +26,7 @@ public partial class Arena : Node2D
     private EventBus _eventBus;
     private Vector2I _startRoomCoord;
     private Vector2I _endRoomCoord;
+    private Vector2I _storeRoomCoord;
     private Vector2I _gridCellSize;
     private Player _player;
 
@@ -37,7 +39,7 @@ public partial class Arena : Node2D
         _gridCellSize = new Vector2I(
             _levelData.RoomSize.X + _levelData.CorridorSize.X,
             _levelData.RoomSize.Y + _levelData.CorridorSize.Y
-            );
+        );
 
         GenerateLevelLayout();
         SelectSpecialRooms();
@@ -119,6 +121,12 @@ public partial class Arena : Node2D
             
             // Link each coord with a room instance
             _grid[roomCoord] = roomInstance;
+
+            if (roomCoord == _storeRoomCoord)
+            {
+                roomInstance.IsCleared = true;
+                roomInstance.SetupRoomAsShop(_levelData);
+            }
             
             // Connect rooms using directions
             ConnectRooms(roomCoord, roomInstance);
@@ -169,8 +177,23 @@ public partial class Arena : Node2D
     {
         _startRoomCoord = Vector2I.Zero;
         _endRoomCoord = FindFarthestRoom();
-        GD.Print($"Start room coordinate: {_startRoomCoord}");
-        GD.Print($"End room coordinate: {_endRoomCoord}");
+        
+        var candidateCoords = _grid.Keys.ToList();
+        candidateCoords.Remove(_startRoomCoord);
+        candidateCoords.Remove(_endRoomCoord);
+
+        if (candidateCoords.Count > 0)
+        {
+            var rng = new RandomNumberGenerator();
+            rng.Randomize();
+
+            _storeRoomCoord = candidateCoords[rng.RandiRange(0, candidateCoords.Count - 1)];
+        }
+        else
+        {
+            _storeRoomCoord = Vector2I.MaxValue;
+            GD.Print("No shop coord.");
+        }
     }
 
     private Vector2I FindFarthestRoom()
@@ -239,6 +262,11 @@ public partial class Arena : Node2D
     {
         CurrentRoom.UnlockRoom();
         CurrentRoom.IsCleared = true;
+        var tilePosition = CurrentRoom.GetFreeSpawnPosition();
+        var chestPosition = CurrentRoom.ToGlobal(tilePosition);
+        var chestInstance = (Chest)Global.ChestScene.Instantiate();
+        CallDeferred("add_child", chestInstance);
+        chestInstance.GlobalPosition = chestPosition;
     }
 
     private void OnCoinPicked()

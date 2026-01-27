@@ -10,13 +10,34 @@
 [ext_resource type="PackedScene" uid="uid://bcubi6xseskg8" path="res://scenes/props/plant_3.tscn" id="4_amo47"]
 [ext_resource type="PackedScene" uid="uid://byj4wnknypmkf" path="res://scenes/enemy/enemy_4.tscn" id="4_qbe26"]
 [ext_resource type="PackedScene" uid="uid://ehc5rso0tk75" path="res://scenes/props/plant_4.tscn" id="5_4dfd8"]
+[ext_resource type="Script" uid="uid://hcq32f7rea0r" path="res://scripts/resources/data/level/LevelStoreData.cs" id="9_4dfd8"]
+[ext_resource type="Resource" uid="uid://b5ilghnvfj46n" path="res://resources/data/items/item_potion_2.tres" id="9_5lg31"]
+
+[sub_resource type="Resource" id="Resource_5lg31"]
+script = ExtResource("9_4dfd8")
+ItemData = ExtResource("9_5lg31")
+ItemProbability = 4.0
+metadata/_custom_type_script = "uid://hcq32f7rea0r"
+
+[sub_resource type="Resource" id="Resource_qhmsp"]
+script = ExtResource("9_4dfd8")
+ItemData = ExtResource("9_5lg31")
+ItemProbability = 2.0
+metadata/_custom_type_script = "uid://hcq32f7rea0r"
+
+[sub_resource type="Resource" id="Resource_tctnb"]
+script = ExtResource("9_4dfd8")
+ItemData = ExtResource("9_5lg31")
+ItemProbability = 1.0
+metadata/_custom_type_script = "uid://hcq32f7rea0r"
 
 [resource]
 script = ExtResource("1_vg60f")
+NumRooms = 4
 RoomScene = ExtResource("1_hce3r")
 HCorridor = ExtResource("1_i1ubn")
 VCorridor = ExtResource("3_rkwxv")
 Props = Array[PackedScene]([ExtResource("2_7isev"), ExtResource("3_hc28j"), ExtResource("4_amo47"), ExtResource("5_4dfd8")])
 EnemyScenes = Array[PackedScene]([ExtResource("3_tctnb"), ExtResource("4_qbe26")])
-StoreData = null
+StoreData = Array[Object]([SubResource("Resource_5lg31"), SubResource("Resource_qhmsp"), SubResource("Resource_tctnb")])
 metadata/_custom_type_script = "uid://c8ohtdctb7h1r"

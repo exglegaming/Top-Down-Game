@@ -33,7 +33,7 @@ public partial class StoreItem : Area2D
         }
     }
 
-    private void Setup(ItemData itemData)
+    public void Setup(ItemData itemData)
     {
         _data = itemData;
         _sprite.Texture = _data.Icon;
@@ -44,12 +44,16 @@ public partial class StoreItem : Area2D
     private void BuyItem()
     {
         if (_data == null) return;
+        if (Global.Instance.Coins < _data.Price) return;
+        
         switch (_data.Id)
         {
             case "Potion":
                 Global.Instance.PlayerRef.HealthComponent.Heal(_data.Value);
                 break;
         }
+        Global.Instance.Coins -= _data.Price;
+        
         QueueFree();
     }
 

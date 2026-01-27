@@ -13,6 +13,8 @@ public partial class Global : Node
     public static readonly PackedScene SpawnMarkerScene = GD.Load<PackedScene>("uid://bx7ulfs4833r");
     private static readonly Shader HitShader = GD.Load<Shader>("uid://bvtcpygj3gpx4");
     public static readonly ShaderMaterial HitMaterial = new() { Shader = HitShader };
+    public static readonly PackedScene ChestScene = GD.Load<PackedScene>("uid://bpy8vjvvh0lf7");
+    public static readonly PackedScene StoreItemScene = GD.Load<PackedScene>("uid://c4qfdnuhn8wf0");
     
     private const string Bunny = "uid://brqlu552oijhw";
     private const string Dog = "uid://c5oxdpdqidm62";
