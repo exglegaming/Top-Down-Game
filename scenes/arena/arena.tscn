@@ -15,10 +15,16 @@
 [ext_resource type="Texture2D" uid="uid://cnkiu5jecgwsr" path="res://assets/sprites/coin.png" id="12_vmsrg"]
 [ext_resource type="LabelSettings" uid="uid://4rm1gvou0f2t" path="res://extra/font_16.tres" id="13_s83md"]
 [ext_resource type="LabelSettings" uid="uid://vxh5qk55fkll" path="res://extra/font_48.tres" id="15_w4nra"]
+[ext_resource type="Shader" uid="uid://du2l8471hfsjf" path="res://shaders/ui/vignette.gdshader" id="16_t3vx8"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_n62jo"]
 atlas = ExtResource("1_1qjuf")
 region = Rect2(48, 0, 48, 48)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_w4nra"]
+shader = ExtResource("16_t3vx8")
+shader_parameter/outerRadius = 1.250000059375
+shader_parameter/MainAlpha = 0.30000001425
 
 [node name="Arena" type="Node2D" unique_id=1524652960 node_paths=PackedStringArray("_healthBar", "_manaBar", "_mapController", "_enemySpawner", "_totalCoins", "_coinSound", "_dungeon", "_levelTitle")]
 script = ExtResource("1_ii07k")
@@ -170,3 +176,11 @@ offset_bottom = 64.0
 grow_horizontal = 2
 text = "1-1"
 label_settings = ExtResource("15_w4nra")
+
+[node name="Vignette" type="ColorRect" parent="UI" unique_id=1735474840]
+material = SubResource("ShaderMaterial_w4nra")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2

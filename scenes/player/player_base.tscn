@@ -5,6 +5,15 @@
 [ext_resource type="PackedScene" uid="uid://cm774d4hp3584" path="res://scenes/components/health_component.tscn" id="2_76ihk"]
 [ext_resource type="PackedScene" uid="uid://bfoydybyraedm" path="res://scenes/weapons/weapon_controller.tscn" id="4_0t7ad"]
 
+[sub_resource type="Gradient" id="Gradient_0t7ad"]
+offsets = PackedFloat32Array(0, 0.8307393)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_t60ga"]
+gradient = SubResource("Gradient_0t7ad")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
 [node name="PlayerBase" type="CharacterBody2D" unique_id=2096422990]
 collision_layer = 2
 collision_mask = 5
@@ -28,3 +37,9 @@ unique_name_in_owner = true
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=928463983]
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1453529653]
+
+[node name="PointLight2D" type="PointLight2D" parent="." unique_id=1851664793]
+color = Color(1, 1, 1, 0.50980395)
+energy = 0.3
+texture = SubResource("GradientTexture2D_t60ga")
+texture_scale = 1.5

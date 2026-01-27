@@ -57,6 +57,15 @@ bg_color = Color(0.22450125, 1.8349849e-07, 8.4228816e-08, 1)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5ax25"]
 bg_color = Color(1, 0, 0, 1)
 
+[sub_resource type="Gradient" id="Gradient_0t7ad"]
+offsets = PackedFloat32Array(0, 0.8307393)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_5ax25"]
+gradient = SubResource("Gradient_0t7ad")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
 [node name="Enemy1" type="CharacterBody2D" unique_id=1776012209 node_paths=PackedStringArray("_animSprite", "_playerDetector", "_enemyDetector", "_hurtSound", "_healthBar", "HealthComponent")]
 scale = Vector2(1.5, 1.5)
 collision_layer = 4
@@ -119,3 +128,9 @@ theme_override_styles/fill = SubResource("StyleBoxFlat_5ax25")
 max_value = 1.0
 value = 0.5
 show_percentage = false
+
+[node name="PointLight2D" type="PointLight2D" parent="." unique_id=1663758949]
+color = Color(1, 0.23529412, 0.26666668, 0.50980395)
+energy = 0.25
+texture = SubResource("GradientTexture2D_5ax25")
+texture_scale = 1.3

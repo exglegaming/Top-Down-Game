@@ -182,6 +182,15 @@ _data = {
 &"in": SubResource("Animation_e764u")
 }
 
+[sub_resource type="Gradient" id="Gradient_t11da"]
+offsets = PackedFloat32Array(0, 0.8307393)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_e764u"]
+gradient = SubResource("Gradient_t11da")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
 [node name="Coin" type="Area2D" unique_id=1123853093]
 collision_layer = 0
 collision_mask = 2
@@ -203,3 +212,9 @@ shape = SubResource("CircleShape2D_fgdtj")
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=2064371287]
 libraries/ = SubResource("AnimationLibrary_weiq1")
 autoplay = &"in"
+
+[node name="PointLight2D" type="PointLight2D" parent="." unique_id=1839039718]
+color = Color(0.5686275, 0.5686275, 0.57254905, 0.50980395)
+energy = 0.25
+texture = SubResource("GradientTexture2D_e764u")
+texture_scale = 1.3
